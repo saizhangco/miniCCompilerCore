@@ -1,0 +1,69 @@
+auto int num1 = 3,num2=5;
+/*****************************************************
+* HelloWorld.cÔ´ÎÄ¼þ
+*****************************************************/
+int main()
+{
+	break;
+	break int ;
+	continue;
+	continue int;
+	goto Line1;
+	goto ;
+	goto Line Line2;
+	return int1;
+	return;
+	return a1 a2;
+	while(1+1+1+abc)
+		return int_1;
+	while(1+1+2+INT12)
+	{
+		break;
+		return int_2;
+	}
+	do
+		return int1;
+	while(1+1);
+	do
+	{
+		break;
+	}while(1+2);
+	break;
+	break int ;
+	continue;
+	continue int;
+	goto Line1;
+	goto ;
+	goto Line Line2;
+	return int1;
+	return;
+	return a1 a2;
+	if(1)
+	break;
+	else if(2)
+	break;
+	else
+	break;
+	while(1+1+1+abc)
+		return int_1;
+	while(1+1+2+INT12)
+	{
+		break;
+		return int_2;
+	}
+
+	do
+ 		return int1;
+	while(1+1);
+	do
+	{
+		break;
+	}while(1+2);
+	for(1;2;3)
+		return int1;
+	for(1;2;3)
+	{
+		return int1;
+	}	
+	return num1;
+}

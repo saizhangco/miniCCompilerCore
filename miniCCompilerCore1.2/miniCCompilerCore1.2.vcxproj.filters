@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{5aae1041-e0e5-48d0-a9cd-021485fa3731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{af620034-b7e3-425a-b4eb-1757ff381741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lexical">
+      <UniqueIdentifier>{1cf7bf16-a835-4ad6-9593-64446c91242b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LL_1">
+      <UniqueIdentifier>{c1e391e7-8a36-4bfb-9a2e-e095579fdbf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="grammar">
+      <UniqueIdentifier>{3f8c2633-6121-4adb-b853-faf750fb03fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="semantic">
+      <UniqueIdentifier>{37759ad7-5385-4d09-a020-dfac5b4d7700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object">
+      <UniqueIdentifier>{be5da525-a35e-4ce2-88f6-3c37914058f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="optimization">
+      <UniqueIdentifier>{fbdde07b-a42c-4f20-a868-4186fc7bf3ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="lexicalAnalysis.cpp">
+      <Filter>lexical</Filter>
+    </ClCompile>
+    <ClCompile Include="codeList.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="code.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="token.cpp">
+      <Filter>lexical</Filter>
+    </ClCompile>
+    <ClCompile Include="grammar.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="production.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="first.cpp">
+      <Filter>LL_1</Filter>
+    </ClCompile>
+    <ClCompile Include="follow.cpp">
+      <Filter>LL_1</Filter>
+    </ClCompile>
+    <ClCompile Include="analysisTable.cpp">
+      <Filter>LL_1</Filter>
+    </ClCompile>
+    <ClCompile Include="analysisTableItem.cpp">
+      <Filter>LL_1</Filter>
+    </ClCompile>
+    <ClCompile Include="LL_1_AnalysisItem.cpp">
+      <Filter>LL_1</Filter>
+    </ClCompile>
+    <ClCompile Include="LL_1_Analysis.cpp">
+      <Filter>LL_1</Filter>
+    </ClCompile>
+    <ClCompile Include="lexicalAnalysisAnimation.cpp">
+      <Filter>lexical</Filter>
+    </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="tree.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="variableList.cpp">
+      <Filter>grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="parameterList.cpp">
+      <Filter>grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="functionDefinition.cpp">
+      <Filter>grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="variableDefinition.cpp">
+      <Filter>grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="grammarTreeTmp.cpp">
+      <Filter>grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="grammarAnalysis.cpp">
+      <Filter>grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="fileOperation.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="fourElementTypeItem.cpp">
+      <Filter>semantic</Filter>
+    </ClCompile>
+    <ClCompile Include="fourElementType.cpp">
+      <Filter>semantic</Filter>
+    </ClCompile>
+    <ClCompile Include="semanticAnalysis.cpp">
+      <Filter>semantic</Filter>
+    </ClCompile>
+    <ClCompile Include="objectCodeGeneration.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="objectCodeGeneration_x86.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="main_arg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="objectCodeGeneration_Linux.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="main_arg_test_1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main_0511.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="codeOptimization.cpp">
+      <Filter>optimization</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="symbol.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="code.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="codeList.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="lexicalAnalysis.h">
+      <Filter>lexical</Filter>
+    </ClInclude>
+    <ClInclude Include="token.h">
+      <Filter>lexical</Filter>
+    </ClInclude>
+    <ClInclude Include="grammar.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="production.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="first.h">
+      <Filter>LL_1</Filter>
+    </ClInclude>
+    <ClInclude Include="follow.h">
+      <Filter>LL_1</Filter>
+    </ClInclude>
+    <ClInclude Include="analysisTable.h">
+      <Filter>LL_1</Filter>
+    </ClInclude>
+    <ClInclude Include="analysisTableItem.h">
+      <Filter>LL_1</Filter>
+    </ClInclude>
+    <ClInclude Include="LL_1_AnalysisItem.h">
+      <Filter>LL_1</Filter>
+    </ClInclude>
+    <ClInclude Include="LL_1_Analysis.h">
+      <Filter>LL_1</Filter>
+    </ClInclude>
+    <ClInclude Include="lexicalAnalysisAnimation.h">
+      <Filter>lexical</Filter>
+    </ClInclude>
+    <ClInclude Include="functionDefinition.h">
+      <Filter>grammar</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="tree.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="variableList.h">
+      <Filter>grammar</Filter>
+    </ClInclude>
+    <ClInclude Include="parameterList.h">
+      <Filter>grammar</Filter>
+    </ClInclude>
+    <ClInclude Include="variableDefinition.h">
+      <Filter>grammar</Filter>
+    </ClInclude>
+    <ClInclude Include="grammarTreeTmp.h">
+      <Filter>grammar</Filter>
+    </ClInclude>
+    <ClInclude Include="grammarAnalysis.h">
+      <Filter>grammar</Filter>
+    </ClInclude>
+    <ClInclude Include="fileOperation.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="fourElementTypeItem.h">
+      <Filter>semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="fourElementType.h">
+      <Filter>semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="semanticAnalysis.h">
+      <Filter>semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="objectCodeGeneration.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="objectCodeGeneration_x86.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="objectCodeGeneration_Linux.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="codeOptimization.h">
+      <Filter>optimization</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+static int var1 = 0;
+static char func1(int i,char j);
+static char func3(int i,char j){}

@@ -1,0 +1,158 @@
+********************************************
+*         LL1‘§≤‚∑÷Œˆ,∏¸–¬∫ÛµƒŒƒ∑®         *
+********************************************
+1      #S                                                        staticcharmain(inti,intj){inti=5;if(1){i=i+1;}print(i);}#    S -> F S                      
+2      #SF                                                       staticcharmain(inti,intj){inti=5;if(1){i=i+1;}print(i);}#    F -> MT1 DT id F1             
+3      #SF1idDTMT1                                               staticcharmain(inti,intj){inti=5;if(1){i=i+1;}print(i);}#    MT1 -> static                 
+4      #SF1idDTstatic                                            staticcharmain(inti,intj){inti=5;if(1){i=i+1;}print(i);}#    static∆•≈‰                    
+5      #SF1idDT                                                  charmain(inti,intj){inti=5;if(1){i=i+1;}print(i);}#          DT -> char                    
+6      #SF1idchar                                                charmain(inti,intj){inti=5;if(1){i=i+1;}print(i);}#          char∆•≈‰                      
+7      #SF1id                                                    main(inti,intj){inti=5;if(1){i=i+1;}print(i);}#              main∆•≈‰                      
+8      #SF1                                                      (inti,intj){inti=5;if(1){i=i+1;}print(i);}#                  F1 -> ( PL ) F2               
+9      #SF2)PL(                                                  (inti,intj){inti=5;if(1){i=i+1;}print(i);}#                  (∆•≈‰                         
+10     #SF2)PL                                                   inti,intj){inti=5;if(1){i=i+1;}print(i);}#                   PL -> PL1                     
+11     #SF2)PL1                                                  inti,intj){inti=5;if(1){i=i+1;}print(i);}#                   PL1 -> PD PL2                 
+12     #SF2)PL2PD                                                inti,intj){inti=5;if(1){i=i+1;}print(i);}#                   PD -> DT PD1                  
+13     #SF2)PL2PD1DT                                             inti,intj){inti=5;if(1){i=i+1;}print(i);}#                   DT -> int                     
+14     #SF2)PL2PD1int                                            inti,intj){inti=5;if(1){i=i+1;}print(i);}#                   int∆•≈‰                       
+15     #SF2)PL2PD1                                               i,intj){inti=5;if(1){i=i+1;}print(i);}#                      PD1 -> id                     
+16     #SF2)PL2id                                                i,intj){inti=5;if(1){i=i+1;}print(i);}#                      i∆•≈‰                         
+17     #SF2)PL2                                                  ,intj){inti=5;if(1){i=i+1;}print(i);}#                       PL2 -> , PD PL2               
+18     #SF2)PL2PD,                                               ,intj){inti=5;if(1){i=i+1;}print(i);}#                       ,∆•≈‰                         
+19     #SF2)PL2PD                                                intj){inti=5;if(1){i=i+1;}print(i);}#                        PD -> DT PD1                  
+20     #SF2)PL2PD1DT                                             intj){inti=5;if(1){i=i+1;}print(i);}#                        DT -> int                     
+21     #SF2)PL2PD1int                                            intj){inti=5;if(1){i=i+1;}print(i);}#                        int∆•≈‰                       
+22     #SF2)PL2PD1                                               j){inti=5;if(1){i=i+1;}print(i);}#                           PD1 -> id                     
+23     #SF2)PL2id                                                j){inti=5;if(1){i=i+1;}print(i);}#                           j∆•≈‰                         
+24     #SF2)PL2                                                  ){inti=5;if(1){i=i+1;}print(i);}#                            PL2 -> $                      
+25     #SF2)                                                     ){inti=5;if(1){i=i+1;}print(i);}#                            )∆•≈‰                         
+26     #SF2                                                      {inti=5;if(1){i=i+1;}print(i);}#                             F2 -> { FB }                  
+27     #S}FB{                                                    {inti=5;if(1){i=i+1;}print(i);}#                             {∆•≈‰                         
+28     #S}FB                                                     inti=5;if(1){i=i+1;}print(i);}#                              FB -> RS FB                   
+29     #S}FBRS                                                   inti=5;if(1){i=i+1;}print(i);}#                              RS -> MT DT id VE VL ;        
+30     #S}FB;VLVEidDTMT                                          inti=5;if(1){i=i+1;}print(i);}#                              MT -> MT1                     
+31     #S}FB;VLVEidDTMT1                                         inti=5;if(1){i=i+1;}print(i);}#                              MT1 -> $                      
+32     #S}FB;VLVEidDT                                            inti=5;if(1){i=i+1;}print(i);}#                              DT -> int                     
+33     #S}FB;VLVEidint                                           inti=5;if(1){i=i+1;}print(i);}#                              int∆•≈‰                       
+34     #S}FB;VLVEid                                              i=5;if(1){i=i+1;}print(i);}#                                 i∆•≈‰                         
+35     #S}FB;VLVE                                                =5;if(1){i=i+1;}print(i);}#                                  VE -> = PR                    
+36     #S}FB;VLPR=                                               =5;if(1){i=i+1;}print(i);}#                                  =∆•≈‰                         
+37     #S}FB;VLPR                                                5;if(1){i=i+1;}print(i);}#                                   PR -> eexpr                   
+38     #S}FB;VLeexpr                                             5;if(1){i=i+1;}print(i);}#                                   eexpr -> bexpr eexpr1         
+39     #S}FB;VLeexpr1bexpr                                       5;if(1){i=i+1;}print(i);}#                                   bexpr -> bterm bexpr1         
+40     #S}FB;VLeexpr1bexpr1bterm                                 5;if(1){i=i+1;}print(i);}#                                   bterm -> rexpr bterm1         
+41     #S}FB;VLeexpr1bexpr1bterm1rexpr                           5;if(1){i=i+1;}print(i);}#                                   rexpr -> aexpr rexpr1         
+42     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr                     5;if(1){i=i+1;}print(i);}#                                   aexpr -> term aexpr1          
+43     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1term                5;if(1){i=i+1;}print(i);}#                                   term -> factor term1          
+44     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1term1factor         5;if(1){i=i+1;}print(i);}#                                   factor -> ael                 
+45     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1term1ael            5;if(1){i=i+1;}print(i);}#                                   ael -> root                   
+46     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1term1root           5;if(1){i=i+1;}print(i);}#                                   root -> 1234                  
+47     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1term11234           5;if(1){i=i+1;}print(i);}#                                   5∆•≈‰                         
+48     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1term1               ;if(1){i=i+1;}print(i);}#                                    term1 -> $                    
+49     #S}FB;VLeexpr1bexpr1bterm1rexpr1aexpr1                    ;if(1){i=i+1;}print(i);}#                                    aexpr1 -> $                   
+50     #S}FB;VLeexpr1bexpr1bterm1rexpr1                          ;if(1){i=i+1;}print(i);}#                                    rexpr1 -> $                   
+51     #S}FB;VLeexpr1bexpr1bterm1                                ;if(1){i=i+1;}print(i);}#                                    bterm1 -> $                   
+52     #S}FB;VLeexpr1bexpr1                                      ;if(1){i=i+1;}print(i);}#                                    bexpr1 -> $                   
+53     #S}FB;VLeexpr1                                            ;if(1){i=i+1;}print(i);}#                                    eexpr1 -> $                   
+54     #S}FB;VL                                                  ;if(1){i=i+1;}print(i);}#                                    VL -> $                       
+55     #S}FB;                                                    ;if(1){i=i+1;}print(i);}#                                    ;∆•≈‰                         
+56     #S}FB                                                     if(1){i=i+1;}print(i);}#                                     FB -> RS FB                   
+57     #S}FBRS                                                   if(1){i=i+1;}print(i);}#                                     RS -> if ( PR ) SB RS1        
+58     #S}FBRS1SB)PR(if                                          if(1){i=i+1;}print(i);}#                                     if∆•≈‰                        
+59     #S}FBRS1SB)PR(                                            (1){i=i+1;}print(i);}#                                       (∆•≈‰                         
+60     #S}FBRS1SB)PR                                             1){i=i+1;}print(i);}#                                        PR -> eexpr                   
+61     #S}FBRS1SB)eexpr                                          1){i=i+1;}print(i);}#                                        eexpr -> bexpr eexpr1         
+62     #S}FBRS1SB)eexpr1bexpr                                    1){i=i+1;}print(i);}#                                        bexpr -> bterm bexpr1         
+63     #S}FBRS1SB)eexpr1bexpr1bterm                              1){i=i+1;}print(i);}#                                        bterm -> rexpr bterm1         
+64     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr                        1){i=i+1;}print(i);}#                                        rexpr -> aexpr rexpr1         
+65     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr                  1){i=i+1;}print(i);}#                                        aexpr -> term aexpr1          
+66     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1term             1){i=i+1;}print(i);}#                                        term -> factor term1          
+67     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1term1factor      1){i=i+1;}print(i);}#                                        factor -> ael                 
+68     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1term1ael         1){i=i+1;}print(i);}#                                        ael -> root                   
+69     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1term1root        1){i=i+1;}print(i);}#                                        root -> 1234                  
+70     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1term11234        1){i=i+1;}print(i);}#                                        1∆•≈‰                         
+71     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1term1            ){i=i+1;}print(i);}#                                         term1 -> $                    
+72     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1aexpr1                 ){i=i+1;}print(i);}#                                         aexpr1 -> $                   
+73     #S}FBRS1SB)eexpr1bexpr1bterm1rexpr1                       ){i=i+1;}print(i);}#                                         rexpr1 -> $                   
+74     #S}FBRS1SB)eexpr1bexpr1bterm1                             ){i=i+1;}print(i);}#                                         bterm1 -> $                   
+75     #S}FBRS1SB)eexpr1bexpr1                                   ){i=i+1;}print(i);}#                                         bexpr1 -> $                   
+76     #S}FBRS1SB)eexpr1                                         ){i=i+1;}print(i);}#                                         eexpr1 -> $                   
+77     #S}FBRS1SB)                                               ){i=i+1;}print(i);}#                                         )∆•≈‰                         
+78     #S}FBRS1SB                                                {i=i+1;}print(i);}#                                          SB -> { SB1 }                 
+79     #S}FBRS1}SB1{                                             {i=i+1;}print(i);}#                                          {∆•≈‰                         
+80     #S}FBRS1}SB1                                              i=i+1;}print(i);}#                                           SB1 -> RS SB1                 
+81     #S}FBRS1}SB1RS                                            i=i+1;}print(i);}#                                           RS -> PR ;                    
+82     #S}FBRS1}SB1;PR                                           i=i+1;}print(i);}#                                           PR -> eexpr                   
+83     #S}FBRS1}SB1;eexpr                                        i=i+1;}print(i);}#                                           eexpr -> bexpr eexpr1         
+84     #S}FBRS1}SB1;eexpr1bexpr                                  i=i+1;}print(i);}#                                           bexpr -> bterm bexpr1         
+85     #S}FBRS1}SB1;eexpr1bexpr1bterm                            i=i+1;}print(i);}#                                           bterm -> rexpr bterm1         
+86     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr                      i=i+1;}print(i);}#                                           rexpr -> aexpr rexpr1         
+87     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr                i=i+1;}print(i);}#                                           aexpr -> term aexpr1          
+88     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term           i=i+1;}print(i);}#                                           term -> factor term1          
+89     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1factor    i=i+1;}print(i);}#                                           factor -> ael                 
+90     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1ael       i=i+1;}print(i);}#                                           ael -> root                   
+91     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1root      i=i+1;}print(i);}#                                           root -> id                    
+92     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1id        i=i+1;}print(i);}#                                           i∆•≈‰                         
+93     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1          =i+1;}print(i);}#                                            term1 -> $                    
+94     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1               =i+1;}print(i);}#                                            aexpr1 -> $                   
+95     #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1                     =i+1;}print(i);}#                                            rexpr1 -> $                   
+96     #S}FBRS1}SB1;eexpr1bexpr1bterm1                           =i+1;}print(i);}#                                            bterm1 -> $                   
+97     #S}FBRS1}SB1;eexpr1bexpr1                                 =i+1;}print(i);}#                                            bexpr1 -> $                   
+98     #S}FBRS1}SB1;eexpr1                                       =i+1;}print(i);}#                                            eexpr1 -> ao bexpr eexpr1     
+99     #S}FBRS1}SB1;eexpr1bexprao                                =i+1;}print(i);}#                                            ao -> =                       
+100    #S}FBRS1}SB1;eexpr1bexpr=                                 =i+1;}print(i);}#                                            =∆•≈‰                         
+101    #S}FBRS1}SB1;eexpr1bexpr                                  i+1;}print(i);}#                                             bexpr -> bterm bexpr1         
+102    #S}FBRS1}SB1;eexpr1bexpr1bterm                            i+1;}print(i);}#                                             bterm -> rexpr bterm1         
+103    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr                      i+1;}print(i);}#                                             rexpr -> aexpr rexpr1         
+104    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr                i+1;}print(i);}#                                             aexpr -> term aexpr1          
+105    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term           i+1;}print(i);}#                                             term -> factor term1          
+106    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1factor    i+1;}print(i);}#                                             factor -> ael                 
+107    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1ael       i+1;}print(i);}#                                             ael -> root                   
+108    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1root      i+1;}print(i);}#                                             root -> id                    
+109    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1id        i+1;}print(i);}#                                             i∆•≈‰                         
+110    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1          +1;}print(i);}#                                              term1 -> $                    
+111    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1               +1;}print(i);}#                                              aexpr1 -> + term aexpr1       
+112    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term+          +1;}print(i);}#                                              +∆•≈‰                         
+113    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term           1;}print(i);}#                                               term -> factor term1          
+114    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1factor    1;}print(i);}#                                               factor -> ael                 
+115    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1ael       1;}print(i);}#                                               ael -> root                   
+116    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1root      1;}print(i);}#                                               root -> 1234                  
+117    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term11234      1;}print(i);}#                                               1∆•≈‰                         
+118    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1term1          ;}print(i);}#                                                term1 -> $                    
+119    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1aexpr1               ;}print(i);}#                                                aexpr1 -> $                   
+120    #S}FBRS1}SB1;eexpr1bexpr1bterm1rexpr1                     ;}print(i);}#                                                rexpr1 -> $                   
+121    #S}FBRS1}SB1;eexpr1bexpr1bterm1                           ;}print(i);}#                                                bterm1 -> $                   
+122    #S}FBRS1}SB1;eexpr1bexpr1                                 ;}print(i);}#                                                bexpr1 -> $                   
+123    #S}FBRS1}SB1;eexpr1                                       ;}print(i);}#                                                eexpr1 -> $                   
+124    #S}FBRS1}SB1;                                             ;}print(i);}#                                                ;∆•≈‰                         
+125    #S}FBRS1}SB1                                              }print(i);}#                                                 SB1 -> $                      
+126    #S}FBRS1}                                                 }print(i);}#                                                 }∆•≈‰                         
+127    #S}FBRS1                                                  print(i);}#                                                  RS1 -> $                      
+128    #S}FB                                                     print(i);}#                                                  FB -> RS FB                   
+129    #S}FBRS                                                   print(i);}#                                                  RS -> print ( Print           
+130    #S}FBPrint(print                                          print(i);}#                                                  print∆•≈‰                     
+131    #S}FBPrint(                                               (i);}#                                                       (∆•≈‰                         
+132    #S}FBPrint                                                i);}#                                                        Print -> PR ) ;               
+133    #S}FB;)PR                                                 i);}#                                                        PR -> eexpr                   
+134    #S}FB;)eexpr                                              i);}#                                                        eexpr -> bexpr eexpr1         
+135    #S}FB;)eexpr1bexpr                                        i);}#                                                        bexpr -> bterm bexpr1         
+136    #S}FB;)eexpr1bexpr1bterm                                  i);}#                                                        bterm -> rexpr bterm1         
+137    #S}FB;)eexpr1bexpr1bterm1rexpr                            i);}#                                                        rexpr -> aexpr rexpr1         
+138    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr                      i);}#                                                        aexpr -> term aexpr1          
+139    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1term                 i);}#                                                        term -> factor term1          
+140    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1term1factor          i);}#                                                        factor -> ael                 
+141    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1term1ael             i);}#                                                        ael -> root                   
+142    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1term1root            i);}#                                                        root -> id                    
+143    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1term1id              i);}#                                                        i∆•≈‰                         
+144    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1term1                );}#                                                         term1 -> $                    
+145    #S}FB;)eexpr1bexpr1bterm1rexpr1aexpr1                     );}#                                                         aexpr1 -> $                   
+146    #S}FB;)eexpr1bexpr1bterm1rexpr1                           );}#                                                         rexpr1 -> $                   
+147    #S}FB;)eexpr1bexpr1bterm1                                 );}#                                                         bterm1 -> $                   
+148    #S}FB;)eexpr1bexpr1                                       );}#                                                         bexpr1 -> $                   
+149    #S}FB;)eexpr1                                             );}#                                                         eexpr1 -> $                   
+150    #S}FB;)                                                   );}#                                                         )∆•≈‰                         
+151    #S}FB;                                                    ;}#                                                          ;∆•≈‰                         
+152    #S}FB                                                     }#                                                           FB -> $                       
+153    #S}                                                       }#                                                           }∆•≈‰                         
+154    #S                                                        #                                                            S -> $                        
+155    #                                                         #                                                            Ω” ‹                          

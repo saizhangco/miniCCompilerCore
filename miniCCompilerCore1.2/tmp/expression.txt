@@ -1,0 +1,38 @@
+S -> bexpr
+bexpr -> bterm bexpr1
+bexpr1 -> || bterm bexpr1
+bexpr1 -> $
+bterm -> rexpr bterm1
+bterm1 -> && rexpr bterm1
+bterm1 -> $
+rexpr -> rterm rexpr1
+rexpr1 -> != rterm rexpr1
+rexpr1 -> == rterm rexpr1
+rexpr1 -> $
+rterm -> aexpr rterm1
+rterm1 -> < aexpr rterm1
+rterm1 -> <= aexpr rterm1
+rterm1 -> > aexpr rterm1
+rterm1 -> >= aexpr rterm1
+rterm1 -> $
+aexpr -> term aexpr1
+aexpr1 -> + term aexpr1
+aexpr1 -> - term aexpr1
+aexpr1 -> $
+term -> factor term1
+term1 -> * factor term1
+term1 -> / factor term1
+term1 -> % factor term1
+term1 -> $
+factor -> ael
+factor -> - factor
+factor -> ! factor
+ael -> root
+ael -> ( bexpr )
+root -> id
+root -> 1234
+root -> 01234
+root -> 0x1234
+root -> 123.4
+root -> 123.4E6
+root -> 'a'

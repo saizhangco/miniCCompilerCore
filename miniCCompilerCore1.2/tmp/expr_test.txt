@@ -1,0 +1,3 @@
+static int func2 = 0;
+static char func1 (int i,int j){}
+static double func3 (int a);

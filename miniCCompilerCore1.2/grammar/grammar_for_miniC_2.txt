@@ -1,0 +1,95 @@
+S -> $
+S -> F S
+F -> MT1 DT id F1
+F1 -> VE VL ;
+F1 -> ( PL ) F2
+F2 -> { FB }
+F2 -> ;
+DT -> void
+DT -> int
+DT -> char
+DT -> float
+VE -> = PR
+VE -> $
+VL -> , id VE VL
+VL -> $
+PL -> $
+PL -> PL1
+PL1 -> PD PL2
+PL2 -> , PD PL2
+PL2 -> $
+PD -> DT PD1
+PD1 -> id
+PD1 -> $
+FB -> $
+FB -> RS FB
+SB -> { SB1 }
+SB1 -> $
+SB1 -> RS SB1
+RS -> PR ;
+RS -> MT DT id VE VL ;
+RS -> if ( PR ) SB RS1
+RS -> while ( PR ) SB
+RS -> do SB while ( PR ) ;
+RS -> for ( PR , PR , PR ) SB
+RS -> break;
+RS -> continue ;
+RS -> return PR ;
+RS -> print ( Print
+RS -> scan ( id ) ;
+RS1 -> $
+RS1 -> else SB
+Print -> "String" ) ;
+Print -> PR ) ;
+MT -> auto
+MT -> register
+MT -> MT1
+MT1 -> extern
+MT1 -> static
+MT1 -> $
+PR -> eexpr
+eexpr -> bexpr eexpr1
+eexpr1 -> ao bexpr eexpr1
+eexpr1 -> $
+ao -> =
+ao -> +=
+ao -> -=
+ao -> *=
+ao -> /=
+bexpr -> bterm bexpr1
+bexpr1 -> || bterm bexpr1
+bexpr1 -> $
+bterm -> rexpr bterm1
+bterm1 -> && rexpr bterm1
+bterm1 -> $
+rexpr -> aexpr rexpr1
+rexpr1 -> != aexpr rexpr1
+rexpr1 -> == aexpr rexpr1
+rexpr1 -> < aexpr rexpr1
+rexpr1 -> > aexpr rexpr1
+rexpr1 -> <= aexpr rexpr1
+rexpr1 -> >= aexpr rexpr1
+rexpr1 -> $
+aexpr -> term aexpr1
+aexpr1 -> + term aexpr1
+aexpr1 -> - term aexpr1
+aexpr1 -> $
+term -> factor term1
+term1 -> * factor term1
+term1 -> / factor term1
+term1 -> % factor term1
+term1 -> $
+factor -> !ael
+factor -> ael
+ael -> root
+ael -> ( bexpr )
+root -> id
+root -> 1234
+root -> 01234
+root -> 0x1234
+root -> 123.4
+root -> 123.4E6
+root -> 'a'
+root -> BOOL
+BOOL -> true
+BOOL -> false
