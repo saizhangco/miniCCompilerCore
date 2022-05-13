@@ -12,34 +12,34 @@ LexicalAnalysis::~LexicalAnalysis()
 
 int LexicalAnalysis::runLexicalAnalysis(CodeList& codeList)
 {
-	mCurrentLine = 0;//³õÊ¼»¯ĞĞºÅ
-	int lexicalErrorCount = 0;	//´Ê·¨´íÎó¸öÊı
+	mCurrentLine = 0;//åˆå§‹åŒ–è¡Œå·
+	int lexicalErrorCount = 0;	//è¯æ³•é”™è¯¯ä¸ªæ•°
 	//codeList.printCodeList();
-	bool isBlockAnnotation = false;	//ÊÇ·ñÎª¿é×¢ÊÍ
+	bool isBlockAnnotation = false;	//æ˜¯å¦ä¸ºå—æ³¨é‡Š
 	list<Code>::iterator it_code;
 	for (it_code = codeList.codeList.begin(); it_code != codeList.codeList.end();it_code++ )
 	{
 		mCurrentLine++;
 		lexical_core(*it_code , isBlockAnnotation ,true);
 	}
-	//±£´æ´Ê·¨·ÖÎö¶¯»­ĞÅÏ¢
+	//ä¿å­˜è¯æ³•åˆ†æåŠ¨ç”»ä¿¡æ¯
 #ifdef __linux__
 	saveLexicalAnalysisAnimationListToFile("analysis_linux/lexicalAnalysisAnimation.txt");
-	saveTokenListToFile("analysis_linux/token.txt");	//±£´æToken´®
+	saveTokenListToFile("analysis_linux/token.txt");	//ä¿å­˜Tokenä¸²
 #else
 	saveLexicalAnalysisAnimationListToFile("analysis\\lexicalAnalysisAnimation.txt");
-	saveTokenListToFile("analysis\\token.txt");	//±£´æToken´®
+	saveTokenListToFile("analysis\\token.txt");	//ä¿å­˜Tokenä¸²
 #endif // __linux__
-	//ÅĞ¶ÏTokenListÄÚÈİÊÇ·ñ´æÔÚ´íÎó
+	//åˆ¤æ–­TokenListå†…å®¹æ˜¯å¦å­˜åœ¨é”™è¯¯
 	list<Token>::iterator it_TokenList = mTokenList.begin();
 	for (; it_TokenList != mTokenList.end(); it_TokenList++)
 	{
 		if ( (*it_TokenList).isLexical == false)
 		{
-			lexicalErrorCount++;	//TokenList´æÔÚ´íÎó
+			lexicalErrorCount++;	//TokenListå­˜åœ¨é”™è¯¯
 		}
 	}
-	return lexicalErrorCount;	//·µ»Ø´Ê·¨·ÖÎö´íÎó¸öÊı
+	return lexicalErrorCount;	//è¿”å›è¯æ³•åˆ†æé”™è¯¯ä¸ªæ•°
 }
 
 void LexicalAnalysis::printTokenList()
@@ -61,24 +61,24 @@ void LexicalAnalysis::printLexicalAnalysisAnimationList()
 
 void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool isAnalysisAnimation)
 {
-	int flag = 0;//1 ÕıÔÚÊ¶±ğ¹Ø¼ü´ÊºÍ³£Á¿
-				 //2 ÕıÔÚÊ¶±ğÊı×Ö³£Á¿
-				 //-3 ÕıÔÚÊ¶±ğ×Ö·û³£Á¿
-				 //-4 ÕıÔÚÊ¶±ğ×Ö·û´®³£Á¿
-	int numberChange = 0;//´¦ÀíÊı×Ö³£Á¿Ê±ºòÊ¹ÓÃ
-	bool isLexical = true; //µ¥´ÊÊ¶±ğÊÇ·ñ´æÔÚ´íÎó
+	int flag = 0;//1 æ­£åœ¨è¯†åˆ«å…³é”®è¯å’Œå¸¸é‡
+				 //2 æ­£åœ¨è¯†åˆ«æ•°å­—å¸¸é‡
+				 //-3 æ­£åœ¨è¯†åˆ«å­—ç¬¦å¸¸é‡
+				 //-4 æ­£åœ¨è¯†åˆ«å­—ç¬¦ä¸²å¸¸é‡
+	int numberChange = 0;//å¤„ç†æ•°å­—å¸¸é‡æ—¶å€™ä½¿ç”¨
+	bool isLexical = true; //å•è¯è¯†åˆ«æ˜¯å¦å­˜åœ¨é”™è¯¯
 	bool isBlockAnnotationTemp = isBlockAnnotation;
-	char tp[128];//´¦Àí»º³åÇø
+	char tp[128];//å¤„ç†ç¼“å†²åŒº
 	int tpi = 0;
-	tp[0] = '\0';//½«´¦Àí»º³åÇøÖÃ¿Õ
+	tp[0] = '\0';//å°†å¤„ç†ç¼“å†²åŒºç½®ç©º
 	char* line = (char*)malloc(sizeof(char)* (strlen(code.line.c_str()) + 1));
 	strcpy(line, code.line.c_str());
-	//line[strlen(pCode->line)] = '\0';//¸´ÖÆ×Ö·û´®µ½»º³åÇø
+	//line[strlen(pCode->line)] = '\0';//å¤åˆ¶å­—ç¬¦ä¸²åˆ°ç¼“å†²åŒº
 	int lineNo = code.no;
 	// int lastI = 0;
 	for (unsigned int i = 0; i < (strlen(line) + 1); i++)
 	{
-		//0.ÊÇ·ñÎª¿é×¢ÊÍ´¦Àí×´Ì¬ Ñ°ÕÒ"*/"½áÊø
+		//0.æ˜¯å¦ä¸ºå—æ³¨é‡Šå¤„ç†çŠ¶æ€ å¯»æ‰¾"*/"ç»“æŸ
 		if (isBlockAnnotationTemp)
 		{
 			while (i++ < (strlen(line) + 1))
@@ -92,11 +92,11 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 				}
 			}
 		}
-		//1¡£¿Õ½ç·û ¿Õ¸ñ¡¢Tab¡¢»Ø³µ
+		//1ã€‚ç©ºç•Œç¬¦ ç©ºæ ¼ã€Tabã€å›è½¦
 		else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\0')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, "")) //»º³åÇø²»Îª¿Õ
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, "")) //ç¼“å†²åŒºä¸ä¸ºç©º
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
 				//rToken = newToken(0, tp, res, isLexical);
@@ -104,31 +104,31 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i  - strlen(tp), i , res, isLexical); //ÌØÊâ´¦Àí
-				tpi = 0; tp[0] = '\0';	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i  - strlen(tp), i , res, isLexical); //ç‰¹æ®Šå¤„ç†
+				tpi = 0; tp[0] = '\0';	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
 		}
-		//2¡£Êµ½ç·û ( ) ; [ ] { } . , ~ ¹²10¸ö×Ö·û Ç°ºó·Ö¿ª ×Ô¼ºÒ²±£´æÔÚTokenÖĞ
-		// # ÊÇÒì³£×Ö·û $ ÔÚÎÄ·¨ÖĞ·ÖÎöÊ±»áÓÃµ½
+		//2ã€‚å®ç•Œç¬¦ ( ) ; [ ] { } . , ~ å…±10ä¸ªå­—ç¬¦ å‰ååˆ†å¼€ è‡ªå·±ä¹Ÿä¿å­˜åœ¨Tokenä¸­
+		// # æ˜¯å¼‚å¸¸å­—ç¬¦ $ åœ¨æ–‡æ³•ä¸­åˆ†ææ—¶ä¼šç”¨åˆ°
 		// || line[i] == '#' || line[i] == '$'
 		else if (line[i] == '(' || line[i] == ')' || line[i] == ';' ||
 			line[i] == '[' || line[i] == ']' || line[i] == '{' ||
 			line[i] == '}' || line[i] == '.' || line[i] == ',' ||
 			line[i] == '~')
 		{
-			if (flag == 2 && (numberChange == 1 || numberChange == 10) && line[i] == '.')	//½«'.'Ìí¼Óµ½»º³åÇøÖĞ£¬×´Ì¬·¢Éú±ä»¯
-			{//ÕâÊÇÊ¶±ğÊı×Ö³£Á¿ÖĞµÄÒ»²¿·Ö
+			if (flag == 2 && (numberChange == 1 || numberChange == 10) && line[i] == '.')	//å°†'.'æ·»åŠ åˆ°ç¼“å†²åŒºä¸­ï¼ŒçŠ¶æ€å‘ç”Ÿå˜åŒ–
+			{//è¿™æ˜¯è¯†åˆ«æ•°å­—å¸¸é‡ä¸­çš„ä¸€éƒ¨åˆ†
 				tp[tpi++] = line[i];
 				numberChange = 2;
 			}
 			else
 			{
-				//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-				if (strcmp(tp, "")) //»º³åÇø²»Îª¿Õ ²»Îª0
+				//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+				if (strcmp(tp, "")) //ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 				{
 					int res = getLexicalType(numberChange, flag, tp, isLexical);
 					//rToken = newToken(0, tp, res, isLexical);
@@ -136,9 +136,9 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 					string str_tmp(tp);
 					Token token(lineNo, str_tmp.data(), res, isLexical);
 					mTokenList.push_back(token);
-					if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-						loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);//ÌØÊâ´¦Àí
-					tpi = 0;  tp[0] = '\0';	//ÖØÖÃ±äÁ¿
+					if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+						loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);//ç‰¹æ®Šå¤„ç†
+					tpi = 0;  tp[0] = '\0';	//é‡ç½®å˜é‡
 					flag = 0;
 					numberChange = 0;
 					isLexical = true;
@@ -149,27 +149,27 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), getDelimiterType(line[i]), isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 					loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, getDelimiterType(line[i]), isLexical);
-				tpi = 0;  tp[0] = '\0';	//ÖØÖÃ±äÁ¿
+				tpi = 0;  tp[0] = '\0';	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
 		}
-		// ÎÄ·¨·ÖÎöÊ±¶Ô'$'·ûºÅµÄÊ¶±ğ
+		// æ–‡æ³•åˆ†ææ—¶å¯¹'$'ç¬¦å·çš„è¯†åˆ«
 		else if (line[i] == '$')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, "")) //»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, "")) //ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);//ÌØÊâ´¦Àí
-				tpi = 0;  tp[0] = '\0';	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);//ç‰¹æ®Šå¤„ç†
+				tpi = 0;  tp[0] = '\0';	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
@@ -179,36 +179,36 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 			if (!analysisGrammar)
 			{
 				isLexical = false;
-				cout << "E> Lexical : ÔÚ(" << mCurrentLine << ", " << (i + 1) << ")ÖĞ£¬\"" << str_tmp << "\"Îª·Ç·¨×Ö·û" << endl;
+				cout << "E> Lexical : åœ¨(" << mCurrentLine << ", " << (i + 1) << ")ä¸­ï¼Œ\"" << str_tmp << "\"ä¸ºéæ³•å­—ç¬¦" << endl;
 			}
 			Token token(lineNo, str_tmp.data(), getDelimiterType(line[i]), isLexical);
 			mTokenList.push_back(token);
-			if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+			if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 				loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, getDelimiterType(line[i]), isLexical);
-			tpi = 0;  tp[0] = '\0';	//ÖØÖÃ±äÁ¿
+			tpi = 0;  tp[0] = '\0';	//é‡ç½®å˜é‡
 			flag = 0;
 			numberChange = 0;
 			isLexical = true;
 		}
-		//3.Ê¶±ğ³ö¹Ø¼ü´ÊºÍ³£Á¿ Ö»°üº¬×ÖÄ¸¡¢Êı×Ö¡¢_£¬Êı×Ö²»¿ªÍ·
-		//[A,Z]¡¢[a,z]¡¢_
+		//3.è¯†åˆ«å‡ºå…³é”®è¯å’Œå¸¸é‡ åªåŒ…å«å­—æ¯ã€æ•°å­—ã€_ï¼Œæ•°å­—ä¸å¼€å¤´
+		//[A,Z]ã€[a,z]ã€_
 		else if ((line[i] >= 'A'&&line[i] <= 'Z') || (line[i] >= 'a'&&line[i] <= 'z') || line[i] == '_')
 		{
 			if (flag == 0)
 			{
 				flag = 1;
 				tpi = 0; tp[tpi] = '\0';
-				tp[tpi++] = line[i];//½«´¦Àí×Ö·ûÌí¼Óµ½´¦Àí»º³åÇø
+				tp[tpi++] = line[i];//å°†å¤„ç†å­—ç¬¦æ·»åŠ åˆ°å¤„ç†ç¼“å†²åŒº
 				tp[tpi] = '\0';
 			}
 			else if (flag == 1)
 			{
-				tp[tpi++] = line[i];//½«´¦Àí×Ö·ûÌí¼Óµ½´¦Àí»º³åÇø
+				tp[tpi++] = line[i];//å°†å¤„ç†å­—ç¬¦æ·»åŠ åˆ°å¤„ç†ç¼“å†²åŒº
 				tp[tpi] = '\0';
 			}
 			else if (flag == 2)
 			{
-				tp[tpi++] = line[i];//½«´¦Àí×Ö·ûÌí¼Óµ½´¦Àí»º³åÇø
+				tp[tpi++] = line[i];//å°†å¤„ç†å­—ç¬¦æ·»åŠ åˆ°å¤„ç†ç¼“å†²åŒº
 				tp[tpi] = '\0';
 				if (numberChange == 3 && (line[i] == 'E' || line[i] == 'e'))
 				{
@@ -224,33 +224,33 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 				}
 				else
 				{
-					isLexical = false;//²»·ûºÏÌõ¼ş£¬ĞèÒª±¨´í
+					isLexical = false;//ä¸ç¬¦åˆæ¡ä»¶ï¼Œéœ€è¦æŠ¥é”™
 				}
 			}
 			else
 			{
-				tp[tpi++] = line[i];//½«´¦Àí×Ö·ûÌí¼Óµ½´¦Àí»º³åÇø
+				tp[tpi++] = line[i];//å°†å¤„ç†å­—ç¬¦æ·»åŠ åˆ°å¤„ç†ç¼“å†²åŒº
 				tp[tpi] = '\0';
 				isLexical = false;
 			}
 		}
-		//4.Ê¶±ğÔËËã·û Ì¾ºÅ! È¡Óà% µÈºÅ= È¡Óà^ ĞÇºÅ*
+		//4.è¯†åˆ«è¿ç®—ç¬¦ å¹å·! å–ä½™% ç­‰å·= å–ä½™^ æ˜Ÿå·*
 		else if (line[i] == '!' || line[i] == '%' || line[i] == '=' || line[i] == '^' ||
 			line[i] == '*')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ÌØÊâ´¦Àí
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ç‰¹æ®Šå¤„ç†
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = 0;
@@ -262,44 +262,44 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 				i++;
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
 			}
-			//Ìí¼Óµ½Token´®ÖĞ
+			//æ·»åŠ åˆ°Tokenä¸²ä¸­
 			int res = getOperatorType(tp);
 			//rToken = newToken(0, tp, res, isLexical);
 			//addTokenToLinks(pToken, rToken);
 			string str_tmp(tp);
 			Token token(lineNo, str_tmp.data(), res, isLexical);
 			mTokenList.push_back(token);
-			if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+			if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 				loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, res, isLexical);
-			tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+			tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 			flag = 0;
 			numberChange = 0;
 			isLexical = true;
 		}
-		//5.Ê¶±ğÔËËã·û Óë& »ò| ¼Ó+ ¼õ- ´óÓÚ> Ğ¡ÓÚ<
+		//5.è¯†åˆ«è¿ç®—ç¬¦ ä¸& æˆ–| åŠ + å‡- å¤§äº> å°äº<
 		else if (line[i] == '&' || line[i] == '|' || line[i] == '+' || line[i] == '-' ||
 			line[i] == '>' || line[i] == '<')
 		{
 			if (flag == 2 && numberChange == 4 && (line[i] == '+' || line[i] == '-'))
 			{
-				tp[tpi++] = line[i]; tp[tpi] = '\0';//Ìí¼Óµ½»º³åÇø
+				tp[tpi++] = line[i]; tp[tpi] = '\0';//æ·»åŠ åˆ°ç¼“å†²åŒº
 				numberChange = 5;
 			}
 			else
 			{
-				//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-				if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+				//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+				if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 				{
 					int res = getLexicalType(numberChange, flag, tp, isLexical);
-					//Ìí¼Óµ½Token´®ÖĞ
+					//æ·»åŠ åˆ°Tokenä¸²ä¸­
 					//rToken = newToken(0, tp, res, isLexical);
 					//addTokenToLinks(pToken, rToken);
 					string str_tmp(tp);
 					Token token(lineNo, str_tmp.data(), res, isLexical);
 					mTokenList.push_back(token);
-					if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-						loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ÌØÊâ´¦Àí
-					tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+					if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+						loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ç‰¹æ®Šå¤„ç†
+					tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 					flag = 0;
 					numberChange = 0;
 					isLexical = true;
@@ -311,61 +311,61 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 					i++;
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
 				}
-				else if (line[i] == '-' && line[i + 1] == '>')//ÔÚ½øĞĞÎÄ·¨·ÖÎöÊ±»áÓÃµ½
+				else if (line[i] == '-' && line[i + 1] == '>')//åœ¨è¿›è¡Œæ–‡æ³•åˆ†ææ—¶ä¼šç”¨åˆ°
 				{
 					i++;
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
 				}
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				int res = getOperatorType(tp);
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 					loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, res, isLexical);
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
 		}
-		//7¡£Ê¶±ğÔËËã·û Ğ±¸Ü/
+		//7ã€‚è¯†åˆ«è¿ç®—ç¬¦ æ–œæ /
 		else if (line[i] == '/')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ÌØÊâ´¦Àí
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ç‰¹æ®Šå¤„ç†
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
-			//ÅĞ¶ÏÏÂÒ»¸ö×Ö·ûÊÇ·ñÎª '*'
+			//åˆ¤æ–­ä¸‹ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸º '*'
 			if (line[i + 1] == '*')
-			{//½ÓÏÂÀ´µÄ²Ù×÷ÎªÑ°ÕÒ "*/" À´ÖÕ½á¿é×¢ÊÍ
+			{//æ¥ä¸‹æ¥çš„æ“ä½œä¸ºå¯»æ‰¾ "*/" æ¥ç»ˆç»“å—æ³¨é‡Š
 				cout << "BlockAnnetation" << endl;
 				i++;
 				isBlockAnnotationTemp = true;
 			}
-			//ÅĞ¶ÏÏÂÒ»¸ö×Ö·ûÊÇ·ñÎª '/'
+			//åˆ¤æ–­ä¸‹ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸º '/'
 			else if (line[i + 1] == '/')
-			{//ĞĞ×¢ÊÍ
+			{//è¡Œæ³¨é‡Š
 				while (i++ < (strlen(line) + 1))
 				{
 					if (line[i] == '\0')
 					{
-						cout << "ĞĞ×¢ÊÍ" << endl;
+						cout << "è¡Œæ³¨é‡Š" << endl;
 						break;
 					}
 				}
@@ -373,85 +373,85 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 			else
 			{
 				// 1./ 2./=
-				tpi = 0; tp[tpi] = '\0';	//? Õâ¸öµØ·½ÓĞÎÊÌâ°¡
+				tpi = 0; tp[tpi] = '\0';	//? è¿™ä¸ªåœ°æ–¹æœ‰é—®é¢˜å•Š
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
 				if (line[i + 1] == '=')
 				{
 					i++;
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
 				}
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				int res = getOperatorType(tp);
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 					loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, res, isLexical);
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
 		}
-		//8.Ê¶±ğÔËËã·û Ã°ºÅ:
+		//8.è¯†åˆ«è¿ç®—ç¬¦ å†’å·:
 		else if (line[i] == ':')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i , res, isLexical);	//ÌØÊâ´¦Àí
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i , res, isLexical);	//ç‰¹æ®Šå¤„ç†
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
 			tpi = 0; tp[tpi] = '\0';
 			tp[tpi++] = line[i]; tp[tpi] = '\0';
-			if (line[i + 1] == line[i])//line[i + 1] == '=' || ²»ĞèÒªÔÚÅĞ¶ÏºóÃæÊÇ·ñÎª=ºÅ
+			if (line[i + 1] == line[i])//line[i + 1] == '=' || ä¸éœ€è¦åœ¨åˆ¤æ–­åé¢æ˜¯å¦ä¸º=å·
 			{
 				i++;
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
 			}
-			//Ìí¼Óµ½Token´®ÖĞ
+			//æ·»åŠ åˆ°Tokenä¸²ä¸­
 			int res = getOperatorType(tp);
 			//rToken = newToken(0, tp, res, isLexical);
 			//addTokenToLinks(pToken, rToken);
 			string str_tmp(tp);
 			Token token(lineNo, str_tmp.data(), res, isLexical);
 			mTokenList.push_back(token);
-			if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+			if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 				loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, res, isLexical);
-			tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+			tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 			flag = 0;
 			numberChange = 0;
 			isLexical = true;
 		}
-		//9.Ê¶±ğ×Ö·û³£Á¿ 'AAAAAAAAA'
+		//9.è¯†åˆ«å­—ç¬¦å¸¸é‡ 'AAAAAAAAA'
 		else if (line[i] == '\'')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i , res, isLexical);	//ÌØÊâ´¦Àí
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i , res, isLexical);	//ç‰¹æ®Šå¤„ç†
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
@@ -459,7 +459,7 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 			tpi = 0; tp[tpi] = '\0';
 			tp[tpi++] = line[i]; tp[tpi] = '\0';
 			bool complete = false;
-			while (i++ < strlen(line)) //i++ < (strlen(line) + ) ²»ÔÙÕâÀïÃæ·ÖÎö'\0'
+			while (i++ < strlen(line)) //i++ < (strlen(line) + ) ä¸å†è¿™é‡Œé¢åˆ†æ'\0'
 			{
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
 				if (line[i - 1] != '\\' && line[i] == '\'')
@@ -468,10 +468,10 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 					break;
 				}
 			}
-			//Ìí¼Óµ½Token´®ÖĞ ¸ù¾İcomplete´¦Àí´íÎó
-			if (complete)//×Ö·ûÊ¶±ğ²»´æÔÚ´íÎó
+			//æ·»åŠ åˆ°Tokenä¸²ä¸­ æ ¹æ®completeå¤„ç†é”™è¯¯
+			if (complete)//å­—ç¬¦è¯†åˆ«ä¸å­˜åœ¨é”™è¯¯
 			{
-				if (strlen(tp) > 6)//''ÖĞµÄ×Ö·û¸öÊı²»µÃ³¬¹ı4¸ö
+				if (strlen(tp) > 6)//''ä¸­çš„å­—ç¬¦ä¸ªæ•°ä¸å¾—è¶…è¿‡4ä¸ª
 					complete = false;
 			}
 			//rToken = newToken(0, tp, complete ? Character : 0, isLexical);
@@ -479,29 +479,29 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 			string str_tmp(tp);
 			Token token(lineNo, str_tmp.data(), complete ? Character : Error, complete);
 			mTokenList.push_back(token);
-			if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+			if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 				loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, Character, isLexical);
-			tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+			tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 			flag = 0;
 			numberChange = 0;
 			isLexical = true;
 		}
-		//10.Ê¶±ğ×Ö·û´®³£Á¿ "AAAAAAAAAAA"
+		//10.è¯†åˆ«å­—ç¬¦ä¸²å¸¸é‡ "AAAAAAAAAAA"
 		else if (line[i] == '\"')
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ÌØÊâ´¦Àí
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ç‰¹æ®Šå¤„ç†
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
@@ -509,7 +509,7 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 			tpi = 0; tp[tpi] = '\0';
 			tp[tpi++] = line[i]; tp[tpi] = '\0';
 			bool complete = false;
-			while (i++ < strlen(line))//i++ < (strlen(line) + ) ²»ÔÙÕâÀïÃæ·ÖÎö'\0'
+			while (i++ < strlen(line))//i++ < (strlen(line) + ) ä¸å†è¿™é‡Œé¢åˆ†æ'\0'
 			{
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
 				if (line[i - 1] != '\\' && line[i] == '\"')
@@ -518,45 +518,45 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 					break;
 				}
 			}
-			//Ìí¼Óµ½Token´®ÖĞ ¸ù¾İcomplete´¦Àí´íÎó
+			//æ·»åŠ åˆ°Tokenä¸²ä¸­ æ ¹æ®completeå¤„ç†é”™è¯¯
 			//rToken = newToken(0, tp, complete ? String : 0, isLexical);
 			//addTokenToLinks(pToken, rToken);
 			string str_tmp(tp);
 			Token token(lineNo, str_tmp.data(), complete ? String : Error, complete);
 			mTokenList.push_back(token);
-			if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
+			if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
 				loadLexicalAnalysisAnimationInfo(lineNo, i + 1 - strlen(tp), i + 1, String, isLexical);
-			tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+			tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 			flag = 0;
 			numberChange = 0;
 			isLexical = true;
 		}
-		//11.Ê¶±ğÊı×Ö³£Á¿ °üÀ¨(Ö¸Êı¡¢Ğ¡Êı¡¢Ê®½øÖÆÊı¡¢°Ë½øÖÆÊı¡¢Ê®Áù½øÖÆÊı)
+		//11.è¯†åˆ«æ•°å­—å¸¸é‡ åŒ…æ‹¬(æŒ‡æ•°ã€å°æ•°ã€åè¿›åˆ¶æ•°ã€å…«è¿›åˆ¶æ•°ã€åå…­è¿›åˆ¶æ•°)
 		else if (line[i] >= '0' && line[i] <= '9')
 		{
-			if (flag == 0)//´¦Àí»º³åÇøÓ¦¸ÃÎª¿Õ£¬Ê×ÏÈÅĞ¶ÏÊÇ·ñÎª¿Õ£¬²»Îª¿Õ×öÏàÓ¦µÄ´¦Àí
+			if (flag == 0)//å¤„ç†ç¼“å†²åŒºåº”è¯¥ä¸ºç©ºï¼Œé¦–å…ˆåˆ¤æ–­æ˜¯å¦ä¸ºç©ºï¼Œä¸ä¸ºç©ºåšç›¸åº”çš„å¤„ç†
 			{
-				//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ [½÷É÷²Ù×÷]
-				if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+				//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º [è°¨æ…æ“ä½œ]
+				if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 				{
 					int res = getLexicalType(numberChange, flag, tp, isLexical);
-					//Ìí¼Óµ½Token´®ÖĞ
+					//æ·»åŠ åˆ°Tokenä¸²ä¸­
 					//rToken = newToken(0, tp, res, isLexical);
 					//addTokenToLinks(pToken, rToken);
 					string str_tmp(tp);
 					Token token(lineNo, str_tmp.data(), res, isLexical);
 					mTokenList.push_back(token);
-					if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-						loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ÌØÊâ´¦Àí
-					tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+					if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+						loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i, res, isLexical);	//ç‰¹æ®Šå¤„ç†
+					tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 					flag = 0;
 					numberChange = 0;
 					isLexical = true;
 				}
-				flag = 2; //±êÃ÷ÕıÔÚÊ¶±ğÊı×Ö³£Á¿
+				flag = 2; //æ ‡æ˜æ­£åœ¨è¯†åˆ«æ•°å­—å¸¸é‡
 				tpi = 0; tp[tpi] = '\0';
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
-				//ÅĞ¶ÏÊÇ·ñÎª 0
+				//åˆ¤æ–­æ˜¯å¦ä¸º 0
 				if (line[i] == '0')
 				{
 					numberChange = 10;
@@ -566,74 +566,74 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 					numberChange = 1;
 				}
 			}
-			else if (flag == 1)//ÕıÔÚÊ¶±ğ¹Ø¼ü´Ê»ò±êÊ¶·û Ö±½ÓÌí¼Óµ½»º³åÇøºóÃæ
+			else if (flag == 1)//æ­£åœ¨è¯†åˆ«å…³é”®è¯æˆ–æ ‡è¯†ç¬¦ ç›´æ¥æ·»åŠ åˆ°ç¼“å†²åŒºåé¢
 			{
 				tp[tpi++] = line[i]; tp[tpi] = '\0';
 			}
-			else if (flag == 2)//ÕıÔÚÊ¶±ğÊı×Ö³£Á¿ flag==2Ê±numberChange>0
+			else if (flag == 2)//æ­£åœ¨è¯†åˆ«æ•°å­—å¸¸é‡ flag==2æ—¶numberChange>0
 			{
-				if (numberChange == 1 || numberChange == 3 || numberChange == 6 || numberChange == 13)//Ö±½ÓÌí¼Óµ½»º³åÇø
+				if (numberChange == 1 || numberChange == 3 || numberChange == 6 || numberChange == 13)//ç›´æ¥æ·»åŠ åˆ°ç¼“å†²åŒº
 				{
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
 				}
-				else if (numberChange == 2)//Ìí¼Óµ½»º³åÇø£¬×´Ì¬·¢Éú±ä»¯
+				else if (numberChange == 2)//æ·»åŠ åˆ°ç¼“å†²åŒºï¼ŒçŠ¶æ€å‘ç”Ÿå˜åŒ–
 				{
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
 					numberChange = 3;
 				}
-				else if (numberChange == 4 || numberChange == 5)//Ìí¼Óµ½»º³åÇø£¬×´Ì¬·¢Éú±ä»¯
+				else if (numberChange == 4 || numberChange == 5)//æ·»åŠ åˆ°ç¼“å†²åŒºï¼ŒçŠ¶æ€å‘ç”Ÿå˜åŒ–
 				{
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
 					numberChange = 6;
 				}
-				else if (numberChange == 10 || numberChange == 11)//Ìí¼Óµ½»º³åÇø£¬×´Ì¬ÓĞ¿ÉÄÜĞèÒª·¢Éú±ä»¯
+				else if (numberChange == 10 || numberChange == 11)//æ·»åŠ åˆ°ç¼“å†²åŒºï¼ŒçŠ¶æ€æœ‰å¯èƒ½éœ€è¦å‘ç”Ÿå˜åŒ–
 				{
 					tp[tpi++] = line[i]; tp[tpi] = '\0';
-					if (!(line[i] >= '0' && line[i] < '8'))//²»·ûºÏ[0,8)
-					{//ĞèÒªÌáÊ¾´íÎó 
+					if (!(line[i] >= '0' && line[i] < '8'))//ä¸ç¬¦åˆ[0,8)
+					{//éœ€è¦æç¤ºé”™è¯¯ 
 						isLexical = false;
 					}
 					numberChange = 11;
 				}
 			}
-			else//Ô¤ÁôµÄ´íÎó´¦Àí
+			else//é¢„ç•™çš„é”™è¯¯å¤„ç†
 			{
 				isLexical = false;
 			}
 		}
-		//12.·Ç·¨×Ö·û´í
+		//12.éæ³•å­—ç¬¦é”™
 		else
 		{
-			//ÅĞ¶Ï´¦Àí»º³åÇøÊÇ·ñÎª¿Õ
-			if (strcmp(tp, ""))//´¦Àí»º³åÇø²»Îª¿Õ ²»Îª0
+			//åˆ¤æ–­å¤„ç†ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º
+			if (strcmp(tp, ""))//å¤„ç†ç¼“å†²åŒºä¸ä¸ºç©º ä¸ä¸º0
 			{
 				int res = getLexicalType(numberChange, flag, tp, isLexical);
-				//Ìí¼Óµ½Token´®ÖĞ
+				//æ·»åŠ åˆ°Tokenä¸²ä¸­
 				//rToken = newToken(0, tp, res, isLexical);
 				//addTokenToLinks(pToken, rToken);
 				string str_tmp(tp);
 				Token token(lineNo, str_tmp.data(), res, isLexical);
 				mTokenList.push_back(token);
-				if (isAnalysisAnimation)	//¼ÓÔØ´Ê·¨·ÖÎöÊı¾İ
-					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i , res, isLexical);	//ÌØÊâ´¦Àí
-				tp[0] = '\0'; tpi = 0;	//ÖØÖÃ±äÁ¿
+				if (isAnalysisAnimation)	//åŠ è½½è¯æ³•åˆ†ææ•°æ®
+					loadLexicalAnalysisAnimationInfo(lineNo, i - strlen(tp), i , res, isLexical);	//ç‰¹æ®Šå¤„ç†
+				tp[0] = '\0'; tpi = 0;	//é‡ç½®å˜é‡
 				flag = 0;
 				numberChange = 0;
 				isLexical = true;
 			}
-			//´¦Àí·Ç·¨×Ö·û
-			//ÔÚ(ĞĞ,ÁĞ)³ö£¬""Îª·Ç·¨×Ö·û
+			//å¤„ç†éæ³•å­—ç¬¦
+			//åœ¨(è¡Œ,åˆ—)å‡ºï¼Œ""ä¸ºéæ³•å­—ç¬¦
 			tpi = 0; tp[tpi] = '\0';
-			tp[tpi++] = line[i];//½«´¦Àí×Ö·ûÌí¼Óµ½´¦Àí»º³åÇø
+			tp[tpi++] = line[i];//å°†å¤„ç†å­—ç¬¦æ·»åŠ åˆ°å¤„ç†ç¼“å†²åŒº
 			tp[tpi] = '\0';
 			isLexical = false;
 			flag = 1;
 			string tp_str(tp);
-			//Òì³£×Ö·ûÌí¼Óµ½Token´®ÖĞ
+			//å¼‚å¸¸å­—ç¬¦æ·»åŠ åˆ°Tokenä¸²ä¸­
 			Token token(lineNo, tp_str.data(), Error, isLexical);
 			mTokenList.push_back(token);
-			cout << "E> Lexical : ÔÚ(" << mCurrentLine << ", " << (i+1) << ")ÖĞ£¬\"" << tp_str << "\"Îª·Ç·¨×Ö·û" << endl;
-			tpi = 0; tp[tpi] = '\0';	//ÖØÖÃ»º³åÇø
+			cout << "E> Lexical : åœ¨(" << mCurrentLine << ", " << (i+1) << ")ä¸­ï¼Œ\"" << tp_str << "\"ä¸ºéæ³•å­—ç¬¦" << endl;
+			tpi = 0; tp[tpi] = '\0';	//é‡ç½®ç¼“å†²åŒº
 			isLexical = true;
 			flag = 0;
 			numberChange = 0;
@@ -657,7 +657,7 @@ int LexicalAnalysis::getDelimiterType(char c)
 	case ',':return Delimiter_Comma;
 	case '~':return Delimiter_Tilde;
 	case '#':return Delimiter_Pound_Sign;
-	case '$':return Delimiter_Dollar;	// $ ÃÀÔª·ûºÅ
+	case '$':return Delimiter_Dollar;	// $ ç¾å…ƒç¬¦å·
 	default:return 0;
 	}
 }
@@ -665,33 +665,33 @@ int LexicalAnalysis::getDelimiterType(char c)
 int LexicalAnalysis::getLexicalType(int numberChange, int flag, char * tp, bool & isLexical)
 {
 	int res = flag;
-	if (flag == 1) //¹Ø¼ü´Ê or ±êÊ¶·û
+	if (flag == 1) //å…³é”®è¯ or æ ‡è¯†ç¬¦
 	{
 		res = getIdentifierType(tp);
 	}
 	else if (flag == 2)
 	{
-		if (numberChange == 1 || numberChange == 10) //ÕûÊı [Ê®½øÖÆ]
+		if (numberChange == 1 || numberChange == 10) //æ•´æ•° [åè¿›åˆ¶]
 		{
 			res = Number_Decimalism;
 		}
-		else if (numberChange == 3) //Ğ¡Êı
+		else if (numberChange == 3) //å°æ•°
 		{
 			res = Number_Decimals;
 		}
-		else if (numberChange == 6) //Ö¸Êı
+		else if (numberChange == 6) //æŒ‡æ•°
 		{
 			res = Number_Exponent;
 		}
-		else if (numberChange == 11) //ÕûÊı [°Ë½øÖÆ]
+		else if (numberChange == 11) //æ•´æ•° [å…«è¿›åˆ¶]
 		{
 			res = Number_Octonary;
 		}
-		else if (numberChange == 13) //ÕûÊı [Ê®Áù½øÖÆ]
+		else if (numberChange == 13) //æ•´æ•° [åå…­è¿›åˆ¶]
 		{
 			res = Number_Hexadecimal;
 		}
-		else //±¨´í
+		else //æŠ¥é”™
 		{
 			isLexical = false;
 			res = 0;
@@ -702,7 +702,7 @@ int LexicalAnalysis::getLexicalType(int numberChange, int flag, char * tp, bool 
 
 int LexicalAnalysis::getIdentifierType(const char * tp)
 {
-	//CÓïÑÔÖĞµÄ¹Ø¼ü´Ê
+	//Cè¯­è¨€ä¸­çš„å…³é”®è¯
 	if (!strcmp(tp, "auto"))//1.auto
 	{
 		return Keyword_auto;
@@ -867,9 +867,9 @@ int LexicalAnalysis::getIdentifierType(const char * tp)
 	{
 		return Keyword_scan;
 	}
-	//ÆäËûµÄÇé¿ö²»ÔÙÊÇ¹Ø¼ü´Ê,ÓĞ¿ÉÄÜÊÇ±êÖ¾·û
+	//å…¶ä»–çš„æƒ…å†µä¸å†æ˜¯å…³é”®è¯,æœ‰å¯èƒ½æ˜¯æ ‡å¿—ç¬¦
 	else
-	{//ÅĞ¶ÏÊÇ·ñÎª±êÊ¶·û
+	{//åˆ¤æ–­æ˜¯å¦ä¸ºæ ‡è¯†ç¬¦
 		bool isIdentifier = true;
 		if (tp[0] == '_' || (tp[0] >= 'A' && tp[0] <= 'Z') || (tp[0] >= 'a' && tp[0] <= 'z'))
 		{
@@ -900,135 +900,135 @@ int LexicalAnalysis::getIdentifierType(const char * tp)
 
 int LexicalAnalysis::getOperatorType(const char * tp)
 {
-	if (!strcmp(tp, "!"))//#define Operator_Not// ! ·Ç
+	if (!strcmp(tp, "!"))//#define Operator_Not// ! é
 	{
 		return Operator_Not;
 	}
-	else if (!strcmp(tp, "!="))//#define Operator_Not_Equal_To// != ²»µÈÓÚ
+	else if (!strcmp(tp, "!="))//#define Operator_Not_Equal_To// != ä¸ç­‰äº
 	{
 		return Operator_Not_Equal_To;
 	}
-	else if (!strcmp(tp, "%"))//#define Operator_Mod// % È¡Óà
+	else if (!strcmp(tp, "%"))//#define Operator_Mod// % å–ä½™
 	{
 		return Operator_Mod;
 	}
-	else if (!strcmp(tp, "%="))//#define Operator_Mod_Equal// %= È¡ÓàµÈÓÚ
+	else if (!strcmp(tp, "%="))//#define Operator_Mod_Equal// %= å–ä½™ç­‰äº
 	{
 		return Operator_Mod_Equal;
 	}
-	else if (!strcmp(tp, "="))//#define Operator_Equal// = µÈÓÚ
+	else if (!strcmp(tp, "="))//#define Operator_Equal// = ç­‰äº
 	{
 		return Operator_Equal;
 	}
-	else if (!strcmp(tp, "=="))//#define Operator_Is_Equal// == ÊÇ·ñµÈÓÚ
+	else if (!strcmp(tp, "=="))//#define Operator_Is_Equal// == æ˜¯å¦ç­‰äº
 	{
 		return Operator_Is_Equal;
 	}
-	else if (!strcmp(tp, "^"))//#define Operator_Xor// ^ Òì»ò
+	else if (!strcmp(tp, "^"))//#define Operator_Xor// ^ å¼‚æˆ–
 	{
 		return Operator_Xor;
 	}
-	else if (!strcmp(tp, "^="))//#define Operator_Xor_Equal// ^= Òì»òµÈÓÚ
+	else if (!strcmp(tp, "^="))//#define Operator_Xor_Equal// ^= å¼‚æˆ–ç­‰äº
 	{
 		return Operator_Xor_Equal;
 	}
-	else if (!strcmp(tp, "&"))//#define Operator_Bit_And// & Î»Óë
+	else if (!strcmp(tp, "&"))//#define Operator_Bit_And// & ä½ä¸
 	{
 		return Operator_Bit_And;
 	}
-	else if (!strcmp(tp, "&="))//#define Operator_Bit_And_Equal// &= Î»ÓÚµÈÓÚ
+	else if (!strcmp(tp, "&="))//#define Operator_Bit_And_Equal// &= ä½äºç­‰äº
 	{
 		return Operator_Bit_And_Equal;
 	}
-	else if (!strcmp(tp, "&&"))//#define Operator_And// && Âß¼­Óë
+	else if (!strcmp(tp, "&&"))//#define Operator_And// && é€»è¾‘ä¸
 	{
 		return Operator_And;
 	}
-	else if (!strcmp(tp, "+"))//#define Operator_Plus// + ¼Ó
+	else if (!strcmp(tp, "+"))//#define Operator_Plus// + åŠ 
 	{
 		return Operator_Plus;
 	}
-	else if (!strcmp(tp, "+="))//#define Operator_Plus_Equal// += ¼ÓµÈÓÚ
+	else if (!strcmp(tp, "+="))//#define Operator_Plus_Equal// += åŠ ç­‰äº
 	{
 		return Operator_Plus_Equal;
 	}
-	else if (!strcmp(tp, "++"))//#define Operator_Plus_Plus// ++ ×ÔÔö
+	else if (!strcmp(tp, "++"))//#define Operator_Plus_Plus// ++ è‡ªå¢
 	{
 		return Operator_Plus_Plus;
 	}
-	else if (!strcmp(tp, "-"))//#define Operator_Minus// - ¼õ
+	else if (!strcmp(tp, "-"))//#define Operator_Minus// - å‡
 	{
 		return Operator_Minus;
 	}
-	else if (!strcmp(tp, "-="))//#define Operator_Minus_Equal// -= ¼õµÈÓÚ
+	else if (!strcmp(tp, "-="))//#define Operator_Minus_Equal// -= å‡ç­‰äº
 	{
 		return Operator_Minus_Equal;
 	}
-	else if (!strcmp(tp, "--"))//#define Operator_Minus_Minus// -- ×Ô¼õ
+	else if (!strcmp(tp, "--"))//#define Operator_Minus_Minus// -- è‡ªå‡
 	{
 		return Operator_Minus_Minus;
 	}
-	else if (!strcmp(tp, "|"))//#define Operator_Bit_Or// | Î»»ò
+	else if (!strcmp(tp, "|"))//#define Operator_Bit_Or// | ä½æˆ–
 	{
 		return Operator_Bit_Or;
 	}
-	else if (!strcmp(tp, "|="))//#define Operator_Bit_Or_Equal// |= Î»»òµÈÓÚ
+	else if (!strcmp(tp, "|="))//#define Operator_Bit_Or_Equal// |= ä½æˆ–ç­‰äº
 	{
 		return Operator_Bit_Or_Equal;
 	}
-	else if (!strcmp(tp, "||"))//#define Operator_Or// || Âß¼­»ò
+	else if (!strcmp(tp, "||"))//#define Operator_Or// || é€»è¾‘æˆ–
 	{
 		return Operator_Or;
 	}
-	else if (!strcmp(tp, "<"))//#define Operator_Less_Than// < Ğ¡ÓÚ
+	else if (!strcmp(tp, "<"))//#define Operator_Less_Than// < å°äº
 	{
 		return Operator_Less_Than;
 	}
-	else if (!strcmp(tp, "<="))//#define Operator_Less_Than_Equal// <= Ğ¡ÓÚµÈÓÚ
+	else if (!strcmp(tp, "<="))//#define Operator_Less_Than_Equal// <= å°äºç­‰äº
 	{
 		return Operator_Less_Than_Equal;
 	}
-	else if (!strcmp(tp, "<<"))//#define Operator_Left_Shift// << ×óÒÆ
+	else if (!strcmp(tp, "<<"))//#define Operator_Left_Shift// << å·¦ç§»
 	{
 		return Operator_Left_Shift;
 	}
-	else if (!strcmp(tp, ">"))//#define Operator_More_Than// > ´óÓÚ
+	else if (!strcmp(tp, ">"))//#define Operator_More_Than// > å¤§äº
 	{
 		return Operator_More_Than;
 	}
-	else if (!strcmp(tp, ">="))//#define Operator_More_Than_Equal// >= ´óÓÚµÈÓÚ
+	else if (!strcmp(tp, ">="))//#define Operator_More_Than_Equal// >= å¤§äºç­‰äº
 	{
 		return Operator_More_Than_Equal;
 	}
-	else if (!strcmp(tp, ">>"))//#define Operator_Right_Shift// >> ÓÒÒÆ
+	else if (!strcmp(tp, ">>"))//#define Operator_Right_Shift// >> å³ç§»
 	{
 		return Operator_Right_Shift;
 	}
-	else if (!strcmp(tp, "*"))//#define Operator_Multiply// * ³Ë ĞÇ
+	else if (!strcmp(tp, "*"))//#define Operator_Multiply// * ä¹˜ æ˜Ÿ
 	{
 		return Operator_Multiply;
 	}
-	else if (!strcmp(tp, "*="))//#define Operator_Multiply_Equal// *= ³ËµÈÓÚ
+	else if (!strcmp(tp, "*="))//#define Operator_Multiply_Equal// *= ä¹˜ç­‰äº
 	{
 		return Operator_Multiply_Equal;
 	}
-	else if (!strcmp(tp, "/"))//#define Operator_Divide// / ³ı
+	else if (!strcmp(tp, "/"))//#define Operator_Divide// / é™¤
 	{
 		return Operator_Divide;
 	}
-	else if (!strcmp(tp, "/="))//#define Operator_Divide_Equal// /= ³ıµÈÓÚ
+	else if (!strcmp(tp, "/="))//#define Operator_Divide_Equal// /= é™¤ç­‰äº
 	{
 		return Operator_Divide_Equal;
 	}
-	else if (!strcmp(tp, ":"))//#define Operator_Colon// : Ã°ºÅ[´ıÊ¹ÓÃ]
+	else if (!strcmp(tp, ":"))//#define Operator_Colon// : å†’å·[å¾…ä½¿ç”¨]
 	{
 		return Operator_Colon;
 	}
-	else if (!strcmp(tp, "::"))//#define Operator_Member// :: ³ÉÔ±ÔËËã·û
+	else if (!strcmp(tp, "::"))//#define Operator_Member// :: æˆå‘˜è¿ç®—ç¬¦
 	{
 		return Operator_Member;
 	}
-	else if (!strcmp(tp, "->"))//#define Operator_Arrows 0x40// -> ¼ıÍ·
+	else if (!strcmp(tp, "->"))//#define Operator_Arrows 0x40// -> ç®­å¤´
 	{
 		return Operator_Arrows;
 	}
@@ -1056,7 +1056,7 @@ bool LexicalAnalysis::saveLexicalAnalysisAnimationListToFile(const string & file
 
 bool LexicalAnalysis::saveTokenListToFile(const string & fileName)
 {
-	//±£´æ¸ñÊ½
+	//ä¿å­˜æ ¼å¼
 	// "lineNo data type isLexical" "int string int bool"
 	ofstream outFile(fileName);
 	list<Token>::iterator it_token = mTokenList.begin();

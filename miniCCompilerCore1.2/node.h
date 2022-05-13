@@ -1,19 +1,19 @@
 #pragma once
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º ½áµãÀà
-* Àà Ãû£º Node
+* åŠŸ èƒ½ï¼š ç»“ç‚¹ç±»
+* ç±» åï¼š Node
 *
-* Ver  2016-06-10  ÕÅÈü  ¶¨Òå½áµãÀà¡¢ÊôÐÔºÍ·½·¨
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver  2016-06-10  å¼ èµ›  å®šä¹‰ç»“ç‚¹ç±»ã€å±žæ€§å’Œæ–¹æ³•
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõÐÅÏ¢Îª±¾¹«Ë¾»úÃÜÐÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈý·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓÐ£º*****ÓÐÏÞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼Žã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 #include <iostream>
 #include <string>
@@ -32,7 +32,7 @@ public:
 	}
 	~Node() {};
 	virtual void printContent();
-	bool addLeftChild(string data);		//Ìí¼Ó×ó½áµã
-	bool addRightChild(string data);	//Ìí¼ÓÓÒ½áµã
-	void addChildToRoot(Node* node);	//Ìí¼Óº¢×Óµ½¸ù½Úµã
+	bool addLeftChild(string data);		//æ·»åŠ å·¦ç»“ç‚¹
+	bool addRightChild(string data);	//æ·»åŠ å³ç»“ç‚¹
+	void addChildToRoot(Node* node);	//æ·»åŠ å­©å­åˆ°æ ¹èŠ‚ç‚¹
 };

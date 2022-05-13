@@ -14,7 +14,7 @@ void main_0420()
 	LexicalAnalysis lexicalAnalysis;
 	if(!lexicalAnalysis.runLexicalAnalysis(codeList))
 	{
-		cout << "´Ê·¨·ÖÎö´æÔÚ´íÎó" << endl;
+		cout << "è¯æ³•åˆ†æžå­˜åœ¨é”™è¯¯" << endl;
 	}
 	lexicalAnalysis.printTokenList();
 	lexicalAnalysis.printLexicalAnalysisAnimationList();

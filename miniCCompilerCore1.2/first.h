@@ -8,9 +8,9 @@ using namespace std;
 class First
 {
 public:
-	Token mNonterminator;			//非终结符
-	list<AnalysisTableItem> mFirst;	//预测分析表项
-	list<AnalysisTableItem> mOther;	//预测分析表项
+	Token mNonterminator;			//闈炵粓缁撶
+	list<AnalysisTableItem> mFirst;	//棰勬祴鍒嗘瀽琛ㄩ」
+	list<AnalysisTableItem> mOther;	//棰勬祴鍒嗘瀽琛ㄩ」
 
 public:
 	First();

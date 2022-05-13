@@ -8,11 +8,11 @@ using namespace std;
 #include "objectCodeGeneration_x86.h"
 #include "FileOperation.h"
 
-#define GramAnal_1 0x1		//Ê¹ÓÃLL1Ô¤²â·ÖÎö·½·¨½øĞĞÓï·¨·ÖÎö£¬²»·ÖÎöÈ«¾Ö±äÁ¿¶¨Òå
-#define GramAnal_2 0x10		//LL1Ô¤²â·ÖÎö·¨·ÖÎöº¯ÊıÌå£¬ÆäÓàÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-#define GramAnal_3 0x100	//LL1Ô¤²â·ÖÎö·¨·ÖÎö±í´ïÊ½£¬ÆäÓàÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-#define GramAnal_4 0x1000	//È«²¿Ê¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-#define GramAnal_5 0x10000	//LL1Ê¹ÓÃÓÅ»¯µÄÎÄ·¨½øĞĞÓï·¨·ÖÎö
+#define GramAnal_1 0x1		//ä½¿ç”¨LL1é¢„æµ‹åˆ†ææ–¹æ³•è¿›è¡Œè¯­æ³•åˆ†æï¼Œä¸åˆ†æå…¨å±€å˜é‡å®šä¹‰
+#define GramAnal_2 0x10		//LL1é¢„æµ‹åˆ†ææ³•åˆ†æå‡½æ•°ä½“ï¼Œå…¶ä½™ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+#define GramAnal_3 0x100	//LL1é¢„æµ‹åˆ†ææ³•åˆ†æè¡¨è¾¾å¼ï¼Œå…¶ä½™ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+#define GramAnal_4 0x1000	//å…¨éƒ¨ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+#define GramAnal_5 0x10000	//LL1ä½¿ç”¨ä¼˜åŒ–çš„æ–‡æ³•è¿›è¡Œè¯­æ³•åˆ†æ
 
 int main_arg(int argc, char** argv)
 {
@@ -28,35 +28,35 @@ int main_arg(int argc, char** argv)
 		//cout << source << endl;
 		if (!strcmp(argv[2], "lexical"))
 		{
-			cout << "´Ê·¨·ÖÎö" << endl;
-			LexicalAnalysis lexical;	//´Ê·¨·ÖÎö
+			cout << "è¯æ³•åˆ†æ" << endl;
+			LexicalAnalysis lexical;	//è¯æ³•åˆ†æ
 			lexical.runLexicalAnalysis(code);
 		}
 		else if (!strcmp(argv[2], "grammar"))
 		{
-			cout << "Óï·¨·ÖÎö" << endl;
-			LexicalAnalysis lexical;	//´Ê·¨·ÖÎö
+			cout << "è¯­æ³•åˆ†æ" << endl;
+			LexicalAnalysis lexical;	//è¯æ³•åˆ†æ
 			lexical.runLexicalAnalysis(code);
 			if (argc < 4)
 			{
-				//GrammarAnaly ga_1;			//Óï·¨·ÖÎö ÕâÖÖ·ÖÎö·½·¨ÓĞ¾ÖÏŞĞÔ
+				//GrammarAnaly ga_1;			//è¯­æ³•åˆ†æ è¿™ç§åˆ†ææ–¹æ³•æœ‰å±€é™æ€§
 				//ga_1.grammarAnalysisUsingLL1WithoutGlobalVariable(lexical.tokList);
-				GrammarAnalysis ga_2;			//Óï·¨·ÖÎö
+				GrammarAnalysis ga_2;			//è¯­æ³•åˆ†æ
 				if (!ga_2.grammarAnalysisUsingRecursiveDescentAndLL1_1(lexical.mTokenList))
 				{
-					cout << "Óï·¨·ÖÎö[LL1·ÖÎöº¯ÊıÌåºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+					cout << "è¯­æ³•åˆ†æ[LL1åˆ†æå‡½æ•°ä½“å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 					return 1;
 				}
-				GrammarAnalysis ga_3;			//Óï·¨·ÖÎö
+				GrammarAnalysis ga_3;			//è¯­æ³•åˆ†æ
 				if (!ga_3.grammarAnalysisUsingRecursiveDescentAndLL1_2(lexical.mTokenList))
 				{
-					cout << "Óï·¨·ÖÎö[LL1·ÖÎö±í´ïÊ½ºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+					cout << "è¯­æ³•åˆ†æ[LL1åˆ†æè¡¨è¾¾å¼å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 					return 1;
 				}
-				GrammarAnalysis ga_4;			//Óï·¨·ÖÎö
+				GrammarAnalysis ga_4;			//è¯­æ³•åˆ†æ
 				if (!ga_4.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 				{
-					cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+					cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 					return 1;
 				}
 			}
@@ -64,60 +64,60 @@ int main_arg(int argc, char** argv)
 			{
 				if (!strcmp(argv[3], "1"))
 				{
-					GrammarAnalysis ga;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 					if (!ga.grammarAnalysisUsingLL1WithoutGlobalVariable(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[ÍêÈ«LL1·ÖÎö,²»·ÖÎöÈ«¾Ö±äÁ¿],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[å®Œå…¨LL1åˆ†æ,ä¸åˆ†æå…¨å±€å˜é‡],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
 				}
 				else if (!strcmp(argv[3], "2"))
 				{
-					GrammarAnalysis ga;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 					if (!ga.grammarAnalysisUsingRecursiveDescentAndLL1_1(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[LL1·ÖÎöº¯ÊıÌåºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[LL1åˆ†æå‡½æ•°ä½“å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
 				}
 				else if (!strcmp(argv[3], "4"))
 				{
-					GrammarAnalysis ga;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 					if (!ga.grammarAnalysisUsingRecursiveDescentAndLL1_2(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[LL1·ÖÎö±í´ïÊ½ºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[LL1åˆ†æè¡¨è¾¾å¼å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
 				}
 				else if (!strcmp(argv[3], "8"))
 				{
-					GrammarAnalysis ga;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 					if (!ga.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
 				}
 				else if (!strcmp(argv[3], "15"))
 				{
-					//GrammarAnaly ga_1;			//Óï·¨·ÖÎö ÕâÖÖ·ÖÎö·½·¨ÓĞ¾ÖÏŞĞÔ
+					//GrammarAnaly ga_1;			//è¯­æ³•åˆ†æ è¿™ç§åˆ†ææ–¹æ³•æœ‰å±€é™æ€§
 					//ga_1.grammarAnalysisUsingLL1WithoutGlobalVariable(lexical.tokList);
-					GrammarAnalysis ga_2;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga_2;			//è¯­æ³•åˆ†æ
 					if (!ga_2.grammarAnalysisUsingRecursiveDescentAndLL1_1(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[LL1·ÖÎöº¯ÊıÌåºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[LL1åˆ†æå‡½æ•°ä½“å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
-					GrammarAnalysis ga_3;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga_3;			//è¯­æ³•åˆ†æ
 					if (!ga_3.grammarAnalysisUsingRecursiveDescentAndLL1_2(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[LL1·ÖÎö±í´ïÊ½ºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[LL1åˆ†æè¡¨è¾¾å¼å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
-					GrammarAnalysis ga_4;			//Óï·¨·ÖÎö
+					GrammarAnalysis ga_4;			//è¯­æ³•åˆ†æ
 					if (!ga_4.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 					{
-						cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+						cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 						return 1;
 					}
 				}
@@ -125,64 +125,64 @@ int main_arg(int argc, char** argv)
 		}
 		else if (!strcmp(argv[2], "semantic"))
 		{
-			cout << "ÓïÒå·ÖÎö" << endl;
-			LexicalAnalysis lexical;	//´Ê·¨·ÖÎö
+			cout << "è¯­ä¹‰åˆ†æ" << endl;
+			LexicalAnalysis lexical;	//è¯æ³•åˆ†æ
 			lexical.runLexicalAnalysis(code);
-			GrammarAnalysis ga;			//Óï·¨·ÖÎö
+			GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 			if (!ga.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 			{
-				cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+				cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return 1;
 			}
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 				return 1;
 			}
 		}
 		else if (!strcmp(argv[2], "object"))
 		{
-			cout << "Ä¿±ê´úÂëÉú³É" << endl;
-			LexicalAnalysis lexical;	//´Ê·¨·ÖÎö
+			cout << "ç›®æ ‡ä»£ç ç”Ÿæˆ" << endl;
+			LexicalAnalysis lexical;	//è¯æ³•åˆ†æ
 			lexical.runLexicalAnalysis(code);
-			GrammarAnalysis ga;			//Óï·¨·ÖÎö
+			GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 			if (!ga.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 			{
-				cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+				cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return 1;
 			}
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 				return 1;
 			}
-			ObjectCodeGeneration_x86 objectCodeGeneration;	//Ä¿±ê´úÂëÉú³É
+			ObjectCodeGeneration_x86 objectCodeGeneration;	//ç›®æ ‡ä»£ç ç”Ÿæˆ
 			objectCodeGeneration.runObjectCodeGeneration_x86(semantic);
 			objectCodeGeneration.outFile("analysis\\object");
 		}
 		else if (!strcmp(argv[2], "compiler"))
 		{
-			cout << "Windows x86 Æ½Ì¨±àÒë" << endl;
-			LexicalAnalysis lexical;	//´Ê·¨·ÖÎö
-			GrammarAnalysis ga;			//Óï·¨·ÖÎö
+			cout << "Windows x86 å¹³å°ç¼–è¯‘" << endl;
+			LexicalAnalysis lexical;	//è¯æ³•åˆ†æ
+			GrammarAnalysis ga;			//è¯­æ³•åˆ†æ
 			if (!ga.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 			{
-				cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+				cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return 1;
 			}
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 				return 1;
 			}
-			ObjectCodeGeneration_x86 objectCodeGeneration;	//Ä¿±ê´úÂëÉú³É
+			ObjectCodeGeneration_x86 objectCodeGeneration;	//ç›®æ ‡ä»£ç ç”Ÿæˆ
 			objectCodeGeneration.runObjectCodeGeneration_x86(semantic);
 			objectCodeGeneration.outFile("analysis\\object");
-			cout << "####  ±àÒë³ÌĞò" << endl;
-			system("compiler_link.bat");	//±àÒëÁ¬½Ó»ã±à´úÂë³É¿ÉÖ´ĞĞÎÄ¼ş
+			cout << "####  ç¼–è¯‘ç¨‹åº" << endl;
+			system("compiler_link.bat");	//ç¼–è¯‘è¿æ¥æ±‡ç¼–ä»£ç æˆå¯æ‰§è¡Œæ–‡ä»¶
 		}
 	}
 	return 0;

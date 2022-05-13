@@ -10,7 +10,7 @@ Tree::~Tree()
 	deleteNodes(this->root);
 }
 
-void Tree::printTree(Node* node) //·ÃÎÊË³Ğò ¸ù×óÓÒ
+void Tree::printTree(Node* node) //è®¿é—®é¡ºåº æ ¹å·¦å³
 {
 	if (node != nullptr)
 	{
@@ -20,7 +20,7 @@ void Tree::printTree(Node* node) //·ÃÎÊË³Ğò ¸ù×óÓÒ
 	}
 }
 
-void Tree::deleteNodes(Node* node) //·ÃÎÊË³Ğò ×óÓÒ¸ù
+void Tree::deleteNodes(Node* node) //è®¿é—®é¡ºåº å·¦å³æ ¹
 {
 	if (node != nullptr)
 	{

@@ -10,11 +10,11 @@ using namespace std;
 #include "objectCodeGeneration_x86.h"
 #include "fileOperation.h"
 
-#define GramAnal_1 0x1		//Ê¹ÓÃLL1Ô¤²â·ÖÎö·½·¨½øĞĞÓï·¨·ÖÎö£¬²»·ÖÎöÈ«¾Ö±äÁ¿¶¨Òå
-#define GramAnal_2 0x10		//LL1Ô¤²â·ÖÎö·¨·ÖÎöº¯ÊıÌå£¬ÆäÓàÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-#define GramAnal_3 0x100	//LL1Ô¤²â·ÖÎö·¨·ÖÎö±í´ïÊ½£¬ÆäÓàÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-#define GramAnal_4 0x1000	//È«²¿Ê¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-#define GramAnal_5 0x10000	//LL1Ê¹ÓÃÓÅ»¯µÄÎÄ·¨½øĞĞÓï·¨·ÖÎö
+#define GramAnal_1 0x1		//ä½¿ç”¨LL1é¢„æµ‹åˆ†ææ–¹æ³•è¿›è¡Œè¯­æ³•åˆ†æï¼Œä¸åˆ†æå…¨å±€å˜é‡å®šä¹‰
+#define GramAnal_2 0x10		//LL1é¢„æµ‹åˆ†ææ³•åˆ†æå‡½æ•°ä½“ï¼Œå…¶ä½™ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+#define GramAnal_3 0x100	//LL1é¢„æµ‹åˆ†ææ³•åˆ†æè¡¨è¾¾å¼ï¼Œå…¶ä½™ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+#define GramAnal_4 0x1000	//å…¨éƒ¨ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+#define GramAnal_5 0x10000	//LL1ä½¿ç”¨ä¼˜åŒ–çš„æ–‡æ³•è¿›è¡Œè¯­æ³•åˆ†æ
 
 int StringConvertInteger(string arg_string)
 {
@@ -32,50 +32,50 @@ bool GramAnalWithArg(int arg,LexicalAnalysis& lexical)
 {
 	if ((arg & 1) > 0)
 	{
-		//Ê¹ÓÃLL1Ô¤²â·ÖÎö·½·¨½øĞĞÓï·¨·ÖÎö£¬²»·ÖÎöÈ«¾Ö±äÁ¿¶¨Òå
-		GrammarAnalysis ga_1;			//Óï·¨·ÖÎö ÕâÖÖ·ÖÎö·½·¨ÓĞ¾ÖÏŞĞÔ
+		//ä½¿ç”¨LL1é¢„æµ‹åˆ†ææ–¹æ³•è¿›è¡Œè¯­æ³•åˆ†æï¼Œä¸åˆ†æå…¨å±€å˜é‡å®šä¹‰
+		GrammarAnalysis ga_1;			//è¯­æ³•åˆ†æ è¿™ç§åˆ†ææ–¹æ³•æœ‰å±€é™æ€§
 		ga_1.grammarAnalysisUsingLL1WithoutGlobalVariable(lexical.mTokenList);
 	}
 	if ((arg & 2) > 0)
 	{
-		//LL1Ô¤²â·ÖÎö·¨·ÖÎöº¯ÊıÌå£¬ÆäÓàÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-		GrammarAnalysis ga_2;			//Óï·¨·ÖÎö
+		//LL1é¢„æµ‹åˆ†ææ³•åˆ†æå‡½æ•°ä½“ï¼Œå…¶ä½™ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+		GrammarAnalysis ga_2;			//è¯­æ³•åˆ†æ
 		if (!ga_2.grammarAnalysisUsingRecursiveDescentAndLL1_1(lexical.mTokenList))
 		{
-			// cout << "Óï·¨·ÖÎö[LL1·ÖÎöº¯ÊıÌåºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+			// cout << "è¯­æ³•åˆ†æ[LL1åˆ†æå‡½æ•°ä½“å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 			cout << "Grammer analysis[RecursiveDescentAndLL1_1], has any errors." << endl;
 			return false;
 		}
 	}
 	if ((arg & 4) > 0)
 	{
-		//LL1Ô¤²â·ÖÎö·¨·ÖÎö±í´ïÊ½£¬ÆäÓàÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-		GrammarAnalysis ga_3;			//Óï·¨·ÖÎö
+		//LL1é¢„æµ‹åˆ†ææ³•åˆ†æè¡¨è¾¾å¼ï¼Œå…¶ä½™ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+		GrammarAnalysis ga_3;			//è¯­æ³•åˆ†æ
 		if (!ga_3.grammarAnalysisUsingRecursiveDescentAndLL1_2(lexical.mTokenList))
 		{
-			// cout << "Óï·¨·ÖÎö[LL1·ÖÎö±í´ïÊ½ºÍµİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+			// cout << "è¯­æ³•åˆ†æ[LL1åˆ†æè¡¨è¾¾å¼å’Œé€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 			cout << "Grammer analysis[RecursiveDescentAndLL1_2], has any errors." << endl;
 			return false;
 		}
 	}
 	if ((arg & 8) > 0)
 	{
-		//È«²¿Ê¹ÓÃµİ¹éÏÂ½µ·ÖÎö
-		GrammarAnalysis ga_4;			//Óï·¨·ÖÎö
+		//å…¨éƒ¨ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æ
+		GrammarAnalysis ga_4;			//è¯­æ³•åˆ†æ
 		if (!ga_4.grammarAnalysisUsingRecursiveDescent(lexical.mTokenList))
 		{
-			// cout << "Óï·¨·ÖÎö[µİ¹éÏÂ½µ],´æÔÚÓï·¨´íÎó" << endl;
+			// cout << "è¯­æ³•åˆ†æ[é€’å½’ä¸‹é™],å­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 			cout << "Grammer analysis [RecursiveDescent], has any errors" << endl;
 			return false;
 		}
 	}
 	if( (arg & 16) > 0 )
 	{
-		//LL1°´ÕÕ¸üĞÂµÄÎÄ·¨½øĞĞÓï·¨·ÖÎö
+		//LL1æŒ‰ç…§æ›´æ–°çš„æ–‡æ³•è¿›è¡Œè¯­æ³•åˆ†æ
 		GrammarAnalysis ga_5;
 		if (!ga_5.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 		{
-			// cout << "Óï·¨·ÖÎö[LL1Ô¤²â·ÖÎö,¸üĞÂÎÄ·¨]£¬´æÔÚÓï·¨´íÎó" << endl;
+			// cout << "è¯­æ³•åˆ†æ[LL1é¢„æµ‹åˆ†æ,æ›´æ–°æ–‡æ³•]ï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 			cout << "Grammer analysis [LL1_2], has any errors." << endl;
 			return false;
 		}
@@ -83,16 +83,20 @@ bool GramAnalWithArg(int arg,LexicalAnalysis& lexical)
 	return true;
 }
 
+#define do_lexical			0x1			// æ˜¯å¦åšè¯æ³•åˆ†æ
+#define do_grammar			0x10		// æ˜¯å¦åšè¯­æ³•åˆ†æ
+#define do_semantic			0x100		// æ˜¯å¦åšè¯­ä¹‰åˆ†æ
+#define do_optimization		0x1000		// æ˜¯å¦åšä»£ç ä¼˜åŒ–
+#define do_object			0x10000		// æ˜¯å¦åšç›®æ ‡ä»£ç ç”Ÿæˆ
+#define do_compiler			0x100000	// æ˜¯å¦åšå¹³å°ç¼–è¯‘
+#define do_run				0x1000000	// æ˜¯å¦ç›´æ¥è¿è¡Œ
+
 int main(int argc, char** argv)
 {
-	//ÖÁÉÙÎª3¸ö²ÎÊı
+	//è‡³å°‘ä¸º3ä¸ªå‚æ•°
 	if (argc < 3)
 	{
-#ifdef __linux__
-		cout << "Error, missing arguments" << endl;
-#else
-		cout << "´íÎó£ºÈ±ÉÙ²ÎÊı" << endl;
-#endif // __linux__
+		cout << "é”™è¯¯ï¼šç¼ºå°‘å‚æ•°" << endl;
 		cout << "format : program path command [gram_arg]" <<endl;
 		return 1;
 	}
@@ -101,64 +105,63 @@ int main(int argc, char** argv)
 #ifdef __linux__
 		system("cd analysis_linux;sh clear.sh");
 #else
-		system("analysis\\clear.bat");	//Çå¿ÕanalysisÎÄ¼ş¼ĞÏÂµÄ·ÖÎöÎÄ¼ş
+		system("analysis\\clear.bat");	//æ¸…ç©ºanalysisæ–‡ä»¶å¤¹ä¸‹çš„åˆ†ææ–‡ä»¶
 #endif // __linux__
 
 		
 		string path(argv[1]);	//path
 		CodeList code(path);
 
-		//´Ê·¨·ÖÎö
+
+		if (!strcmp(argv[2], "lexical"))
+		{
+
+		}
+
+
+		//è¯æ³•åˆ†æ
 		#ifdef __linux__
 		if (!strcasecmp(argv[2], "lexical"))
 		#else
 		if (!strcmp(argv[2], "lexical"))
 		#endif
 		{
-			LexicalAnalysis lexical;	//´Ê·¨·ÖÎö
+			LexicalAnalysis lexical;	//è¯æ³•åˆ†æ
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0 )
 			{
-#ifdef __linux__
-				cout << "Lexical analysis finished, found " << lexicalErrorCount << " lex errors" << endl;
-#else
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
-#endif
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr,"Lexical Error\n");
 			}
 			else
 			{
-#ifdef __linux__
-				cout << "Lexical analysis finished, no lex error" << endl;
-#else
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
-#endif
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
 		}
 
-		//Óï·¨·ÖÎö
+		//è¯­æ³•åˆ†æ
 		else if (!strcmp(argv[2], "grammar"))
 		{	
-			//´Ê·¨·ÖÎö
-			string gram_arg(argv[3]);//Óï·¨·ÖÎö²ÎÊı
+			//è¯æ³•åˆ†æ
+			string gram_arg(argv[3]);//è¯­æ³•åˆ†æå‚æ•°
 			LexicalAnalysis lexical;	
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0)
 			{
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Lexical Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
-			//Óï·¨·ÖÎö
+			//è¯­æ³•åˆ†æ
 			int gram_arg_int = StringConvertInteger(gram_arg);
 			cout << gram_arg_int << endl;
 			if (GramAnalWithArg(gram_arg_int,lexical))
 			{
-				cout << "Óï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+				cout << "è¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 			}
 			else
 			{
@@ -166,280 +169,280 @@ int main(int argc, char** argv)
 			}
 		}
 
-		//ÓïÒå·ÖÎö
+		//è¯­ä¹‰åˆ†æ
 		else if (!strcmp(argv[2], "semantic"))
 		{
-			//cout << "semantic ÓïÒå·ÖÎö" << endl;
-			//´Ê·¨·ÖÎö
+			//cout << "semantic è¯­ä¹‰åˆ†æ" << endl;
+			//è¯æ³•åˆ†æ
 			LexicalAnalysis lexical;	
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0)
 			{
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Lexical Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
-			//Óï·¨·ÖÎö
+			//è¯­æ³•åˆ†æ
 			GrammarAnalysis grammar;
 			if (!grammar.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 			{
-				cout << "GrammarÓï·¨·ÖÎö½áÊø£¬´æÔÚ" << grammar.grammarError.size() << "¸öÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << grammar.grammarError.size() << "ä¸ªè¯­æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Grammar Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "GrammarÓï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 			}
-			//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "SemanticÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << semantic.mErrorInfo.size() << "¸öÓïÒå´íÎó" << endl;
+				cout << "Semanticè¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << semantic.mErrorInfo.size() << "ä¸ªè¯­ä¹‰é”™è¯¯" << endl;
 				fprintf(stderr, "Semantic Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 			}
 		}
 
-		//´úÂëÓÅ»¯
+		//ä»£ç ä¼˜åŒ–
 		else if (!strcmp(argv[2], "optimization"))
 		{
-			//´Ê·¨·ÖÎö
+			//è¯æ³•åˆ†æ
 			LexicalAnalysis lexical;
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0)
 			{
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Lexical Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
-			//Óï·¨·ÖÎö
+			//è¯­æ³•åˆ†æ
 			GrammarAnalysis grammar;
 			if (!grammar.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 			{
-				cout << "GrammarÓï·¨·ÖÎö½áÊø£¬´æÔÚ" << grammar.grammarError.size() << "¸öÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << grammar.grammarError.size() << "ä¸ªè¯­æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Grammar Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "GrammarÓï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 			}
-			//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "SemanticÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << semantic.mErrorInfo.size() << "¸öÓïÒå´íÎó" << endl;
+				cout << "Semanticè¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << semantic.mErrorInfo.size() << "ä¸ªè¯­ä¹‰é”™è¯¯" << endl;
 				fprintf(stderr, "Semantic Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 			}
-			//´úÂëÓÅ»¯
+			//ä»£ç ä¼˜åŒ–
 			CodeOptimization optimization;
 			if (!optimization.runCodeOptimization(semantic))
 			{
-				cout << "Optimization´úÂëÓÅ»¯Ê§°Ü" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–å¤±è´¥" << endl;
 				fprintf(stderr, "Optimization Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Optimization´úÂëÓÅ»¯³É¹¦" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–æˆåŠŸ" << endl;
 			}
 		}
 
-		//Ä¿±ê´úÂëÉú³É
+		//ç›®æ ‡ä»£ç ç”Ÿæˆ
 		else if (!strcmp(argv[2], "object"))
 		{
-			//cout << "object Ä¿±ê´úÂëÉú³É" << endl;
-			//´Ê·¨·ÖÎö
+			//cout << "object ç›®æ ‡ä»£ç ç”Ÿæˆ" << endl;
+			//è¯æ³•åˆ†æ
 			LexicalAnalysis lexical;
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0)
 			{
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Lexical Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
-			//Óï·¨·ÖÎö
+			//è¯­æ³•åˆ†æ
 			GrammarAnalysis grammar;
 			if (!grammar.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 			{
-				cout << "GrammarÓï·¨·ÖÎö½áÊø£¬´æÔÚ" << grammar.grammarError.size() << "¸öÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << grammar.grammarError.size() << "ä¸ªè¯­æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Grammar Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "GrammarÓï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 			}
-			//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "SemanticÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << semantic.mErrorInfo.size() << "¸öÓïÒå´íÎó" << endl;
+				cout << "Semanticè¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << semantic.mErrorInfo.size() << "ä¸ªè¯­ä¹‰é”™è¯¯" << endl;
 				fprintf(stderr, "Semantic Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 			}
-			//´úÂëÓÅ»¯
+			//ä»£ç ä¼˜åŒ–
 			CodeOptimization optimization;
 			if (!optimization.runCodeOptimization(semantic))
 			{
-				cout << "Optimization´úÂëÓÅ»¯Ê§°Ü" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–å¤±è´¥" << endl;
 				fprintf(stderr, "Optimization Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Optimization´úÂëÓÅ»¯³É¹¦" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–æˆåŠŸ" << endl;
 			}
-			//Ä¿±ê´úÂëÉú³É
+			//ç›®æ ‡ä»£ç ç”Ÿæˆ
 			ObjectCodeGeneration_x86 objectCodeGeneration;	
 			objectCodeGeneration.runObjectCodeGeneration_x86(semantic);
 		}
 
-		//Æ½Ì¨±àÒë
+		//å¹³å°ç¼–è¯‘
 		else if (!strcmp(argv[2], "compiler"))
 		{
-			//cout << "Windows x86 Æ½Ì¨±àÒë" << endl;
-			//´Ê·¨·ÖÎö
+			//cout << "Windows x86 å¹³å°ç¼–è¯‘" << endl;
+			//è¯æ³•åˆ†æ
 			LexicalAnalysis lexical;
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0)
 			{
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Lexical Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
-			//Óï·¨·ÖÎö
+			//è¯­æ³•åˆ†æ
 			GrammarAnalysis grammar;
 			if (!grammar.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 			{
-				cout << "GrammarÓï·¨·ÖÎö½áÊø£¬´æÔÚ" << grammar.grammarError.size() << "¸öÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << grammar.grammarError.size() << "ä¸ªè¯­æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Grammar Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "GrammarÓï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 			}
-			//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "SemanticÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << semantic.mErrorInfo.size() << "¸öÓïÒå´íÎó" << endl;
+				cout << "Semanticè¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << semantic.mErrorInfo.size() << "ä¸ªè¯­ä¹‰é”™è¯¯" << endl;
 				fprintf(stderr, "Semantic Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 			}
-			//´úÂëÓÅ»¯
+			//ä»£ç ä¼˜åŒ–
 			CodeOptimization optimization;
 			if (!optimization.runCodeOptimization(semantic))
 			{
-				cout << "Optimization´úÂëÓÅ»¯Ê§°Ü" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–å¤±è´¥" << endl;
 				fprintf(stderr, "Optimization Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Optimization´úÂëÓÅ»¯³É¹¦" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–æˆåŠŸ" << endl;
 			}
-			//Ä¿±ê´úÂëÉú³É
+			//ç›®æ ‡ä»£ç ç”Ÿæˆ
 			ObjectCodeGeneration_x86 objectCodeGeneration;
 			objectCodeGeneration.runObjectCodeGeneration_x86(semantic);
-			cout << "####  ±àÒë³ÌĞò" << endl;
-			system("compiler_link.bat");	//±àÒëÁ¬½Ó»ã±à´úÂë³É¿ÉÖ´ĞĞÎÄ¼ş
+			cout << "####  ç¼–è¯‘ç¨‹åº" << endl;
+			system("compiler_link.bat");	//ç¼–è¯‘è¿æ¥æ±‡ç¼–ä»£ç æˆå¯æ‰§è¡Œæ–‡ä»¶
 		}
 
-		//ÔËĞĞ³ÌĞò
+		//è¿è¡Œç¨‹åº
 		else if (!strcmp(argv[2], "run"))
 		{
-			//´Ê·¨·ÖÎö
+			//è¯æ³•åˆ†æ
 			LexicalAnalysis lexical;
 			int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 			if (lexicalErrorCount > 0)
 			{
-				cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Lexical Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+				cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 			}
-			//Óï·¨·ÖÎö
+			//è¯­æ³•åˆ†æ
 			GrammarAnalysis grammar;
 			if (!grammar.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 			{
-				cout << "GrammarÓï·¨·ÖÎö½áÊø£¬´æÔÚ" << grammar.grammarError.size() << "¸öÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << grammar.grammarError.size() << "ä¸ªè¯­æ³•é”™è¯¯" << endl;
 				fprintf(stderr, "Grammar Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "GrammarÓï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+				cout << "Grammarè¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 			}
-			//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-			SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+			//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+			SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 			if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 			{
-				cout << "SemanticÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << semantic.mErrorInfo.size() << "¸öÓïÒå´íÎó" << endl;
+				cout << "Semanticè¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << semantic.mErrorInfo.size() << "ä¸ªè¯­ä¹‰é”™è¯¯" << endl;
 				fprintf(stderr, "Semantic Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+				cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 			}
-			//´úÂëÓÅ»¯
+			//ä»£ç ä¼˜åŒ–
 			CodeOptimization optimization;
 			if (!optimization.runCodeOptimization(semantic))
 			{
-				cout << "Optimization´úÂëÓÅ»¯Ê§°Ü" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–å¤±è´¥" << endl;
 				fprintf(stderr, "Optimization Error\n");
 				return 1;
 			}
 			else
 			{
-				cout << "Optimization´úÂëÓÅ»¯³É¹¦" << endl;
+				cout << "Optimizationä»£ç ä¼˜åŒ–æˆåŠŸ" << endl;
 			}
-			//Ä¿±ê´úÂëÉú³É
+			//ç›®æ ‡ä»£ç ç”Ÿæˆ
 			ObjectCodeGeneration_x86 objectCodeGeneration;
 			objectCodeGeneration.runObjectCodeGeneration_x86(semantic);
-			cout << "####  ±àÒë³ÌĞò" << endl;
-			system("compiler_link.bat");	//±àÒëÁ¬½Ó»ã±à´úÂë³É¿ÉÖ´ĞĞÎÄ¼ş
-			cout << "####  ÔËĞĞ³ÌĞò" << endl;
-			system("run.bat");				//ÔËĞĞ³ÌĞò
+			cout << "####  ç¼–è¯‘ç¨‹åº" << endl;
+			system("compiler_link.bat");	//ç¼–è¯‘è¿æ¥æ±‡ç¼–ä»£ç æˆå¯æ‰§è¡Œæ–‡ä»¶
+			cout << "####  è¿è¡Œç¨‹åº" << endl;
+			system("run.bat");				//è¿è¡Œç¨‹åº
 		}
 	}
 	return 0;

@@ -2,8 +2,8 @@
 
 Token::Token()
 {
-	this->data.clear();//清空data中保存的内容
-	this->type = -1;//默认初始化为 -1
+	this->data.clear();//娓呯┖data涓繚瀛樼殑鍐呭
+	this->type = -1;//榛樿鍒濆鍖栦负 -1
 }
 
 Token::Token(string d, int t)

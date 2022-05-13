@@ -26,7 +26,7 @@ VariableDefinition::~VariableDefinition()
 
 void VariableDefinition::printContent()
 {
-	cout << actionScope << "  " << "  变量定义  ";
+	cout << actionScope << "  " << "  鍙橀噺瀹氫箟  ";
 	switch (memoryType)
 	{
 	case Keyword_extern:
@@ -70,7 +70,7 @@ void VariableDefinition::printContent()
 		cout << "\t" << (*it_list).varName << "\t";
 		if ((*it_list).initValue.size() <= 0)
 		{
-			cout << "未初始化";
+			cout << "鏈垵濮嬪寲";
 		}
 		else
 		{
@@ -87,7 +87,7 @@ void VariableDefinition::printContent()
 string VariableDefinition::getContent()
 {
 	string str = "";
-	str += actionScope + "  " + "  变量定义  ";
+	str += actionScope + "  " + "  鍙橀噺瀹氫箟  ";
 	switch (memoryType)
 	{
 	case Keyword_extern:
@@ -131,7 +131,7 @@ string VariableDefinition::getContent()
 		str += "\t" + (*it_list).varName + "\t";
 		if ((*it_list).initValue.size() <= 0)
 		{
-			str += "未初始化";
+			str += "鏈垵濮嬪寲";
 		}
 		else
 		{

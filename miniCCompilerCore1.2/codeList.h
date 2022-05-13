@@ -9,7 +9,7 @@ using namespace std;
 class CodeList
 {
 public:
-	list<Code> codeList;	//Ô´ÎÄ¼şÒÔListµÄĞÎÊ½±£´æ
+	list<Code> codeList;	//æºæ–‡ä»¶ä»¥Listçš„å½¢å¼ä¿å­˜
 public:
 	CodeList();
 	CodeList(const string& fileName);

@@ -11,7 +11,7 @@ FunctionDefinition::FunctionDefinition()
 FunctionDefinition::FunctionDefinition(int t, string n)
 {
 	if (t == Error)
-		cout << "·µ»ØÖµÀàÐÍ´íÎó" << endl;
+		cout << "è¿”å›žå€¼ç±»åž‹é”™è¯¯" << endl;
 	returnType = t;
 	functionName = n;
 }
@@ -19,7 +19,7 @@ FunctionDefinition::FunctionDefinition(int t, string n)
 FunctionDefinition::FunctionDefinition(GrammarTreeTmp tmp)
 {
 	if (tmp.dataType == Error)
-		cout << "·µ»ØÖµÀàÐÍ´íÎó" << endl;
+		cout << "è¿”å›žå€¼ç±»åž‹é”™è¯¯" << endl;
 	memoryType = tmp.memoryType;
 	returnType = tmp.dataType;
 	functionName = tmp.functionName;
@@ -39,11 +39,11 @@ void FunctionDefinition::printContent()
 {
 	if (isComeTrue)
 	{
-		cout << "  º¯ÊýÊµÏÖ  ";
+		cout << "  å‡½æ•°å®žçŽ°  ";
 	}
 	else
 	{
-		cout << "  º¯ÊýÉùÃ÷  ";
+		cout << "  å‡½æ•°å£°æ˜Ž  ";
 	}
 	switch (memoryType)
 	{
@@ -84,11 +84,11 @@ string FunctionDefinition::getContent()
 	string str = "";
 	if (isComeTrue)
 	{
-		str += "  º¯ÊýÊµÏÖ  ";
+		str += "  å‡½æ•°å®žçŽ°  ";
 	}
 	else
 	{
-		str += "  º¯ÊýÉùÃ÷  ";
+		str += "  å‡½æ•°å£°æ˜Ž  ";
 	}
 	switch (memoryType)
 	{

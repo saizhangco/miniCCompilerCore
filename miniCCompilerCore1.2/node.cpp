@@ -21,12 +21,12 @@ bool Node::addRightChild(string data)
 void Node::addChildToRoot(Node* node)
 {
 
-	if (!this->left) //×ó½áµãÎª¿Õ
+	if (!this->left) //å·¦ç»“ç‚¹ä¸ºç©º
 	{
 		this->left = node;
 		//this->left->data = data;
 	}
-	else //×ó½áµã²»Îª¿Õ
+	else //å·¦ç»“ç‚¹ä¸ä¸ºç©º
 	{
 		Node* tmp;
 		tmp = this->left;

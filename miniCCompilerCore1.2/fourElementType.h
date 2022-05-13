@@ -19,22 +19,22 @@ using namespace std;
 #define Jump_Not_Zero 0x1D	// jnz
 #define Equal 0x1E	//=
 #define Sys 0x1F	//sys
-#define FuncEnter 0x20	//º¯ÊıÈë¿Ú
-#define FuncExit 0x21	//º¯Êı³ö¿Ú
-#define Print 0x22	//printÓï¾ä
+#define FuncEnter 0x20	//å‡½æ•°å…¥å£
+#define FuncExit 0x21	//å‡½æ•°å‡ºå£
+#define Print 0x22	//printè¯­å¥
 
 class FourElementType
 {
 public:
-	int mNumber;	//±àºÅ ´Ó1¿ªÊ¼£¬³õÊ¼»¯Îª0
-	int mOperation;	//²Ù×÷·û
+	int mNumber;	//ç¼–å· ä»1å¼€å§‹ï¼Œåˆå§‹åŒ–ä¸º0
+	int mOperation;	//æ“ä½œç¬¦
 	FourElementTypeItem mArg1;
 	FourElementTypeItem mArg2;
 	FourElementTypeItem mResult;
 
-	//´úÂëÓÅ»¯²¿·ÖÊ¹ÓÃµÄÊôĞÔ
-	int mOptimizationType;	//ÓÅ»¯ÀàĞÍ 0-ÎŞÓÅ»¯ 1-É¾³ı 2-ĞŞ¸Ä
-	FourElementTypeItem mResultBack;	//±¸·İ
+	//ä»£ç ä¼˜åŒ–éƒ¨åˆ†ä½¿ç”¨çš„å±æ€§
+	int mOptimizationType;	//ä¼˜åŒ–ç±»å‹ 0-æ— ä¼˜åŒ– 1-åˆ é™¤ 2-ä¿®æ”¹
+	FourElementTypeItem mResultBack;	//å¤‡ä»½
 public:
 	FourElementType();
 	FourElementType(int number, int operation, FourElementTypeItem& arg1, FourElementTypeItem& arg2, FourElementTypeItem& result);

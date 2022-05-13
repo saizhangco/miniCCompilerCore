@@ -29,38 +29,38 @@ void main_0517()
 	bool semanticError = false;
 	string path("path.txt");	//path
 	CodeList code(path);
-	string gram_arg("");//Óï·¨·ÖÎö²ÎÊı
+	string gram_arg("");//è¯­æ³•åˆ†æå‚æ•°
 						
-	//´Ê·¨·ÖÎö
+	//è¯æ³•åˆ†æ
 	LexicalAnalysis lexical;
 	int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 	if (lexicalErrorCount > 0)
 	{
-		cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+		cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 		return;
 		//lexicalError = true;
 	}
 	else
 	{
-		cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+		cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 	}
-	//Óï·¨·ÖÎö
+	//è¯­æ³•åˆ†æ
 	GrammarAnalysis ga_5;
 	if (!ga_5.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 	{
-		cout << "Óï·¨·ÖÎö[LL1Ô¤²â·ÖÎö,¸üĞÂÎÄ·¨]£¬´æÔÚÓï·¨´íÎó" << endl;
+		cout << "è¯­æ³•åˆ†æ[LL1é¢„æµ‹åˆ†æ,æ›´æ–°æ–‡æ³•]ï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 		return ;
 		//grammarError = true;
 	}
-	//ÓïÒå·ÖÎö
+	//è¯­ä¹‰åˆ†æ
 	SemanticAnalysis semantic;
 	if (!grammarError && !semantic.runSemanticAnalysis(lexical.mTokenList))
 	{
-		cout << "ÓïÒå·ÖÎö£¬´æÔÚÓïÒå´íÎó" << endl;
+		cout << "è¯­ä¹‰åˆ†æï¼Œå­˜åœ¨è¯­ä¹‰é”™è¯¯" << endl;
 		//return 1;
 		semanticError = true;
 	}
-	//´úÂëÓÅ»¯
+	//ä»£ç ä¼˜åŒ–
 	CodeOptimization codeOptimization;
 	if (!semanticError && codeOptimization.runCodeOptimization(semantic))
 	{
@@ -71,7 +71,7 @@ void main_0517()
 
 void main_0528()
 {
-	system("analysis\\clear.bat");	//Çå¿ÕanalysisÎÄ¼ş¼ĞÏÂµÄ·ÖÎöÎÄ¼ş
+	system("analysis\\clear.bat");	//æ¸…ç©ºanalysisæ–‡ä»¶å¤¹ä¸‹çš„åˆ†ææ–‡ä»¶
 	string path("path.txt");	//path
 	CodeList code(path);
 
@@ -79,53 +79,53 @@ void main_0528()
 	int lexicalErrorCount = lexical.runLexicalAnalysis(code);
 	if (lexicalErrorCount > 0)
 	{
-		cout << "Lexical´Ê·¨·ÖÎö½áÊø£¬´æÔÚ" << lexicalErrorCount << "¸ö´Ê·¨´íÎó" << endl;
+		cout << "Lexicalè¯æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << lexicalErrorCount << "ä¸ªè¯æ³•é”™è¯¯" << endl;
 		system("pause");
 	}
 	else
 	{
-		cout << "Lexical´Ê·¨·ÖÎöÍê³É£¬ÎŞ´Ê·¨´íÎó" << endl;
+		cout << "Lexicalè¯æ³•åˆ†æå®Œæˆï¼Œæ— è¯æ³•é”™è¯¯" << endl;
 	}
-	//Óï·¨·ÖÎö
+	//è¯­æ³•åˆ†æ
 	GrammarAnalysis grammar;
 	if (!grammar.grammarAnalysisUsingLL1_2(lexical.mTokenList))
 	{
-		cout << "GrammarÓï·¨·ÖÎö½áÊø£¬´æÔÚ" << grammar.grammarError.size() << "¸öÓï·¨´íÎó" << endl;
+		cout << "Grammarè¯­æ³•åˆ†æç»“æŸï¼Œå­˜åœ¨" << grammar.grammarError.size() << "ä¸ªè¯­æ³•é”™è¯¯" << endl;
 		system("pause");
 	}
 	else
 	{
-		cout << "GrammarÓï·¨·ÖÎöÍê³É£¬ÎŞÓï·¨´íÎó" << endl;
+		cout << "Grammarè¯­æ³•åˆ†æå®Œæˆï¼Œæ— è¯­æ³•é”™è¯¯" << endl;
 	}
-	//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-	SemanticAnalysis semantic;					//ÓïÒå·ÖÎö
+	//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+	SemanticAnalysis semantic;					//è¯­ä¹‰åˆ†æ
 	if (!semantic.runSemanticAnalysis(lexical.mTokenList))
 	{
-		cout << "SemanticÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << semantic.mErrorInfo.size() << "¸öÓïÒå´íÎó" << endl;
+		cout << "Semanticè¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << semantic.mErrorInfo.size() << "ä¸ªè¯­ä¹‰é”™è¯¯" << endl;
 		system("pause");
 	}
 	else
 	{
-		cout << "SemanticÓïÒå·ÖÎöÍê³É£¬ÎŞÓïÒå´íÎó" << endl;
+		cout << "Semanticè¯­ä¹‰åˆ†æå®Œæˆï¼Œæ— è¯­ä¹‰é”™è¯¯" << endl;
 	}
-	//´úÂëÓÅ»¯
+	//ä»£ç ä¼˜åŒ–
 	CodeOptimization optimization;
 	if (!optimization.runCodeOptimization(semantic))
 	{
-		cout << "Optimization´úÂëÓÅ»¯Ê§°Ü" << endl;
+		cout << "Optimizationä»£ç ä¼˜åŒ–å¤±è´¥" << endl;
 		system("pause");
 	}
 	else
 	{
-		cout << "Optimization´úÂëÓÅ»¯³É¹¦" << endl;
+		cout << "Optimizationä»£ç ä¼˜åŒ–æˆåŠŸ" << endl;
 	}
-	//Ä¿±ê´úÂëÉú³É
+	//ç›®æ ‡ä»£ç ç”Ÿæˆ
 	ObjectCodeGeneration_x86 objectCodeGeneration;
 	objectCodeGeneration.runObjectCodeGeneration_x86(semantic);
 	system("pause");
-	cout << "####  ±àÒë³ÌĞò" << endl;
-	system("compiler_link.bat");	//±àÒëÁ¬½Ó»ã±à´úÂë³É¿ÉÖ´ĞĞÎÄ¼ş
-	cout << "####  ÔËĞĞ³ÌĞò" << endl;
-	system("run.bat");				//ÔËĞĞ³ÌĞò
+	cout << "####  ç¼–è¯‘ç¨‹åº" << endl;
+	system("compiler_link.bat");	//ç¼–è¯‘è¿æ¥æ±‡ç¼–ä»£ç æˆå¯æ‰§è¡Œæ–‡ä»¶
+	cout << "####  è¿è¡Œç¨‹åº" << endl;
+	system("run.bat");				//è¿è¡Œç¨‹åº
 	
 }

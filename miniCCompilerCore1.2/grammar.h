@@ -1,19 +1,19 @@
 #pragma once
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º miniCÓïÑÔÎÄ·¨
-* Àà Ãû£º Grammar
+* åŠŸ èƒ½ï¼š miniCè¯­è¨€æ–‡æ³•
+* ç±» åï¼š Grammar
 *
-* Ver  2016-06-10  ÕÅÈü  ¶¨ÒåminiCÓïÑÔÎÄ·¨Êı¾İ½á¹¹ÀàĞÍ¡¢ÊôĞÔºÍ·½·¨
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver  2016-06-10  å¼ èµ›  å®šä¹‰miniCè¯­è¨€æ–‡æ³•æ•°æ®ç»“æ„ç±»å‹ã€å±æ€§å’Œæ–¹æ³•
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõĞÅÏ¢Îª±¾¹«Ë¾»úÃÜĞÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈı·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓĞ£º*****ÓĞÏŞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼ã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 #include <iostream>
 #include <list>
@@ -33,15 +33,15 @@ public:
 	Grammar();
 	Grammar(const string& fileName);
 	~Grammar();
-	bool isTerminator(const string& s);	//ÊÇ·ñÎªÖÕ½á·û
-	bool isTerminator(const int& t);	//ÊÇ·ñÎªÖÕ½á·û
-	bool isNonterminator(const string& s);	//ÊÇ·ñÎª·ÇÖÕ½á·û
-	void printGrammar();	//´òÓ¡ÎÄ·¨
+	bool isTerminator(const string& s);	//æ˜¯å¦ä¸ºç»ˆç»“ç¬¦
+	bool isTerminator(const int& t);	//æ˜¯å¦ä¸ºç»ˆç»“ç¬¦
+	bool isNonterminator(const string& s);	//æ˜¯å¦ä¸ºéç»ˆç»“ç¬¦
+	void printGrammar();	//æ‰“å°æ–‡æ³•
 private:
-	bool loadProductionsFromFile(const string& fileName);	//¼ÓÔØ±í´ïÊ½
-	bool loadNonterminatorSetSelf();	//×Ô¶¯¼ÓÔØ·ÇÖÕ½á·û¼¯
-	bool loadTerminatorSetSelf();	//×Ô¶¯¼ÓÔØÖÕ½á·û¼¯
-	bool refreshProduction();	//Ë¢ĞÂÎÄ·¨µÄ²úÉúÊ½
+	bool loadProductionsFromFile(const string& fileName);	//åŠ è½½è¡¨è¾¾å¼
+	bool loadNonterminatorSetSelf();	//è‡ªåŠ¨åŠ è½½éç»ˆç»“ç¬¦é›†
+	bool loadTerminatorSetSelf();	//è‡ªåŠ¨åŠ è½½ç»ˆç»“ç¬¦é›†
+	bool refreshProduction();	//åˆ·æ–°æ–‡æ³•çš„äº§ç”Ÿå¼
 
 	bool getProductionFromTokenList(list<Token>& tokenList);
 	bool existInNonterminatorSet(const string& s);

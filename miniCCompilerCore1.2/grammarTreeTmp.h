@@ -9,10 +9,10 @@ using namespace std;
 class GrammarTreeTmp
 {
 public:
-	int tmpType;			// 1-Íâ²¿Êı¾İ¶¨Òå 2-º¯ÊıÉùÃ÷ 3-º¯ÊıÊµÏÖ
-	int memoryType;			//´æ´¢ÀàĞÍ
-	int dataType;			//Êı¾İÀàĞÍ
-	string functionName;	//º¯ÊıÃû
+	int tmpType;			// 1-å¤–éƒ¨æ•°æ®å®šä¹‰ 2-å‡½æ•°å£°æ˜ 3-å‡½æ•°å®ç°
+	int memoryType;			//å­˜å‚¨ç±»å‹
+	int dataType;			//æ•°æ®ç±»å‹
+	string functionName;	//å‡½æ•°å
 	list<VariableList> variableList;
 	list<ParameterList> parameterList;
 public:

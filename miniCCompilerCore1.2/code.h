@@ -6,9 +6,9 @@ using namespace std;
 class Code
 {
 public:
-	int no;	//´Ó1¿ªÊ¼¼ÆÊı
-	string line;	//Ò»ĞĞ´úÂëµÄÄÚÈİ
+	int no;	//ä»1å¼€å§‹è®¡æ•°
+	string line;	//ä¸€è¡Œä»£ç çš„å†…å®¹
 public:
-	Code();	//Ä¬ÈÏÎŞ²Î¹¹Ôìº¯Êı£¬ÄÚÖÃ³õÊ¼»¯´úÂë
-	Code(int n, string l);	//º¬ÓĞÁ½¸ö²ÎÊıµÄ¹¹Ôìº¯Êı
+	Code();	//é»˜è®¤æ— å‚æ„é€ å‡½æ•°ï¼Œå†…ç½®åˆå§‹åŒ–ä»£ç 
+	Code(int n, string l);	//å«æœ‰ä¸¤ä¸ªå‚æ•°çš„æ„é€ å‡½æ•°
 };

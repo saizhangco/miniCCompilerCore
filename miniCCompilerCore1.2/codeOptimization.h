@@ -9,7 +9,7 @@ class CodeOptimization
 public:
 	CodeOptimization();
 	~CodeOptimization();
-	//执行代码优化
+	//鎵ц浠ｇ爜浼樺寲
 	bool runCodeOptimization(SemanticAnalysis& semantic);
 private:
 	list<FourElementType>::iterator findItFourElementTypeItem(int m_nResult, SemanticAnalysis& semantic);

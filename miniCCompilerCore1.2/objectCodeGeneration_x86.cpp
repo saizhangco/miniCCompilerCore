@@ -6,7 +6,7 @@ ObjectCodeGeneration_x86::ObjectCodeGeneration_x86()
 {
 	mObjectCode.codeList.clear();
 	mPrintStringCount = 0;
-	//object_schemaDefinition();	//Ä£Ê½¶¨Òå
+	//object_schemaDefinition();	//æ¨¡å¼å®šä¹‰
 }
 
 ObjectCodeGeneration_x86::~ObjectCodeGeneration_x86()
@@ -15,12 +15,12 @@ ObjectCodeGeneration_x86::~ObjectCodeGeneration_x86()
 
 void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& fourElementType)
 {
-	string markNumberStirng = "@line_" + to_string(fourElementType.mNumber);//±êºÅ
+	string markNumberStirng = "@line_" + to_string(fourElementType.mNumber);//æ ‡å·
 	markNumberStirng += ":";
 	m_code.push_back(Code(0, markNumberStirng));
 	switch (fourElementType.mOperation)
 	{
-	case IsNot:	// ! (!,a,_,result)	//Î´²âÊÔ
+	case IsNot:	// ! (!,a,_,result)	//æœªæµ‹è¯•
 	{
 		//     mov eax, a
 		//     cmp eax, 0
@@ -52,8 +52,8 @@ void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& f
 		m_code.push_back(Code(0, code));
 		break;
 	}
-	case Multiply:	// ( * , a , b , result )	//Î´²âÊÔ
-	{	//ĞŞ¸Ä 2016-04-29
+	case Multiply:	// ( * , a , b , result )	//æœªæµ‹è¯•
+	{	//ä¿®æ”¹ 2016-04-29
 		string code = "";
 		// mov eax,a
 		// imul eax,b
@@ -66,7 +66,7 @@ void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& f
 		m_code.push_back(Code(0, code));
 		break;
 	}
-	case Divide:	// ( / , a , b , result )	//Î´²âÊÔ
+	case Divide:	// ( / , a , b , result )	//æœªæµ‹è¯•
 	{
 		// mov edx, 0
 		// mov eax, a
@@ -86,7 +86,7 @@ void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& f
 		m_code.push_back(Code(0, code));
 		break;
 	}
-	case Mod:		// ( % , a , b , result )	//Î´²âÊÔ
+	case Mod:		// ( % , a , b , result )	//æœªæµ‹è¯•
 	{
 		string code = "";
 		//     mov eax, a
@@ -287,8 +287,8 @@ void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& f
 	}
 	case Print:	// ( print , string , _ , _ )
 	{
-		//String ÓÃ»§¶¨Òå±äÁ¿ ÁÙÊ±±äÁ¿
-		if (fourElementType.mArg1.mType == 2)	//ÓÃ»§¶¨Òå±äÁ¿
+		//String ç”¨æˆ·å®šä¹‰å˜é‡ ä¸´æ—¶å˜é‡
+		if (fourElementType.mArg1.mType == 2)	//ç”¨æˆ·å®šä¹‰å˜é‡
 		{
 			/*string data = "@String_" + to_string(mPrintStringCount++);
 			string code = "\t" + data + " db \'" + fourElementType.mArg1.mPrintString + "\',10,0";
@@ -298,7 +298,7 @@ void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& f
 			code = "\tinvoke crt_printf,addr @Fmt,eax";
 			m_code.push_back(Code(0, code));
 		}
-		else if (fourElementType.mArg1.mType == 3)	//ÁÙÊ±±äÁ¿
+		else if (fourElementType.mArg1.mType == 3)	//ä¸´æ—¶å˜é‡
 		{
 			string code = "\tmov eax," + fourElementType.mArg1.mTempIdentifierName + "";
 			m_code.push_back(Code(0, code));
@@ -323,9 +323,9 @@ void ObjectCodeGeneration_x86::object_analysisFourElementType(FourElementType& f
 
 void ObjectCodeGeneration_x86::object_schemaDefinition()
 {
-	mSchemaDefinition.push_back(Code(0, ".386"));	//¶¨ÒåÁË³ÌĞòÊ¹ÓÃµÄÖ¸Áî¼¯
-	mSchemaDefinition.push_back(Code(0, ".model flat,stdcall"));	//¹¤×÷Ä£Ê½
-	mSchemaDefinition.push_back(Code(0, "option casemap:none"));	//¸ñÊ½
+	mSchemaDefinition.push_back(Code(0, ".386"));	//å®šä¹‰äº†ç¨‹åºä½¿ç”¨çš„æŒ‡ä»¤é›†
+	mSchemaDefinition.push_back(Code(0, ".model flat,stdcall"));	//å·¥ä½œæ¨¡å¼
+	mSchemaDefinition.push_back(Code(0, "option casemap:none"));	//æ ¼å¼
 }
 
 void ObjectCodeGeneration_x86::object_includeLib()
@@ -343,7 +343,7 @@ void ObjectCodeGeneration_x86::object_includeLib()
 
 void ObjectCodeGeneration_x86::runObjectCodeGeneration_x86(SemanticAnalysis semantic)
 {
-	object_schemaDefinition();	//Ä£Ê½¶¨Òå
+	object_schemaDefinition();	//æ¨¡å¼å®šä¹‰
 	object_includeLib();		// include lib
 	m_data.push_back(Code(0, ".data"));	// data
 	m_data.push_back(Code(0, "\tid1 dd 20"));
@@ -351,9 +351,9 @@ void ObjectCodeGeneration_x86::runObjectCodeGeneration_x86(SemanticAnalysis sema
 	m_code.push_back(Code(0, ".code"));	// code
 	m_code.push_back(Code(0, "start:"));
 
-	////·ÖÎö mVariableDefinitionList
-	// ËùÓĞµÄ±äÁ¿¶¼Ê¹ÓÃ dd Êı¾İÀàĞÍ
-	// ËÄ×Ö½Ú doubleword dd
+	////åˆ†æ mVariableDefinitionList
+	// æ‰€æœ‰çš„å˜é‡éƒ½ä½¿ç”¨ dd æ•°æ®ç±»å‹
+	// å››å­—èŠ‚ doubleword dd
 	list<VariableDefinition>::iterator it_mVDL = semantic.mVariableDefinitionList.begin();
 	for (; it_mVDL != semantic.mVariableDefinitionList.end(); it_mVDL++)
 	{
@@ -364,18 +364,18 @@ void ObjectCodeGeneration_x86::runObjectCodeGeneration_x86(SemanticAnalysis sema
 			m_data.push_back(Code(0, code));
 		}
 	}
-	//·ÖÎö mTempIdentifierList
+	//åˆ†æ mTempIdentifierList
 	list<FourElementTypeItem>::iterator it_mTIL = semantic.mTempIdentifierList.begin();
 	for (; it_mTIL != semantic.mTempIdentifierList.end(); it_mTIL++)
 	{
 		string code = "\t" + (*it_mTIL).mTempIdentifierName + " dd ?";
 		m_data.push_back(Code(0, code));
 	}
-	//·ÖÎö mFETL
+	//åˆ†æ mFETL
 	list<FourElementType>::iterator it = semantic.mFourElementTypeList.begin();
 	for (; it != semantic.mFourElementTypeList.end(); it++)
 	{
-		if ((*it).mOptimizationType != 1)//Ã»ÓĞ±»É¾³ı
+		if ((*it).mOptimizationType != 1)//æ²¡æœ‰è¢«åˆ é™¤
 		{
 			object_analysisFourElementType((*it));
 		}
@@ -383,7 +383,7 @@ void ObjectCodeGeneration_x86::runObjectCodeGeneration_x86(SemanticAnalysis sema
 	//m_code.push_back(Code1(0, "\tinvoke StdOut,addr @Hello"));
 	//m_code.push_back(Code1(0, "\tinvoke ExitProcess,NULL"));
 	m_code.push_back(Code(0, "end start"));
-	//»ã±à´úÂë±£´æÔÚÎÄ¼şÖĞ
+	//æ±‡ç¼–ä»£ç ä¿å­˜åœ¨æ–‡ä»¶ä¸­
 	outFile("analysis\\object");
 }
 
@@ -391,7 +391,7 @@ void ObjectCodeGeneration_x86::outFile(string fileName)
 {
 	ofstream outFile(fileName + ".asm");
 	list<Code>::iterator it = this->mSchemaDefinition.begin();
-	for (; it != this->mSchemaDefinition.end(); it++)	//Ä£Ê½¶¨Òå
+	for (; it != this->mSchemaDefinition.end(); it++)	//æ¨¡å¼å®šä¹‰
 	{
 		outFile << (*it).line << endl;
 	}

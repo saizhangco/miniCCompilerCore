@@ -11,17 +11,17 @@ using namespace std;
 #include "functionDefinition.h"
 #include "variableDefinition.h"
 
-#define TokenUnknown 0x00 //Token´íÎóÎ´Öª
-#define TokenLose 0x01 //Token¶ªÊ§
-#define TokenExcess 0x02 //Token¶àÓà
-#define TokenMismatch 0x03 //TokenÆ¥Åä
+#define TokenUnknown 0x00 //Tokené”™è¯¯æœªçŸ¥
+#define TokenLose 0x01 //Tokenä¸¢å¤±
+#define TokenExcess 0x02 //Tokenå¤šä½™
+#define TokenMismatch 0x03 //TokenåŒ¹é…
 
 
 class GrammarAnalysis
 {
 public:
-	list<string> grammarError;	//ÓÃÀ´±£´æÓï·¨´íÎó
-								//½¨Á¢Ò»¸öÓï·¨Ê÷
+	list<string> grammarError;	//ç”¨æ¥ä¿å­˜è¯­æ³•é”™è¯¯
+								//å»ºç«‹ä¸€ä¸ªè¯­æ³•æ ‘
 	Tree* grammarTree;
 	int count;
 private:
@@ -29,22 +29,22 @@ private:
 	bool analysis_function_body_using_LL1;
 	bool analysis_miniC_using_LL1;
 	ofstream outAnalysisFile;
-	LL_1_Analysis* grammar_for_miniC;	//Ö¸Õë±äÁ¿»áÔÚ¹¹Ôìº¯ÊıÖĞ³õÊ¼»¯£¬ÔÚÎö¹¹º¯ÊıÖĞÊÍ·Å
+	LL_1_Analysis* grammar_for_miniC;	//æŒ‡é’ˆå˜é‡ä¼šåœ¨æ„é€ å‡½æ•°ä¸­åˆå§‹åŒ–ï¼Œåœ¨ææ„å‡½æ•°ä¸­é‡Šæ”¾
 	LL_1_Analysis* grammar_for_function_body;
 	LL_1_Analysis* grammar_for_expression;
-	LL_1_Analysis* grammar_for_miniC_2;	//Ê¹ÓÃLL1Ô¤²â·ÖÎö·¨°´ÕÕ¸üĞÂºóµÄÎÄ·¨·ÖÎö
+	LL_1_Analysis* grammar_for_miniC_2;	//ä½¿ç”¨LL1é¢„æµ‹åˆ†ææ³•æŒ‰ç…§æ›´æ–°åçš„æ–‡æ³•åˆ†æ
 public:
 	GrammarAnalysis();
 	~GrammarAnalysis();
-	bool grammarAnalysisUsingLL1WithoutGlobalVariable(list<Token>& listToken);	//½öÊ¹ÓÃLL1Ô¤²â·ÖÎö£¬·ÖÎöminiCÓïÑÔ£¨²»ÄÜ°üº¬È«¾Ö±äÁ¿£©
-	bool grammarAnalysisUsingRecursiveDescentAndLL1_1(list<Token>& listToken);	//Ê¹ÓÃµİ¹éÏÂ½µºÍLL1Ô¤²â·ÖÎö£¬·ÖÎöminiCÓïÑÔ£¬LL1·ÖÎöº¯ÊıÌåÄÚ²¿Óï·¨
-	bool grammarAnalysisUsingRecursiveDescentAndLL1_2(list<Token>& listToken);	//Ê¹ÓÃµİ¹éÏÂ½µºÍLL1Ô¤²â·ÖÎö£¬·ÖÎöminiCÓïÑÔ£¬LL1½ö·ÖÎö±í´ïÊ½
-	bool grammarAnalysisUsingRecursiveDescent(list<Token>& TokenenList);		//½öÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎöminiCÓïÑÔ
-	bool grammarAnalysisUsingLL1_2(list<Token>& listToken);						//Ê¹ÓÃLL1Ô¤²â·ÖÎö°´ÕÕ¸üĞÂºóµÄÎÄ·¨·ÖÎö
+	bool grammarAnalysisUsingLL1WithoutGlobalVariable(list<Token>& listToken);	//ä»…ä½¿ç”¨LL1é¢„æµ‹åˆ†æï¼Œåˆ†æminiCè¯­è¨€ï¼ˆä¸èƒ½åŒ…å«å…¨å±€å˜é‡ï¼‰
+	bool grammarAnalysisUsingRecursiveDescentAndLL1_1(list<Token>& listToken);	//ä½¿ç”¨é€’å½’ä¸‹é™å’ŒLL1é¢„æµ‹åˆ†æï¼Œåˆ†æminiCè¯­è¨€ï¼ŒLL1åˆ†æå‡½æ•°ä½“å†…éƒ¨è¯­æ³•
+	bool grammarAnalysisUsingRecursiveDescentAndLL1_2(list<Token>& listToken);	//ä½¿ç”¨é€’å½’ä¸‹é™å’ŒLL1é¢„æµ‹åˆ†æï¼Œåˆ†æminiCè¯­è¨€ï¼ŒLL1ä»…åˆ†æè¡¨è¾¾å¼
+	bool grammarAnalysisUsingRecursiveDescent(list<Token>& TokenenList);		//ä»…ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æminiCè¯­è¨€
+	bool grammarAnalysisUsingLL1_2(list<Token>& listToken);						//ä½¿ç”¨LL1é¢„æµ‹åˆ†ææŒ‰ç…§æ›´æ–°åçš„æ–‡æ³•åˆ†æ
 	void printGrammarTree();
 private:
 	//---------------------------------------------------------------------------------------------------
-	// È«¾Ö±äÁ¿¶¨Òå¡¢º¯ÊıÉùÃ÷¡¢º¯ÊıÊµÏÖ
+	// å…¨å±€å˜é‡å®šä¹‰ã€å‡½æ•°å£°æ˜ã€å‡½æ•°å®ç°
 	//---------------------------------------------------------------------------------------------------
 	/*
 		S -> $
@@ -127,7 +127,7 @@ private:
 	*/
 	bool grammarAnalysisPD1(list<Token>::iterator& it_AnalysisCur, list<Token>& listToken, string& parameterName);
 	//---------------------------------------------------------------------------------------------------
-	// FB·ÖÎöº¯Êı
+	// FBåˆ†æå‡½æ•°
 	//---------------------------------------------------------------------------------------------------
 	/*
 		FB -> $
@@ -169,7 +169,7 @@ private:
 	*/
 	bool grammarAnalysisPrint(list<Token>::iterator& it_AnalysisCur, list<Token>& listToken);
 	//---------------------------------------------------------------------------------------------------
-	// ±í´ïÊ½·ÖÎö
+	// è¡¨è¾¾å¼åˆ†æ
 	//---------------------------------------------------------------------------------------------------
 	/*
 		eexpr -> bexpr eexpr1
@@ -252,11 +252,11 @@ private:
 	*/
 	bool grammarAnalysis_ael(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList);
 	/*
-		root -> id(±äÁ¿)
-		root -> ÕûĞÍ(°Ë½øÖÆ¡¢Ê®½øÖÆ¡¢Ê®Áù½øÖÆ)
-		root -> ¸¡µãĞÍ( Ğ¡Êı¡¢Ö¸Êı )
-		root -> ²¼¶ûĞÍ BOOL
-		root -> ×Ö·ûĞÍ
+		root -> id(å˜é‡)
+		root -> æ•´å‹(å…«è¿›åˆ¶ã€åè¿›åˆ¶ã€åå…­è¿›åˆ¶)
+		root -> æµ®ç‚¹å‹( å°æ•°ã€æŒ‡æ•° )
+		root -> å¸ƒå°”å‹ BOOL
+		root -> å­—ç¬¦å‹
 	*/
 	bool grammarAnalysis_root(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList);
 	/*
@@ -265,8 +265,8 @@ private:
 	*/
 	bool grammarAnalysisBOOL(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList);
 
-	//ÊÇ·ñÎª±í´ïÊ½Ô¤·ÖÎö
+	//æ˜¯å¦ä¸ºè¡¨è¾¾å¼é¢„åˆ†æ
 	bool expressPreAnalysis(int type);
-	//Ê¶±ğÓï·¨´íÎó
+	//è¯†åˆ«è¯­æ³•é”™è¯¯
 	int recogniseGrammarError(list<Token>::iterator& itAnalysisCur,int curType,int nextType);
 };

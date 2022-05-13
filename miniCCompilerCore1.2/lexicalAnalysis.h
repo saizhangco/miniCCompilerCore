@@ -11,52 +11,52 @@ using namespace std;
 class LexicalAnalysis
 {
 private:
-	int mCurrentLine;//µ±Ç°ĞĞ
+	int mCurrentLine;//å½“å‰è¡Œ
 public:
-	list<Token> mTokenList;	//Token´®
-	list<LexicalAnalysisAnimation> mLexicalAnalysisAnimation;	//·ÖÎö½Å±¾
+	list<Token> mTokenList;	//Tokenä¸²
+	list<LexicalAnalysisAnimation> mLexicalAnalysisAnimation;	//åˆ†æè„šæœ¬
 	bool analysisGrammar;
 public:
 	LexicalAnalysis();
 	~LexicalAnalysis();
-	int runLexicalAnalysis(CodeList& codeList);	//Ö´ĞĞ´Ê·¨·ÖÎö³ÌĞò
+	int runLexicalAnalysis(CodeList& codeList);	//æ‰§è¡Œè¯æ³•åˆ†æç¨‹åº
 	void printTokenList();
 	void printLexicalAnalysisAnimationList();
-	//3.´Ê·¨·ÖÎöºËĞÄ³ÌĞò
-	//·µ»ØÖµ Token µ±Ç°´¦ÀíÎ²½áµã
-	//´¦Àí¹æÔò
+	//3.è¯æ³•åˆ†ææ ¸å¿ƒç¨‹åº
+	//è¿”å›å€¼ Token å½“å‰å¤„ç†å°¾ç»“ç‚¹
+	//å¤„ç†è§„åˆ™
 	/*
-		1.ÒÔ»Ø³µ'\n'£¬ÔÚµ±Ç°³ÌĞòÏÂÊÇ×Ö·û´®ÖÕ½á·û'\0'½áÊø£¬Èç¹û°´ÕÕÖğ¸ö×Ö·û·½Ê½·ÖÎöµÄ»°£¬
-		¾Í²»ÓÃÔÚ¿¼ÂÇ×Ö·û´®ÖÕ½á·ûÁË
-		2¡£´¦Àí¿Õ½ç·û£¬Ç°ºó·Ö¿ª ¿Õ¸ñ¡¢Ë®Æ½ÖÆ±í·û¡¢»Ø³µ
+		1.ä»¥å›è½¦'\n'ï¼Œåœ¨å½“å‰ç¨‹åºä¸‹æ˜¯å­—ç¬¦ä¸²ç»ˆç»“ç¬¦'\0'ç»“æŸï¼Œå¦‚æœæŒ‰ç…§é€ä¸ªå­—ç¬¦æ–¹å¼åˆ†æçš„è¯ï¼Œ
+		å°±ä¸ç”¨åœ¨è€ƒè™‘å­—ç¬¦ä¸²ç»ˆç»“ç¬¦äº†
+		2ã€‚å¤„ç†ç©ºç•Œç¬¦ï¼Œå‰ååˆ†å¼€ ç©ºæ ¼ã€æ°´å¹³åˆ¶è¡¨ç¬¦ã€å›è½¦
 	*/
 	void lexical_core(Code code , bool& isBlockAnnotation,bool isAnalysisAnimation);
 private:
 	
-	//4.Í¨¹ı´«ÈëµÄ×Ö·û£¬ÅĞ¶Ï¸Ã×Ö·ûµÄÊÇ·ñÎª½ç·û 0 ²»ÊÇ½ç·û
-	//                                       ·Ç0 ÊÇ½ç·û
+	//4.é€šè¿‡ä¼ å…¥çš„å­—ç¬¦ï¼Œåˆ¤æ–­è¯¥å­—ç¬¦çš„æ˜¯å¦ä¸ºç•Œç¬¦ 0 ä¸æ˜¯ç•Œç¬¦
+	//                                       é0 æ˜¯ç•Œç¬¦
 	int getDelimiterType(char c);
 
 	
-	//5.Í¨¹ı´«ÈëµÄ±äÁ¿·ÖÎö£¬·µ»Øµ¥´ÊÊ¶±ğµÄ½á¹û
+	//5.é€šè¿‡ä¼ å…¥çš„å˜é‡åˆ†æï¼Œè¿”å›å•è¯è¯†åˆ«çš„ç»“æœ
 	int getLexicalType(int numberChange, int flag, char* tp, bool& isLexical);
 
 
-	//6¡£´«ÈëÊ¶±ğ³öµÄµ¥´Ê£¬Èç¹ûÊÇ¹Ø¼ü´ÊÔò·µ»Ø¹Ø¼ü´ÊÀà±ğ
+	//6ã€‚ä¼ å…¥è¯†åˆ«å‡ºçš„å•è¯ï¼Œå¦‚æœæ˜¯å…³é”®è¯åˆ™è¿”å›å…³é”®è¯ç±»åˆ«
 	int getIdentifierType(const char* tp);
 
 
-	//7¡£»ñµÃÔËËã·ûµÄÀàĞÍ
+	//7ã€‚è·å¾—è¿ç®—ç¬¦çš„ç±»å‹
 	int getOperatorType(const char* tp);
 
 
-	//8.ÔÚ´Ê·¨·ÖÎö¹ı³ÌÖĞ£¬¹¹Ôì´Ê·¨·ÖÎö¶¯»­ËùĞèµÄÊı¾İ
+	//8.åœ¨è¯æ³•åˆ†æè¿‡ç¨‹ä¸­ï¼Œæ„é€ è¯æ³•åˆ†æåŠ¨ç”»æ‰€éœ€çš„æ•°æ®
 	void loadLexicalAnalysisAnimationInfo(int lineNo, int start, int end, int type, bool isLexical);
 
 
-	//9.½«¹¹ÔìµÄ´Ê·¨·ÖÎö¶¯»­Êı¾İ±£´æµ½ÎÄ¼şÖĞ
+	//9.å°†æ„é€ çš„è¯æ³•åˆ†æåŠ¨ç”»æ•°æ®ä¿å­˜åˆ°æ–‡ä»¶ä¸­
 	bool saveLexicalAnalysisAnimationListToFile(const string& fileName);
 
-	//10.½«Token´®±£´æµ½ÎÄ¼şÖĞ
+	//10.å°†Tokenä¸²ä¿å­˜åˆ°æ–‡ä»¶ä¸­
 	bool saveTokenListToFile(const string& fileName);
 };

@@ -1,19 +1,19 @@
 #pragma once
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º ÎÄ¼þ²Ù×÷Àà
-* Àà Ãû£º FileOperation
+* åŠŸ èƒ½ï¼š æ–‡ä»¶æ“ä½œç±»
+* ç±» åï¼š FileOperation
 *
-* Ver  2016-06-10  ÕÅÈü  ¶¨ÒåÎÄ¼þ²Ù×÷Àà£¬´ò¿ª¡¢¹Ø±Õ¡¢¶ÁÐ´ÎÄ¼þ
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver  2016-06-10  å¼ èµ›  å®šä¹‰æ–‡ä»¶æ“ä½œç±»ï¼Œæ‰“å¼€ã€å…³é—­ã€è¯»å†™æ–‡ä»¶
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõÐÅÏ¢Îª±¾¹«Ë¾»úÃÜÐÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈý·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓÐ£º*****ÓÐÏÞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼Žã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 #include <iostream>
 #include <fstream>
@@ -52,11 +52,11 @@ FileOperation<T>::~FileOperation()
 
 }
 
-//½«Êý¾Ý½á¹¹Ð´ÈëÎÄ¼þ
+//å°†æ•°æ®ç»“æž„å†™å…¥æ–‡ä»¶
 template<class T>
 void FileOperation<T>::writeToFile(T& t)
 {
-	// ÅÐ¶ÏÊÇ·ñÕýÔÚ¶ÁÈ¡ÎÄ¼þÄÚÈÝ
+	// åˆ¤æ–­æ˜¯å¦æ­£åœ¨è¯»å–æ–‡ä»¶å†…å®¹
 	if (readLock)
 	{
 		cout << mFileName << " is reading!" << endl;
@@ -71,7 +71,7 @@ void FileOperation<T>::writeToFile(T& t)
 template<class T>
 void FileOperation<T>::readFromFile(T& t)
 {
-	// ÅÐ¶ÏÊÇ·ñÕýÔÚÐ´ÈëÎÄ¼þÄÚÈÝ
+	// åˆ¤æ–­æ˜¯å¦æ­£åœ¨å†™å…¥æ–‡ä»¶å†…å®¹
 	if (writeLock)
 	{
 		cout << mFileName << " is writing!" << endl;
@@ -82,13 +82,13 @@ void FileOperation<T>::readFromFile(T& t)
 	fin.read((char*)&t, count);
 }
 
-// true ´ò¿ªÎÄ¼þ³É¹¦
-// false ´ò¿ªÎÄ¼þÊ§°Ü
+// true æ‰“å¼€æ–‡ä»¶æˆåŠŸ
+// false æ‰“å¼€æ–‡ä»¶å¤±è´¥
 template<class T>
 bool FileOperation<T>::openFile(const string & fileName)
 {
 	mFileName = fileName;
-	fout.open(mFileName, ios::binary | ios::app);	//×·¼Ó
+	fout.open(mFileName, ios::binary | ios::app);	//è¿½åŠ 
 	if (!fout.is_open())
 	{
 		cout << "the output stream of " + mFileName + " open failed!" << endl;
@@ -98,7 +98,7 @@ bool FileOperation<T>::openFile(const string & fileName)
 	if (!fin.is_open())
 	{
 		cout << "the input stream of " + mFileName + " open failed!" << endl;
-		fout.close();	//¹Ø±ÕÉÏÒ»²½´ò¿ªµÄÎÄ¼þÊä³öÁ÷
+		fout.close();	//å…³é—­ä¸Šä¸€æ­¥æ‰“å¼€çš„æ–‡ä»¶è¾“å‡ºæµ
 		return false;
 	}
 	return true;

@@ -1,86 +1,86 @@
 #pragma once
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º ¶¨ÒåminiCÓïÑÔµÄµ¥´Ê±àÂë
-* Àà Ãû£º None
+* åŠŸ èƒ½ï¼š å®šä¹‰miniCè¯­è¨€çš„å•è¯ç¼–ç 
+* ç±» åï¼š None
 *
-* Ver 2016-06-10 ÕÅÈü ¶¨ÒåminiCÓïÑÔµÄµ¥´Ê±àÂë¼°Ïà¹Øºê¶¨Òå
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver 2016-06-10 å¼ èµ› å®šä¹‰miniCè¯­è¨€çš„å•è¯ç¼–ç åŠç›¸å…³å®å®šä¹‰
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõĞÅÏ¢Îª±¾¹«Ë¾»úÃÜĞÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈı·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓĞ£º*****ÓĞÏŞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼ã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
-//Î´Ê¶±ğ
-#define Error 0xFFF //´íÎóµÄµ¥´Ê
-#define Unknown 0x00	//Î´Ê¶±ğ
-//¹Ø¼ü×Ö»òÕß±êÊ¶·û
-#define Identifier 0x01//±êÊ¶·û
-#define Character 0x02	//×Ö·û
-#define String 0x03 //×Ö·û´®
-#define Number_Exponent 0x04 //Ö¸Êı 
-#define Number_Decimals 0x05 //Ğ¡Êı
-#define Number_Decimalism 0x06 //ÕûÊı [Ê®½øÖÆ]
-#define Number_Octonary 0x07 //ÕûÊı [°Ë½øÖÆ]
-#define Number_Hexadecimal 0x08 //ÕûÊı [Ê®Áù½øÖÆ]
+//æœªè¯†åˆ«
+#define Error 0xFFF //é”™è¯¯çš„å•è¯
+#define Unknown 0x00	//æœªè¯†åˆ«
+//å…³é”®å­—æˆ–è€…æ ‡è¯†ç¬¦
+#define Identifier 0x01//æ ‡è¯†ç¬¦
+#define Character 0x02	//å­—ç¬¦
+#define String 0x03 //å­—ç¬¦ä¸²
+#define Number_Exponent 0x04 //æŒ‡æ•° 
+#define Number_Decimals 0x05 //å°æ•°
+#define Number_Decimalism 0x06 //æ•´æ•° [åè¿›åˆ¶]
+#define Number_Octonary 0x07 //æ•´æ•° [å…«è¿›åˆ¶]
+#define Number_Hexadecimal 0x08 //æ•´æ•° [åå…­è¿›åˆ¶]
 
-#define Grammar_Nonterminator 0x0A	//¶¨Òå·ÇÖÕ½á·û
+#define Grammar_Nonterminator 0x0A	//å®šä¹‰éç»ˆç»“ç¬¦
 
-//½ç·û ( ) ; [ ] { } . , ~ ¹²10¸ö×Ö·û
-// $ ÔÚÎÄ·¨·ÖÎöÊ±»áÓÃµ½
-#define Delimiter_Left_Small_Bracket 0x11	// ( ×óĞ¡À¨ºÅ
-#define Delimiter_Right_Small_Bracket 0x12	// ) ÓÒĞ¡À¨ºÅ
-#define Delimiter_Semicolon 0x13			// ; ·ÖºÅ
-#define Delimiter_Left_Middle_Bracket 0x14	// [ ×óÖĞÀ¨ºÅ
-#define Delimiter_Right_Middle_Bracket 0x15	// ] ÓÒÖĞÀ¨ºÅ
-#define Delimiter_Left_Large_Bracket 0x16	// { ×ó´óÀ¨ºÅ
-#define Delimiter_Right_Large_Bracket 0x17	// } ÓÒ´óÀ¨ºÅ
-#define Delimiter_Period 0x18				// . ¾äºÅ
-#define Delimiter_Comma 0x19				// , ¶ººÅ
-#define Delimiter_Tilde 0x1A				// ~ ²¨ÀË×Ö·û
-#define Delimiter_Pound_Sign 0x1B			// # ¾®ºÅ
-#define Delimiter_Dollar 0x1C				// $ ÃÀÔª·ûºÅ Ô´´úÂëÖĞµÄÒì³£×Ö·û£¬ÎÄ·¨ÖĞµÄ¿Õ·ûºÅ
+//ç•Œç¬¦ ( ) ; [ ] { } . , ~ å…±10ä¸ªå­—ç¬¦
+// $ åœ¨æ–‡æ³•åˆ†ææ—¶ä¼šç”¨åˆ°
+#define Delimiter_Left_Small_Bracket 0x11	// ( å·¦å°æ‹¬å·
+#define Delimiter_Right_Small_Bracket 0x12	// ) å³å°æ‹¬å·
+#define Delimiter_Semicolon 0x13			// ; åˆ†å·
+#define Delimiter_Left_Middle_Bracket 0x14	// [ å·¦ä¸­æ‹¬å·
+#define Delimiter_Right_Middle_Bracket 0x15	// ] å³ä¸­æ‹¬å·
+#define Delimiter_Left_Large_Bracket 0x16	// { å·¦å¤§æ‹¬å·
+#define Delimiter_Right_Large_Bracket 0x17	// } å³å¤§æ‹¬å·
+#define Delimiter_Period 0x18				// . å¥å·
+#define Delimiter_Comma 0x19				// , é€—å·
+#define Delimiter_Tilde 0x1A				// ~ æ³¢æµªå­—ç¬¦
+#define Delimiter_Pound_Sign 0x1B			// # äº•å·
+#define Delimiter_Dollar 0x1C				// $ ç¾å…ƒç¬¦å· æºä»£ç ä¸­çš„å¼‚å¸¸å­—ç¬¦ï¼Œæ–‡æ³•ä¸­çš„ç©ºç¬¦å·
 
-//ÔËËã·û
-#define Operator_Not 0x20				// ! ·Ç
-#define Operator_Not_Equal_To 0x21		// != ²»µÈÓÚ
-#define Operator_Mod 0x22				// % È¡Óà
-#define Operator_Mod_Equal 0x23			// %= È¡ÓàµÈÓÚ
-#define Operator_Equal 0x24				// = µÈÓÚ
-#define Operator_Is_Equal 0x25			// == ÊÇ·ñµÈÓÚ
-#define Operator_Xor 0x26				// ^ Òì»ò
-#define Operator_Xor_Equal 0x27			// ^= Òì»òµÈÓÚ
-#define Operator_Bit_And 0x28			// & Î»Óë
-#define Operator_Bit_And_Equal 0x29		// &= Î»ÓëµÈÓÚ
-#define Operator_And 0x2A				// && Âß¼­Óë
-#define Operator_Plus 0x2B				// + ¼Ó
-#define Operator_Plus_Equal 0x2C		// += ¼ÓµÈÓÚ
-#define Operator_Plus_Plus 0x2D			// ++ ×ÔÔö
-#define Operator_Minus 0x2E				// - ¼õ
-#define Operator_Minus_Equal 0x2F		// -= ¼õµÈÓÚ
-#define Operator_Minus_Minus 0x30		// -- ×Ô¼õ
-#define Operator_Bit_Or 0x31			// | Î»»ò
-#define Operator_Bit_Or_Equal 0x32		// |= Î»»òµÈÓÚ
-#define Operator_Or 0x33				// || Âß¼­»ò
-#define Operator_Less_Than 0x34			// < Ğ¡ÓÚ
-#define Operator_Less_Than_Equal 0x35	// <= Ğ¡ÓÚµÈÓÚ
-#define Operator_Left_Shift 0x36		// << ×óÒÆ
-#define Operator_More_Than 0x37			// > ´óÓÚ
-#define Operator_More_Than_Equal 0x38	// >= ´óÓÚµÈÓÚ
-#define Operator_Right_Shift 0x39		// >> ÓÒÒÆ
-#define Operator_Multiply 0x3A			// * ³Ë ĞÇ
-#define Operator_Multiply_Equal 0x3B	// *= ³ËµÈÓÚ
-#define Operator_Divide 0x3C			// / ³ı
-#define Operator_Divide_Equal 0x3D		// /= ³ıµÈÓÚ
-#define Operator_Colon 0x3E				// : Ã°ºÅ[´ıÊ¹ÓÃ]
-#define Operator_Member 0x3F			// :: ³ÉÔ±ÔËËã·û
-#define Operator_Arrows 0x40			// -> ¼ıÍ·
+//è¿ç®—ç¬¦
+#define Operator_Not 0x20				// ! é
+#define Operator_Not_Equal_To 0x21		// != ä¸ç­‰äº
+#define Operator_Mod 0x22				// % å–ä½™
+#define Operator_Mod_Equal 0x23			// %= å–ä½™ç­‰äº
+#define Operator_Equal 0x24				// = ç­‰äº
+#define Operator_Is_Equal 0x25			// == æ˜¯å¦ç­‰äº
+#define Operator_Xor 0x26				// ^ å¼‚æˆ–
+#define Operator_Xor_Equal 0x27			// ^= å¼‚æˆ–ç­‰äº
+#define Operator_Bit_And 0x28			// & ä½ä¸
+#define Operator_Bit_And_Equal 0x29		// &= ä½ä¸ç­‰äº
+#define Operator_And 0x2A				// && é€»è¾‘ä¸
+#define Operator_Plus 0x2B				// + åŠ 
+#define Operator_Plus_Equal 0x2C		// += åŠ ç­‰äº
+#define Operator_Plus_Plus 0x2D			// ++ è‡ªå¢
+#define Operator_Minus 0x2E				// - å‡
+#define Operator_Minus_Equal 0x2F		// -= å‡ç­‰äº
+#define Operator_Minus_Minus 0x30		// -- è‡ªå‡
+#define Operator_Bit_Or 0x31			// | ä½æˆ–
+#define Operator_Bit_Or_Equal 0x32		// |= ä½æˆ–ç­‰äº
+#define Operator_Or 0x33				// || é€»è¾‘æˆ–
+#define Operator_Less_Than 0x34			// < å°äº
+#define Operator_Less_Than_Equal 0x35	// <= å°äºç­‰äº
+#define Operator_Left_Shift 0x36		// << å·¦ç§»
+#define Operator_More_Than 0x37			// > å¤§äº
+#define Operator_More_Than_Equal 0x38	// >= å¤§äºç­‰äº
+#define Operator_Right_Shift 0x39		// >> å³ç§»
+#define Operator_Multiply 0x3A			// * ä¹˜ æ˜Ÿ
+#define Operator_Multiply_Equal 0x3B	// *= ä¹˜ç­‰äº
+#define Operator_Divide 0x3C			// / é™¤
+#define Operator_Divide_Equal 0x3D		// /= é™¤ç­‰äº
+#define Operator_Colon 0x3E				// : å†’å·[å¾…ä½¿ç”¨]
+#define Operator_Member 0x3F			// :: æˆå‘˜è¿ç®—ç¬¦
+#define Operator_Arrows 0x40			// -> ç®­å¤´
 
-//¹Ø¼ü´Ê Keyword
+//å…³é”®è¯ Keyword
 #define Keyword_auto 0x100 //auto
 #define Keyword_break 0x101 //break
 #define Keyword_case 0x102 //case
@@ -118,7 +118,7 @@
 #define Keyword__bool 0x122 //_bool
 #define Keyword__Complex 0x123 //_Complex
 #define Keyword__Imaginary 0x124 //_Imaginary
-//Ìí¼ÓBOOLĞÍ¹Ø¼ü´Ê
+//æ·»åŠ BOOLå‹å…³é”®è¯
 #define Keyword_true 0x125	//true
 #define Keyword_false 0x126	//false
 #define Keyword_print 0x127 //print

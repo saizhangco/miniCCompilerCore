@@ -11,12 +11,12 @@ using namespace std;
 class FunctionDefinition : public Node
 {
 public:
-	int memoryType;			//´æ´¢ÀàĞÍ
-	int returnType;			//·µ»ØÖµÀàĞÍ
-	string functionName;	//º¯ÊıÃû
-	list<ParameterList> parameterList; //²ÎÊıÁĞ±í
-	bool isComeTrue;					//ÊÇ·ñÎªº¯ÊıÊµÏÖ  true-º¯ÊıÊµÏÖ false-º¯ÊıÉùÃ÷
-	int funcEnter;						//º¯ÊıµÄÖĞ¼ä´úÂëÈë¿Ú
+	int memoryType;			//å­˜å‚¨ç±»å‹
+	int returnType;			//è¿”å›å€¼ç±»å‹
+	string functionName;	//å‡½æ•°å
+	list<ParameterList> parameterList; //å‚æ•°åˆ—è¡¨
+	bool isComeTrue;					//æ˜¯å¦ä¸ºå‡½æ•°å®ç°  true-å‡½æ•°å®ç° false-å‡½æ•°å£°æ˜
+	int funcEnter;						//å‡½æ•°çš„ä¸­é—´ä»£ç å…¥å£
 public:
 	FunctionDefinition();
 	FunctionDefinition(int t, string n);

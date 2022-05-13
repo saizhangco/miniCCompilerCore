@@ -4,12 +4,12 @@
 
 FourElementType::FourElementType()
 {
-	mOptimizationType = 0;	//ÎÞÓÅ»¯
+	mOptimizationType = 0;	//æ— ä¼˜åŒ–
 }
 
 FourElementType::FourElementType(int number, int operation, FourElementTypeItem & arg1, FourElementTypeItem & arg2, FourElementTypeItem & result)
 {
-	mOptimizationType = 0;	//ÎÞÓÅ»¯
+	mOptimizationType = 0;	//æ— ä¼˜åŒ–
 	mNumber = number;
 	mOperation = operation;
 	mArg1 = arg1;

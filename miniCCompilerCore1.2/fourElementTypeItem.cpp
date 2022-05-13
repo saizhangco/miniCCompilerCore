@@ -18,29 +18,29 @@ void FourElementTypeItem::printFourElementTypeItem()
 	switch (mType)
 	{
 	case 0:
-		cout << "Î´³õÊ¼»¯" << endl;
+		cout << "æœªåˆå§‹åŒ–" << endl;
 		break;
 	case 1:
 		switch (mConstantType)
 		{
 		case 1:
-			cout << "³£Á¿ ÕûÐÍ " << mConstantInteger << endl;
+			cout << "å¸¸é‡ æ•´åž‹ " << mConstantInteger << endl;
 			break;
 		case 2:
-			cout << "³£Á¿ ¸¡µãÐÍ " << mConstantFloat << endl;
+			cout << "å¸¸é‡ æµ®ç‚¹åž‹ " << mConstantFloat << endl;
 			break;
 		case 3:
-			cout << "³£Á¿ ×Ö·ûÐÍ " << mConstantChar << endl;
+			cout << "å¸¸é‡ å­—ç¬¦åž‹ " << mConstantChar << endl;
 			break;
 		default:
 			break;
 		}
 		break;
 	case 2:
-		cout << "ÓÃ»§¶¨ÒåµÄ±äÁ¿ " << mUserIdentifierName << endl;
+		cout << "ç”¨æˆ·å®šä¹‰çš„å˜é‡ " << mUserIdentifierName << endl;
 		break;
 	case 3:
-		cout << "ÁÙÊ±±äÁ¿ " << mTempIdentifierName << endl;
+		cout << "ä¸´æ—¶å˜é‡ " << mTempIdentifierName << endl;
 		break;
 	case 4:
 		break;

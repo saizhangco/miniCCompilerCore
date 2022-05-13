@@ -2,7 +2,7 @@
 
 CodeList::CodeList()
 {
-	this->codeList.clear();	//Çå¿ÕListÖĞµÄÄÚÈİ
+	this->codeList.clear();	//æ¸…ç©ºListä¸­çš„å†…å®¹
 }
 
 CodeList::CodeList(const string & fileName)
@@ -27,8 +27,8 @@ bool CodeList::saveCodeListToFile(const string& fileName)
 {
 	list<Code>::iterator it_code;
 	bool result = true;
-	ofstream outFile(fileName);//´ò¿ªÊä³öÁ÷ "code.txt"
-	//outFile.open(fileName, ios::out, 0); //ios::out ÄÚ´æÊı¾İÊä³öµ½ÎÄ¼ş
+	ofstream outFile(fileName);//æ‰“å¼€è¾“å‡ºæµ "code.txt"
+	//outFile.open(fileName, ios::out, 0); //ios::out å†…å­˜æ•°æ®è¾“å‡ºåˆ°æ–‡ä»¶
 	for (it_code = codeList.begin(); it_code != codeList.end(); it_code++)
 	{
 		outFile << (*it_code).no << " " << (*it_code).line << endl;
@@ -42,12 +42,12 @@ bool CodeList::readCodeListFromFile(const string& fileName)
 {
 	bool result = true;
 	FILE* pFile;
-	pFile = fopen(fileName.data(), "r");//´ò¿ªÎÄ¼ş
-	char c, temp[1024];//Õâ¸öÎ»ÖÃµÄ1024ĞèÒª¿¼ÂÇ£¬µ±Òª¶ÁÈ¡µÄ×Ö·û´®³¬¹ı1024Ê±ÈçºÎ´¦Àí
+	pFile = fopen(fileName.data(), "r");//æ‰“å¼€æ–‡ä»¶
+	char c, temp[1024];//è¿™ä¸ªä½ç½®çš„1024éœ€è¦è€ƒè™‘ï¼Œå½“è¦è¯»å–çš„å­—ç¬¦ä¸²è¶…è¿‡1024æ—¶å¦‚ä½•å¤„ç†
 	temp[0] = '\0';
 	int count = 0;
 	int lineNo = 1;
-	while ((c = fgetc(pFile)) != EOF)//´ÓÎÄ¼şÒÀ´Î¶ÁÈ¡×Ö·û
+	while ((c = fgetc(pFile)) != EOF)//ä»æ–‡ä»¶ä¾æ¬¡è¯»å–å­—ç¬¦
 	{
 		if (c != '\n')
 		{
@@ -58,14 +58,14 @@ bool CodeList::readCodeListFromFile(const string& fileName)
 			temp[count++] = '\0';
 			//addCodeToLinks(head, newCode(lineNo++, (const char*)temp));
 			Code code(lineNo++, temp);
-			codeList.push_back(code);	//½«Êı¾İ¼ÓÈëµ½ListÖĞ
+			codeList.push_back(code);	//å°†æ•°æ®åŠ å…¥åˆ°Listä¸­
 			count = 0;
 		}
 	}
 	temp[count++] = '\0';
 	Code code(lineNo++, temp);
-	codeList.push_back(code);	//½«Êı¾İ¼ÓÈëµ½ListÖĞ
-								//½«×îºóÒ»ĞĞµÄÊı¾İÌí¼Óµ½pCodeÖĞ
-	fclose(pFile);//¹Ø±ÕÎÄ¼ş
+	codeList.push_back(code);	//å°†æ•°æ®åŠ å…¥åˆ°Listä¸­
+								//å°†æœ€åä¸€è¡Œçš„æ•°æ®æ·»åŠ åˆ°pCodeä¸­
+	fclose(pFile);//å…³é—­æ–‡ä»¶
 	return result;
 }

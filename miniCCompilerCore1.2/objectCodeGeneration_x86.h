@@ -9,7 +9,7 @@ using namespace std;
 class ObjectCodeGeneration_x86 : public ObjectCodeGeneration
 {
 public:
-	list<Code> mSchemaDefinition;	//Ä£Ê½¶¨Òå
+	list<Code> mSchemaDefinition;	//æ¨¡å¼å®šä¹‰
 	list<Code> mIncludeLib;			//include includelib
 	list<Code> m_data;				// .data
 	list<Code> m_code;				// .code
@@ -20,8 +20,8 @@ public:
 	~ObjectCodeGeneration_x86();
 	//void runObjectCodeGeneration_x86(list<FourElementType>& fetList);
 	void runObjectCodeGeneration_x86(SemanticAnalysis semantic);
-	//½«Ä¿±ê´úÂë±£´æµ½ÎÄ¼şÖĞ
-	void outFile(string fileName);	//ºó×ºÃû±£´æÎª .asm
+	//å°†ç›®æ ‡ä»£ç ä¿å­˜åˆ°æ–‡ä»¶ä¸­
+	void outFile(string fileName);	//åç¼€åä¿å­˜ä¸º .asm
 	void compiler();
 	void run();
 private:
@@ -29,6 +29,6 @@ private:
 	void object_schemaDefinition();
 	void object_includeLib();
 };
-//±àÒëÁ´½Ó »ã±à -> ¿ÉÖ´ĞĞ³ÌĞò(.EXE)
-//ÔËĞĞ 
-//run.bat arg1 ÄÚ²¿°üº¬pause
+//ç¼–è¯‘é“¾æ¥ æ±‡ç¼– -> å¯æ‰§è¡Œç¨‹åº(.EXE)
+//è¿è¡Œ 
+//run.bat arg1 å†…éƒ¨åŒ…å«pause

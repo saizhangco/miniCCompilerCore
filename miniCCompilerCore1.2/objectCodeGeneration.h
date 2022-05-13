@@ -3,12 +3,12 @@
 using namespace std;
 #include "codeList.h"
 /*
-Ä¿±ê´úÂëÉú³É
-ÊäÈë
-1.ÖÐ¼ä´úÂë »òÕßÊÇ ´úÂëÓÅ»¯ºóµÄÖÐ¼ä´úÂë
-Êä³ö
-1.Ä¿±ê´úÂë Ïà¹ØÆ½Ì¨µÄ»ã±à´úÂë
-2.¿ÉÖ´ÐÐÎÄ¼þ
+ç›®æ ‡ä»£ç ç”Ÿæˆ
+è¾“å…¥
+1.ä¸­é—´ä»£ç  æˆ–è€…æ˜¯ ä»£ç ä¼˜åŒ–åŽçš„ä¸­é—´ä»£ç 
+è¾“å‡º
+1.ç›®æ ‡ä»£ç  ç›¸å…³å¹³å°çš„æ±‡ç¼–ä»£ç 
+2.å¯æ‰§è¡Œæ–‡ä»¶
 */
 class ObjectCodeGeneration
 {

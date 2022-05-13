@@ -10,7 +10,7 @@ public:
 	int id;
 	string analysisStack;
 	string leftString;
-	string deduceProd;	//ÍÆµ¼ËùÓÃ²úÉúÊ½»òÆ¥Åä
+	string deduceProd;	//æ¨å¯¼æ‰€ç”¨äº§ç”Ÿå¼æˆ–åŒ¹é…
 public:
 	LL_1_AnalysisItem();
 	LL_1_AnalysisItem(int id, string& stack_t, list<Token>& list_t, string& dp);

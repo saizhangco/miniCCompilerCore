@@ -8,33 +8,33 @@ CodeOptimization::~CodeOptimization()
 {
 }
 
-//½øĞĞ´úÂëÓÅ»¯
-//É¾³ı¿ÕÌø×ª
+//è¿›è¡Œä»£ç ä¼˜åŒ–
+//åˆ é™¤ç©ºè·³è½¬
 bool CodeOptimization::runCodeOptimization(SemanticAnalysis & semantic)
 {
-	//É¾³ı¿ÕÌø×ª
+	//åˆ é™¤ç©ºè·³è½¬
 	list<FourElementType>::iterator it_FourElementTypeList = semantic.mFourElementTypeList.begin();
-	//±éÀúList
+	//éå†List
 	for (; it_FourElementTypeList != semantic.mFourElementTypeList.end(); it_FourElementTypeList++)
 	{
-		//ÅĞ¶ÏËÄÔªÊ½ÊÇ·ñÎªÎ´ÓÅ»¯ËÄÔªÊ½
+		//åˆ¤æ–­å››å…ƒå¼æ˜¯å¦ä¸ºæœªä¼˜åŒ–å››å…ƒå¼
 		if ((*it_FourElementTypeList).mOptimizationType == 0 && (*it_FourElementTypeList).mOperation == Jump
-			&& (*it_FourElementTypeList).mResult.mType == 5)//ËÄÔªÊ½Ö¸Õë
+			&& (*it_FourElementTypeList).mResult.mType == 5)//å››å…ƒå¼æŒ‡é’ˆ
 		{
 			//
-			int m_nResult = (*it_FourElementTypeList).mResult.mNumber;//ÏÂÒ»¸öËÄÔªÊ½
+			int m_nResult = (*it_FourElementTypeList).mResult.mNumber;//ä¸‹ä¸€ä¸ªå››å…ƒå¼
 			int m_nResultBack = m_nResult;
 			while (true)
 			{
-				//Í¨¹ım_nResultÕÒµ½Ö¸¶¨ËÄÔªÊ½
+				//é€šè¿‡m_nResultæ‰¾åˆ°æŒ‡å®šå››å…ƒå¼
 				list<FourElementType>::iterator it_find = findItFourElementTypeItem(m_nResult, semantic);
 				if (it_find != semantic.mFourElementTypeList.begin())
 				{
-					//ÅĞ¶ÏÕÒµ½ËÄÔªÊ½
+					//åˆ¤æ–­æ‰¾åˆ°å››å…ƒå¼
 					if ((*it_find).mOperation == Jump && (*it_find).mResult.mType == 5)
 					{
 						m_nResultBack = m_nResult;
-						m_nResult = (*it_find).mResult.mNumber;//ÏÂÒ»¸öËÄÔªÊ½
+						m_nResult = (*it_find).mResult.mNumber;//ä¸‹ä¸€ä¸ªå››å…ƒå¼
 					}
 					else
 					{
@@ -47,22 +47,22 @@ bool CodeOptimization::runCodeOptimization(SemanticAnalysis & semantic)
 					break;
 				}
 			}
-			//¿ªÊ¼½øĞĞÓÅ»¯
+			//å¼€å§‹è¿›è¡Œä¼˜åŒ–
 			if (m_nResult != (*it_FourElementTypeList).mResult.mNumber)
 			{
-				//±£´æÁ´Ìõ chain
+				//ä¿å­˜é“¾æ¡ chain
 				int chain_begin = (*it_FourElementTypeList).mResult.mNumber;
 				int chain_end = m_nResult;
-				//ĞŞ¸Ä
+				//ä¿®æ”¹
 				(*it_FourElementTypeList).mOptimizationType = 2;
 				(*it_FourElementTypeList).mResultBack.mType = 5;
 				(*it_FourElementTypeList).mResultBack.mNumber = chain_begin;
 				(*it_FourElementTypeList).mResult.mNumber = chain_end;
-				//É¾³ı
+				//åˆ é™¤
 				while (chain_begin != chain_end && chain_begin !=0)
 				{
 					//list<FourElementType>::iterator it_find = findItFourElementTypeItem(chain_begin, semantic);
-					//É¾³ı
+					//åˆ é™¤
 					//(*it_find).mOptimizationType = 1;
 					//chain_begin = (*it_find).mResult.mNumber;
 					chain_begin = findItFourElementTypeRemove(chain_begin, semantic);
@@ -71,21 +71,21 @@ bool CodeOptimization::runCodeOptimization(SemanticAnalysis & semantic)
 		}
 	}
 
-	//É¾³ıÏàÁÚÌø×ª
+	//åˆ é™¤ç›¸é‚»è·³è½¬
 	for (; it_FourElementTypeList != semantic.mFourElementTypeList.end(); it_FourElementTypeList++)
 	{
-		//ÅĞ¶ÏËÄÔªÊ½ÊÇ·ñÎªÎ´ÓÅ»¯ËÄÔªÊ½£¬Ìø×ªÓï¾ä
+		//åˆ¤æ–­å››å…ƒå¼æ˜¯å¦ä¸ºæœªä¼˜åŒ–å››å…ƒå¼ï¼Œè·³è½¬è¯­å¥
 		if ((*it_FourElementTypeList).mOptimizationType == 0 && (*it_FourElementTypeList).mOperation == Jump
-			&& (*it_FourElementTypeList).mResult.mType == 5)//ËÄÔªÊ½Ö¸Õë
+			&& (*it_FourElementTypeList).mResult.mType == 5)//å››å…ƒå¼æŒ‡é’ˆ
 		{
 			if ((*it_FourElementTypeList).mNumber == ((*it_FourElementTypeList).mResult.mNumber - 1))
 			{
-				//¸ÃËÄÔªÊ½²»±»ÆäËûËÄÔªÊ½ËùÒÀÀµ
-				(*it_FourElementTypeList).mOptimizationType = 1;//É¾³ı
+				//è¯¥å››å…ƒå¼ä¸è¢«å…¶ä»–å››å…ƒå¼æ‰€ä¾èµ–
+				(*it_FourElementTypeList).mOptimizationType = 1;//åˆ é™¤
 			}
 		}
 	}
-	//±£´æÎÄ¼ş
+	//ä¿å­˜æ–‡ä»¶
 	saveCodeOptimizationToFile(semantic, "analysis//codeOptimization.txt");
 	return true;
 }
@@ -93,13 +93,13 @@ bool CodeOptimization::runCodeOptimization(SemanticAnalysis & semantic)
 list<FourElementType>::iterator CodeOptimization::findItFourElementTypeItem(int m_nResult, SemanticAnalysis& semantic)
 {
 	list<FourElementType>::iterator it_FourElementTypeList = semantic.mFourElementTypeList.begin();
-	//±éÀúList
+	//éå†List
 	for (; it_FourElementTypeList != semantic.mFourElementTypeList.end(); it_FourElementTypeList++)
 	{
-		//ÅĞ¶ÏmNumber==m_nResult
+		//åˆ¤æ–­mNumber==m_nResult
 		if (m_nResult == (*it_FourElementTypeList).mNumber)
 		{
-			return it_FourElementTypeList;//·µ»Øµ±Ç°Ö¸Õë
+			return it_FourElementTypeList;//è¿”å›å½“å‰æŒ‡é’ˆ
 		}
 	}
 	return semantic.mFourElementTypeList.end();
@@ -108,15 +108,15 @@ list<FourElementType>::iterator CodeOptimization::findItFourElementTypeItem(int 
 int CodeOptimization::findItFourElementTypeRemove(int m_nResult, SemanticAnalysis & semantic)
 {
 	list<FourElementType>::iterator it_FourElementTypeList = semantic.mFourElementTypeList.begin();
-	//±éÀúList
+	//éå†List
 	for (; it_FourElementTypeList != semantic.mFourElementTypeList.end(); it_FourElementTypeList++)
 	{
-		//ÅĞ¶ÏmNumber==m_nResult
+		//åˆ¤æ–­mNumber==m_nResult
 		if (m_nResult == (*it_FourElementTypeList).mNumber)
 		{
 			(*it_FourElementTypeList).mOptimizationType = 1;
 			return (*it_FourElementTypeList).mResult.mNumber;
-			//return it_FourElementTypeList;//·µ»Øµ±Ç°Ö¸Õë
+			//return it_FourElementTypeList;//è¿”å›å½“å‰æŒ‡é’ˆ
 		}
 	}
 	return 0;
@@ -127,10 +127,10 @@ bool CodeOptimization::saveCodeOptimizationToFile(SemanticAnalysis & semantic, c
 	//"analysis//codeOptimization.txt"
 	ofstream outFile(fileName);
 	outFile << "********************************************" << endl;
-	outFile << "*                 ´úÂëÓÅ»¯                 *" << endl;
+	outFile << "*                 ä»£ç ä¼˜åŒ–                 *" << endl;
 	outFile << "********************************************" << endl;
 	list<FourElementType>::iterator it_FourElementTypeList = semantic.mFourElementTypeList.begin();
-	//±éÀúList
+	//éå†List
 	for (; it_FourElementTypeList != semantic.mFourElementTypeList.end(); it_FourElementTypeList++)
 	{
 		string content = (*it_FourElementTypeList).getFourElementType();
@@ -139,11 +139,11 @@ bool CodeOptimization::saveCodeOptimizationToFile(SemanticAnalysis & semantic, c
 		{
 			optimization = "\n";
 		}
-		else if((*it_FourElementTypeList).mOptimizationType == 1)	//É¾³ı
+		else if((*it_FourElementTypeList).mOptimizationType == 1)	//åˆ é™¤
 		{
 			optimization = "\tRemove\n";
 		}
-		else if ((*it_FourElementTypeList).mOptimizationType == 2)	//ĞŞ¸Ä
+		else if ((*it_FourElementTypeList).mOptimizationType == 2)	//ä¿®æ”¹
 		{
 			optimization = "\tModify " + to_string((*it_FourElementTypeList).mResultBack.mNumber) + "->" 
 				+ to_string((*it_FourElementTypeList).mResult.mNumber) + "\n";

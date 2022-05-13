@@ -9,43 +9,43 @@ using namespace std;
 #include "functionDefinition.h"
 
 /*
-ÓïÒå´íÎó£º
-	1.ÅĞ¶Ï³ÌĞòÊÇ·ñÈ±ÉÙº¯ÊıÈë¿Ú
-	ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
-	1.·ÖÎö³öº¯ÊıµÄ¶¨ÒåºÍÊµÏÖ£¬º¯Êı¶¨ÒåºÍÊµÏÖ±£´æÔÚº¯Êı¶¨ÒåÁĞ±íÖĞ
-	2.·ÖÎö³ö±äÁ¿µÄ¶¨Òå£¬²¢½«±äÁ¿µÄ¶¨Òå±£´æÔÚ±äÁ¿¶¨ÒåÁĞ±íÖĞ
-	3.ÅĞ¶Ï±äÁ¿ÊÇ·ñÖØ¸´¶¨Òå£¬ÅĞ¶ÏÊ±·ÖÎªÈ«¾Ö±äÁ¿ºÍ¾Ö²¿±äÁ¿
-	//±äÁ¿Ö»ÄÜ¶¨ÒåÔÚº¯Êı¿ªÊ¼²¿·Ö
-	//È«Îª¾Ö²¿±äÁ¿²»ÄÜÖØ¸´
-	//È«ÎªÈ«¾Ö±äÁ¿²»ÄÜÖØ¸´
-	//¾Ö²¿±äÁ¿»áÆÁ±ÎÈ«¾Ö±äÁ¿
-	//ÖØ¸´¶¨Òå´íÎó
-	4.º¯ÊıÉùÃ÷ºÍº¯ÊıÊµÏÖÊÇ·ñÆ¥Åä
-	5.º¯ÊıÉùÃ÷¡¢º¯ÊıÊµÏÖÊÇ·ñÖØ¸´¶¨Òå
+è¯­ä¹‰é”™è¯¯ï¼š
+	1.åˆ¤æ–­ç¨‹åºæ˜¯å¦ç¼ºå°‘å‡½æ•°å…¥å£
+	è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
+	1.åˆ†æå‡ºå‡½æ•°çš„å®šä¹‰å’Œå®ç°ï¼Œå‡½æ•°å®šä¹‰å’Œå®ç°ä¿å­˜åœ¨å‡½æ•°å®šä¹‰åˆ—è¡¨ä¸­
+	2.åˆ†æå‡ºå˜é‡çš„å®šä¹‰ï¼Œå¹¶å°†å˜é‡çš„å®šä¹‰ä¿å­˜åœ¨å˜é‡å®šä¹‰åˆ—è¡¨ä¸­
+	3.åˆ¤æ–­å˜é‡æ˜¯å¦é‡å¤å®šä¹‰ï¼Œåˆ¤æ–­æ—¶åˆ†ä¸ºå…¨å±€å˜é‡å’Œå±€éƒ¨å˜é‡
+	//å˜é‡åªèƒ½å®šä¹‰åœ¨å‡½æ•°å¼€å§‹éƒ¨åˆ†
+	//å…¨ä¸ºå±€éƒ¨å˜é‡ä¸èƒ½é‡å¤
+	//å…¨ä¸ºå…¨å±€å˜é‡ä¸èƒ½é‡å¤
+	//å±€éƒ¨å˜é‡ä¼šå±è”½å…¨å±€å˜é‡
+	//é‡å¤å®šä¹‰é”™è¯¯
+	4.å‡½æ•°å£°æ˜å’Œå‡½æ•°å®ç°æ˜¯å¦åŒ¹é…
+	5.å‡½æ•°å£°æ˜ã€å‡½æ•°å®ç°æ˜¯å¦é‡å¤å®šä¹‰
 */
 
-class SemanticAnalysis	//ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂëÉú³É
+class SemanticAnalysis	//è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç ç”Ÿæˆ
 {
 public:
-	list<FourElementType> mFourElementTypeList;	//ËÄÔªÊ½List
-	list<VariableDefinition> mVariableDefinitionList;	//ÓÃ»§¶¨Òå±äÁ¿List
-	list<FunctionDefinition> mFunctionDefinitionList;	//º¯Êı¶¨Òå
-	list<FourElementTypeItem> mTempIdentifierList;		//ÁÙÊ±±äÁ¿List
-	list<string> mErrorInfo;	//ÓïÒå´íÎó
-	list<int> breakPosiList;	//break Ìø³öµÄÎ»ÖÃ
-	list<int> continuePosiList;	//continue Ìø³öµÄÎ»ÖÃ
-	list<int> returnPosiList;	//return ·µ»ØµÄÎ»ÖÃ
+	list<FourElementType> mFourElementTypeList;	//å››å…ƒå¼List
+	list<VariableDefinition> mVariableDefinitionList;	//ç”¨æˆ·å®šä¹‰å˜é‡List
+	list<FunctionDefinition> mFunctionDefinitionList;	//å‡½æ•°å®šä¹‰
+	list<FourElementTypeItem> mTempIdentifierList;		//ä¸´æ—¶å˜é‡List
+	list<string> mErrorInfo;	//è¯­ä¹‰é”™è¯¯
+	list<int> breakPosiList;	//break è·³å‡ºçš„ä½ç½®
+	list<int> continuePosiList;	//continue è·³å‡ºçš„ä½ç½®
+	list<int> returnPosiList;	//return è¿”å›çš„ä½ç½®
 private:
 	list<string> variableCache;
-	string curFunctionName;		//µ±Ç°·ÖÎöµÄº¯ÊıÃû
+	string curFunctionName;		//å½“å‰åˆ†æçš„å‡½æ•°å
 public:
 	SemanticAnalysis();
 	~SemanticAnalysis();
-	bool runSemanticAnalysis(list<Token>& TokenenList);	//Ö´ĞĞÓï·¨·ÖÎö
+	bool runSemanticAnalysis(list<Token>& TokenenList);	//æ‰§è¡Œè¯­æ³•åˆ†æ
 	void printFourElementTypeList();
 	void printErrorInfo();
 private:
-	string clearUpString(string str);	//È¥µô×Ö·û´®µÄË«ÒıºÅ
+	string clearUpString(string str);	//å»æ‰å­—ç¬¦ä¸²çš„åŒå¼•å·
 	void saveSemanticInfoToFile();
 	void modify_end_c(unsigned int pId, unsigned int c);
 	int merge(unsigned int pId1, unsigned int pId2);
@@ -57,7 +57,7 @@ private:
 	int stringConvertNumberDecimalism(string& str);
 	int stringConvertNumberHexadecimal(string& str);
 	//---------------------------------------------------------------------------------------------------
-	// È«¾Ö±äÁ¿¶¨Òå¡¢º¯ÊıÉùÃ÷¡¢º¯ÊıÊµÏÖ
+	// å…¨å±€å˜é‡å®šä¹‰ã€å‡½æ•°å£°æ˜ã€å‡½æ•°å®ç°
 	//---------------------------------------------------------------------------------------------------
 	/*
 		S -> $
@@ -139,7 +139,7 @@ private:
 		PD1 -> $
 	*/
 	bool semanticAnalysisPD1(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, string& parameterName);
-	//------------------------------¿ØÖÆÓï¾ä----------------------------------------------------------
+	//------------------------------æ§åˆ¶è¯­å¥----------------------------------------------------------
 	/*
 		FB -> $
 		FB -> RS FB
@@ -179,7 +179,7 @@ private:
 		Print -> PR ) ;
 	*/
 	bool semanticAnalysisPrint(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, int& chain);
-	//-------------------------------±í´ïÊ½-----------------------------------------------------------
+	//-------------------------------è¡¨è¾¾å¼-----------------------------------------------------------
 	/*
 		eexpr -> bexpr eexpr1
 	*/
@@ -227,7 +227,7 @@ private:
 		rexpr1 -> != aexpr
 		rexpr1 -> == aexpr
 		rexpr1 -> $
-		//Ç°4¸öÔËËã·ûºÍºóÃæ2¸öÔËËã·ûµÄÓÅÏÈ¼¶È·ÊµÊÇ²»Ò»ÑùµÄ£¬µ«ÊÇÕâ6¸öÔËËã·û¶¼²»ÄÜÁ¬½Ó£¬Òò´ËĞ´ÔÚÒ»ÆğÊÇ¿ÉÒÔµÄ£¬Ö®Ç°µÄÉè¼ÆÊÇ´íÎó
+		//å‰4ä¸ªè¿ç®—ç¬¦å’Œåé¢2ä¸ªè¿ç®—ç¬¦çš„ä¼˜å…ˆçº§ç¡®å®æ˜¯ä¸ä¸€æ ·çš„ï¼Œä½†æ˜¯è¿™6ä¸ªè¿ç®—ç¬¦éƒ½ä¸èƒ½è¿æ¥ï¼Œå› æ­¤å†™åœ¨ä¸€èµ·æ˜¯å¯ä»¥çš„ï¼Œä¹‹å‰çš„è®¾è®¡æ˜¯é”™è¯¯
 	*/
 	bool semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& rterm1);
 	/*
@@ -263,11 +263,11 @@ private:
 	bool semanticAnalysis_ael(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& ael);
 	/*
 		root -> id
-		root -> ÕûĞÍ(°Ë½øÖÆ¡¢Ê®½øÖÆ¡¢Ê®Áù½øÖÆ)
-		root -> ¸¡µãĞÍ( Ğ¡Êı¡¢Ö¸Êı )
-		root -> ²¼¶ûĞÍ
-		root -> ×Ö·ûĞÍ
-		-- root -> ×Ö·û´®ĞÍ ×Ö·ûÊı×é
+		root -> æ•´å‹(å…«è¿›åˆ¶ã€åè¿›åˆ¶ã€åå…­è¿›åˆ¶)
+		root -> æµ®ç‚¹å‹( å°æ•°ã€æŒ‡æ•° )
+		root -> å¸ƒå°”å‹
+		root -> å­—ç¬¦å‹
+		-- root -> å­—ç¬¦ä¸²å‹ å­—ç¬¦æ•°ç»„
 	*/
 	bool semanticAnalysis_root(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& root);
 	/*
@@ -276,16 +276,16 @@ private:
 	*/
 	bool semanticAnalysis_BOOL(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& BOOL);
 
-	//-----------------------------------ÆäËû¸¨Öúº¯Êı------------------------------------------
-	//ÅĞ¶ÏÊÇ·ñÎª±í´ïÊ½Ô¤·ÖÎö
+	//-----------------------------------å…¶ä»–è¾…åŠ©å‡½æ•°------------------------------------------
+	//åˆ¤æ–­æ˜¯å¦ä¸ºè¡¨è¾¾å¼é¢„åˆ†æ
 	bool expressPreAnalysis(int type);
 
-	//ÅĞ¶ÏÊÇ·ñÎªÓÃ»§¶¨Òå±äÁ¿
+	//åˆ¤æ–­æ˜¯å¦ä¸ºç”¨æˆ·å®šä¹‰å˜é‡
 	bool isUserVariableDefinition(string variableName);
 
-	//ÅĞ¶Ï±äÁ¿ÊÇ·ñÖØ¸´¶¨Òå
+	//åˆ¤æ–­å˜é‡æ˜¯å¦é‡å¤å®šä¹‰
 	bool isRepetDefineVariable(string variableName, bool isGlobal);
 
-	//ÅĞ¶Ïº¯ÊıÉùÃ÷ºÍº¯ÊıÊµÏÖÊÇ·ñÆ¥Åä
+	//åˆ¤æ–­å‡½æ•°å£°æ˜å’Œå‡½æ•°å®ç°æ˜¯å¦åŒ¹é…
 	bool isMatchFunctionComeTrueAndDefine(FunctionDefinition fd);
 };

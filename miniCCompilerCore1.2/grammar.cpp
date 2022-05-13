@@ -5,51 +5,51 @@
 #include <algorithm>
 Grammar::Grammar()
 {
-	//³ÉÔ±±äÁ¿³õÊ¼»¯
+	//æˆå‘˜å˜é‡åˆå§‹åŒ–
 	this->mNonterminator.clear();
 	this->mTerminator.clear();
 	this->mProduction.clear();
 
-	//¼ÓÔØ±í´ïÊ½
+	//åŠ è½½è¡¨è¾¾å¼
 	if (!loadProductionsFromFile("grammar\\grammar.txt"))//grammar
 	{
-		cout << "Error : " << "¼ÓÔØ±í´ïÊ½´íÎó" << endl;
+		cout << "Error : " << "åŠ è½½è¡¨è¾¾å¼é”™è¯¯" << endl;
 	}
-	//¿ªÊ¼·û
+	//å¼€å§‹ç¬¦
 	Token token((*mProduction.begin()).left.data, Grammar_Nonterminator);
 	mStarter = token;
-	//¼ÓÔØ·ÇÖÕ½á·û
+	//åŠ è½½éç»ˆç»“ç¬¦
 	loadNonterminatorSetSelf();
-	//¼ÓÔØÖÕ½á·û
+	//åŠ è½½ç»ˆç»“ç¬¦
 	loadTerminatorSetSelf();
-	//Ë¢ĞÂÎÄ·¨µÄ²úÉúÊ½
+	//åˆ·æ–°æ–‡æ³•çš„äº§ç”Ÿå¼
 	refreshProduction();
-	//´òÓ¡ÎÄ·¨
+	//æ‰“å°æ–‡æ³•
 	//printGram();
 	
 }
 
 Grammar::Grammar(const string & fileName)
 {
-	//³ÉÔ±±äÁ¿³õÊ¼»¯
+	//æˆå‘˜å˜é‡åˆå§‹åŒ–
 	this->mNonterminator.clear();
 	this->mTerminator.clear();
 	this->mProduction.clear();
-	//¼ÓÔØ±í´ïÊ½
+	//åŠ è½½è¡¨è¾¾å¼
 	if (!loadProductionsFromFile(fileName))//grammar
 	{
-		cout << "Error : " << "¼ÓÔØ±í´ïÊ½´íÎó" << endl;
+		cout << "Error : " << "åŠ è½½è¡¨è¾¾å¼é”™è¯¯" << endl;
 	}
-	//¿ªÊ¼·û
+	//å¼€å§‹ç¬¦
 	Token tok((*mProduction.begin()).left.data, Grammar_Nonterminator);
 	mStarter = tok;
-	//¼ÓÔØ·ÇÖÕ½á·û
+	//åŠ è½½éç»ˆç»“ç¬¦
 	loadNonterminatorSetSelf();
-	//¼ÓÔØÖÕ½á·û
+	//åŠ è½½ç»ˆç»“ç¬¦
 	loadTerminatorSetSelf();
-	//Ë¢ĞÂÎÄ·¨µÄ²úÉúÊ½
+	//åˆ·æ–°æ–‡æ³•çš„äº§ç”Ÿå¼
 	refreshProduction();
-	//´òÓ¡ÎÄ·¨
+	//æ‰“å°æ–‡æ³•
 	//printGram();
 }
 
@@ -60,25 +60,25 @@ Grammar::~Grammar()
 
 bool Grammar::loadProductionsFromFile(const string& fileName)
 {
-	//1.´ÓÖ¸¶¨ÎÄ¼şÖĞ¶ÁÈ¡³öÎÄ·¨±í´ïÊ½[Î´´¦ÀíÇ°]
+	//1.ä»æŒ‡å®šæ–‡ä»¶ä¸­è¯»å–å‡ºæ–‡æ³•è¡¨è¾¾å¼[æœªå¤„ç†å‰]
 	CodeList codeList;
 	if (!codeList.readCodeListFromFile(fileName))// fileName().data() OK
 	{
-		cout << "¶ÁÈ¡" << fileName << "ÎÄ¼şÊ§°Ü" << endl;
+		cout << "è¯»å–" << fileName << "æ–‡ä»¶å¤±è´¥" << endl;
 		return false;
 	}
 	list<Code>::iterator it_code = codeList.codeList.begin();
 	for (; it_code != codeList.codeList.end(); it_code++) 
 	{
-		//2.µ¥ĞĞµÄ´Ê·¨·ÖÎö
+		//2.å•è¡Œçš„è¯æ³•åˆ†æ
 		bool isBlockAnnotation = false;
 		LexicalAnalysis lexicalAnalysis;
-		lexicalAnalysis.analysisGrammar = true;	//ÉèÖÃµ±Ç°·ÖÎöÎÄ·¨
+		lexicalAnalysis.analysisGrammar = true;	//è®¾ç½®å½“å‰åˆ†ææ–‡æ³•
 		lexicalAnalysis.lexical_core((*it_code), isBlockAnnotation, false);
-		//3.¸ù¾İToken´®µÄ½á¹û·ÖÎö³öÎÄ·¨
+		//3.æ ¹æ®Tokenä¸²çš„ç»“æœåˆ†æå‡ºæ–‡æ³•
 		getProductionFromTokenList(lexicalAnalysis.mTokenList);
 	}
-	//´òÓ¡ÑéÖ¤±í´ïÊ½¹¹ÔìÊÇ·ñ×¼È·
+	//æ‰“å°éªŒè¯è¡¨è¾¾å¼æ„é€ æ˜¯å¦å‡†ç¡®
 	//for_each(Production.begin(), Production.end(), [](const Prod& p) { p.printProdLine(); });
 
 	return true;
@@ -88,7 +88,7 @@ bool Grammar::loadNonterminatorSetSelf()
 {
 	for (list<Production>::iterator it = mProduction.begin(); it != mProduction.end(); it++)
 	{
-		if (!existInNonterminatorSet((*it).left.data)) //ÔÚ·ÇÖÕ½á·ûÖĞ²»´æÔÚ
+		if (!existInNonterminatorSet((*it).left.data)) //åœ¨éç»ˆç»“ç¬¦ä¸­ä¸å­˜åœ¨
 		{
 			Token tok((*it).left.data, Grammar_Nonterminator);
 			mNonterminator.push_back(tok);
@@ -103,11 +103,11 @@ bool Grammar::loadTerminatorSetSelf()
 	{
 		for (list<Token>::iterator it1 = (*it).right.begin(); it1 != (*it).right.end(); it1++)
 		{
-			if ((*it1).data != "$")//·ÇÖÕ½á·û¼¯ÖĞ³öÈ¥ $
+			if ((*it1).data != "$")//éç»ˆç»“ç¬¦é›†ä¸­å‡ºå» $
 			{
-				if (!existInNonterminatorSet((*it1).data) && !existInTerminatorSet((*it1).data))//ÔÚ·ÇÖÕ½á·ûÖĞ²»´æÔÚ£¬ÇÒÔÚÖÕ½á·ûÖĞÒ²²»´æÔÚ
+				if (!existInNonterminatorSet((*it1).data) && !existInTerminatorSet((*it1).data))//åœ¨éç»ˆç»“ç¬¦ä¸­ä¸å­˜åœ¨ï¼Œä¸”åœ¨ç»ˆç»“ç¬¦ä¸­ä¹Ÿä¸å­˜åœ¨
 				{
-					mTerminator.push_back((*it1));//Ìí¼Óµ½ÖÕ½á·û
+					mTerminator.push_back((*it1));//æ·»åŠ åˆ°ç»ˆç»“ç¬¦
 				}
 			}
 		}

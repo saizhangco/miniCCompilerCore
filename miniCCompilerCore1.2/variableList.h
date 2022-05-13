@@ -1,19 +1,19 @@
 #pragma once
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º ±äÁ¿ÁÐ±í
-* Àà Ãû£º VariableList
+* åŠŸ èƒ½ï¼š å˜é‡åˆ—è¡¨
+* ç±» åï¼š VariableList
 *
-* Ver  2016-06-10  ÕÅÈü  ¶¨Òå±äÁ¿ÁÐ±í£¬±äÁ¿ÁÐ±í°üÀ¨±äÁ¿ÃûºÍ³õÊ¼»¯ÖµµÄÊôÐÔ¡£
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver  2016-06-10  å¼ èµ›  å®šä¹‰å˜é‡åˆ—è¡¨ï¼Œå˜é‡åˆ—è¡¨åŒ…æ‹¬å˜é‡åå’Œåˆå§‹åŒ–å€¼çš„å±žæ€§ã€‚
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõÐÅÏ¢Îª±¾¹«Ë¾»úÃÜÐÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈý·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓÐ£º*****ÓÐÏÞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼Žã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 #include <iostream>
 #include <list>
@@ -24,9 +24,9 @@ using namespace std;
 class VariableList
 {
 public:
-	string varName;			//±äÁ¿Ãû
-	list<Token> initValue;	//³õÊ¼»¯Öµ
+	string varName;			//å˜é‡å
+	list<Token> initValue;	//åˆå§‹åŒ–å€¼
 public:
-	VariableList();			//¹¹Ôìº¯Êý
-	~VariableList();		//Îö¹¹º¯Êý
+	VariableList();			//æž„é€ å‡½æ•°
+	~VariableList();		//æžæž„å‡½æ•°
 };

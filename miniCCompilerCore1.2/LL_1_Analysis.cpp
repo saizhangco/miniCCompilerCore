@@ -9,26 +9,26 @@ LL_1_Analysis::LL_1_Analysis()
 	isReady = true;
 	if (!initFirstSet(gram))
 	{
-		cout << "³õÊ¼»¯FirstSetÊ§°Ü!" << endl;
+		cout << "åˆå§‹åŒ–FirstSetå¤±è´¥!" << endl;
 		isReady = false;
 		return;
 	}
-	//printFirstSetFormat_1();	//´òÓ¡ FirstSet¼¯
+	//printFirstSetFormat_1();	//æ‰“å° FirstSeté›†
 	//cout << endl;
 	if (!initFollowSet(gram))
 	{
-		cout << "³õÊ¼»¯FollowSetÊ§°Ü!" << endl;
+		cout << "åˆå§‹åŒ–FollowSetå¤±è´¥!" << endl;
 		isReady = false;
 		return;
 	}
-	//printFollowSetFormat_1();	//´òÓ¡ Follow¼¯
+	//printFollowSetFormat_1();	//æ‰“å° Followé›†
 	if (!initAnalysisTable(gram))
 	{
-		cout << "³õÊ¼»¯Ô¤²â·ÖÎö±íÊ§°Ü!" << endl;
+		cout << "åˆå§‹åŒ–é¢„æµ‹åˆ†æè¡¨å¤±è´¥!" << endl;
 		isReady = false;
 		return;
 	}
-	//printAnalysisTable();		//´òÓ¡ Ô¤²â·ÖÎö±í
+	//printAnalysisTable();		//æ‰“å° é¢„æµ‹åˆ†æè¡¨
 	analysisResult.clear();
 }
 
@@ -39,26 +39,26 @@ LL_1_Analysis::LL_1_Analysis(const string & fileName)
 	isReady = true;
 	if (!initFirstSet(gram))
 	{
-		cout << "³õÊ¼»¯FirstSetÊ§°Ü!" << endl;
+		cout << "åˆå§‹åŒ–FirstSetå¤±è´¥!" << endl;
 		isReady = false;
 		return;
 	}
-	//printFirstSetFormat_1();	//´òÓ¡ FirstSet¼¯
+	//printFirstSetFormat_1();	//æ‰“å° FirstSeté›†
 	cout << endl;
 	if (!initFollowSet(gram))
 	{
-		cout << "³õÊ¼»¯FollowSetÊ§°Ü!" << endl;
+		cout << "åˆå§‹åŒ–FollowSetå¤±è´¥!" << endl;
 		isReady = false;
 		return;
 	}
-	//printFollowSetFormat_1();	//´òÓ¡ Follow¼¯
+	//printFollowSetFormat_1();	//æ‰“å° Followé›†
 	if (!initAnalysisTable(gram))
 	{
-		cout << "³õÊ¼»¯Ô¤²â·ÖÎö±íÊ§°Ü!" << endl;
+		cout << "åˆå§‹åŒ–é¢„æµ‹åˆ†æè¡¨å¤±è´¥!" << endl;
 		isReady = false;
 		return;
 	}
-	//printAnalysisTable();		//´òÓ¡ Ô¤²â·ÖÎö±í
+	//printAnalysisTable();		//æ‰“å° é¢„æµ‹åˆ†æè¡¨
 	analysisResult.clear();
 }
 
@@ -68,33 +68,33 @@ LL_1_Analysis::~LL_1_Analysis()
 
 bool LL_1_Analysis::initFirstSet(Grammar& g)
 {
-	//1.¸ù¾İÎÄ·¨ÖĞµÄ·ÇÖÕ½á·û³õÊ¼»¯FirstSet
+	//1.æ ¹æ®æ–‡æ³•ä¸­çš„éç»ˆç»“ç¬¦åˆå§‹åŒ–FirstSet
 	list<Token>::iterator it;
 	for (it = g.mNonterminator.begin(); it != g.mNonterminator.end(); it++)
 	{
-		if (!existInFirstSet((*it).data))//²»´æÔÚ
+		if (!existInFirstSet((*it).data))//ä¸å­˜åœ¨
 		{
 			First f(*it);
 			firstSet.push_back(f);
 		}
 	}
-	//2. ÈôÓĞ²úÉúÊ½A->a¦Á,aÊôÓÚVt,Ôò°Ña¼ÓÈëµ½First(A)ÖĞ
+	//2. è‹¥æœ‰äº§ç”Ÿå¼A->aÎ±,aå±äºVt,åˆ™æŠŠaåŠ å…¥åˆ°First(A)ä¸­
 	list<Production>::iterator it_p;
 	for (it_p = g.mProduction.begin(); it_p != g.mProduction.end(); it_p++)
 	{
-		//ÅĞ¶Ï²úÉúÊ½ÓÒ²¿µÄµÚÒ»¸ö·ûºÅ
-		if (g.isTerminator((*(*it_p).right.begin()).data))//Èç¹ûÎªÖÕ½á·û£¬Ìí¼Ó
+		//åˆ¤æ–­äº§ç”Ÿå¼å³éƒ¨çš„ç¬¬ä¸€ä¸ªç¬¦å·
+		if (g.isTerminator((*(*it_p).right.begin()).data))//å¦‚æœä¸ºç»ˆç»“ç¬¦ï¼Œæ·»åŠ 
 		{
 			list<First>::iterator it_f = getFirstAsNonterminator((*it_p).left.data);
 			if (it_f == firstSet.end())
 			{
-				cout << "³ö´íÁË£¬ÔÚ´´½¨First¼¯Ê±£¬ÎŞ·ÇÖÕ½á·û" << endl;
+				cout << "å‡ºé”™äº†ï¼Œåœ¨åˆ›å»ºFirsté›†æ—¶ï¼Œæ— éç»ˆç»“ç¬¦" << endl;
 			}
 			else
 			{
 				if (!existATItemInATItemList((*it_f).mFirst, (*(*it_p).right.begin()).data))
 				{
-					//Ìí¼Óµ½ first¼¯ ÖĞ
+					//æ·»åŠ åˆ° firsté›† ä¸­
 					//Tok tok((*(*it_p).right.begin()).data, (*(*it_p).right.begin()).type);
 					AnalysisTableItem item(*(*it_p).right.begin(), *it_p);
 					(*it_f).mFirst.push_back(item);
@@ -102,21 +102,21 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 			}
 		}
 	}
-	//3. ÈôÓĞ²úÉúÊ½A->$,Ôò°Ñ$¼ÓÈëµ½First(A)ÖĞ
+	//3. è‹¥æœ‰äº§ç”Ÿå¼A->$,åˆ™æŠŠ$åŠ å…¥åˆ°First(A)ä¸­
 	for (it_p = g.mProduction.begin(); it_p != g.mProduction.end(); it_p++)
 	{
-		if ((*(*it_p).right.begin()).data == "$")//Èç¹ûÎª$£¬Ìí¼Ó
+		if ((*(*it_p).right.begin()).data == "$")//å¦‚æœä¸º$ï¼Œæ·»åŠ 
 		{
 			list<First>::iterator it_f = getFirstAsNonterminator((*it_p).left.data);
 			if (it_f == firstSet.end())
 			{
-				cout << "³ö´íÁË£¬ÔÚ´´½¨First¼¯Ê±£¬ÎŞ·ÇÖÕ½á·û" << endl;
+				cout << "å‡ºé”™äº†ï¼Œåœ¨åˆ›å»ºFirsté›†æ—¶ï¼Œæ— éç»ˆç»“ç¬¦" << endl;
 			}
 			else
 			{
 				if (!existATItemInATItemList((*it_f).mFirst, (*(*it_p).right.begin()).data))
 				{
-					//Ìí¼Óµ½ first¼¯ ÖĞ
+					//æ·»åŠ åˆ° firsté›† ä¸­
 					//Tok tok((*(*it_p).right.begin()).data, (*(*it_p).right.begin()).type);
 					AnalysisTableItem item(*(*it_p).right.begin(), *it_p);
 					(*it_f).mFirst.push_back(item);
@@ -124,34 +124,34 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 			}
 		}
 	}
-	//4. A->X¦Á
-	//5. A->X1 X2 ...Xk ¦Á
+	//4. A->XÎ±
+	//5. A->X1 X2 ...Xk Î±
 	list<Production>::reverse_iterator it_rp;
 	for (it_rp = g.mProduction.rbegin(); it_rp != g.mProduction.rend(); it_rp++)
 	{
 		Production prod = *it_rp;
-		Token left = prod.left;			//²úÉúÊ½ ×ó²¿
-		list<Token> right = prod.right;	//²úÉúÊ½ ÓÒ²¿
-		list<Token>::iterator it_r = right.begin();	//²úÉúÊ½ ÓÒ²¿ µü´ú
-		list<First>::iterator it_f = getFirstAsNonterminator(left.data);	//²úÉúÊ½×ó²¿ First¼¯
+		Token left = prod.left;			//äº§ç”Ÿå¼ å·¦éƒ¨
+		list<Token> right = prod.right;	//äº§ç”Ÿå¼ å³éƒ¨
+		list<Token>::iterator it_r = right.begin();	//äº§ç”Ÿå¼ å³éƒ¨ è¿­ä»£
+		list<First>::iterator it_f = getFirstAsNonterminator(left.data);	//äº§ç”Ÿå¼å·¦éƒ¨ Firsté›†
 		bool loop = true;
 		while (loop)
 		{
 			loop = false;
-			if (g.isNonterminator((*it_r).data))//ÊÇ·ñÎª·ÇÖÕ½á·û
+			if (g.isNonterminator((*it_r).data))//æ˜¯å¦ä¸ºéç»ˆç»“ç¬¦
 			{
-				//½«·ÇÖÕ½á·ûµÄFirst¼¯Ìí¼Óµ½ ×ó²¿µÄFirst¼¯
+				//å°†éç»ˆç»“ç¬¦çš„Firsté›†æ·»åŠ åˆ° å·¦éƒ¨çš„Firsté›†
 				list<First>::reverse_iterator it_first = firstSet.rbegin();
-				for (it_first = firstSet.rbegin(); it_first != firstSet.rend(); it_first++)	//±éÀúfirstSet
+				for (it_first = firstSet.rbegin(); it_first != firstSet.rend(); it_first++)	//éå†firstSet
 				{
-					if ((*it_first).mNonterminator.data == (*it_r).data)	//ÕÒµ½First¼¯
+					if ((*it_first).mNonterminator.data == (*it_r).data)	//æ‰¾åˆ°Firsté›†
 					{
 						list<AnalysisTableItem>::iterator terminator;
 						for (terminator = (*it_first).mFirst.begin(); terminator != (*it_first).mFirst.end(); terminator++)
 						{
-							if ((*terminator).mTerminator.data != "$")	//²»Îª$
+							if ((*terminator).mTerminator.data != "$")	//ä¸ä¸º$
 							{
-								if (!existATItemInATItemList((*it_f).mFirst, (*terminator).mTerminator.data))//²»´æÔÚ
+								if (!existATItemInATItemList((*it_f).mFirst, (*terminator).mTerminator.data))//ä¸å­˜åœ¨
 								{
 									AnalysisTableItem item((*terminator).mTerminator, prod);
 									(*it_f).mFirst.push_back(item);
@@ -162,13 +162,13 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 				}
 				//if (!existATItemInATItemList((*it_f).other, (*it_r).data) && (*it_r).data != (*it_f).Nonterminator.data)
 				//{
-				//	//²»´æÔÚÇÒ²»Îª×Ô¼º£¬·ÇÖÕ½á·ûÔÚotherÖĞÊÇ·ñ´æÔÚ
-				//	//Ìí¼Óother¼¯ÖĞ
+				//	//ä¸å­˜åœ¨ä¸”ä¸ä¸ºè‡ªå·±ï¼Œéç»ˆç»“ç¬¦åœ¨otherä¸­æ˜¯å¦å­˜åœ¨
+				//	//æ·»åŠ otheré›†ä¸­
 				//	//Tok tok((*it_r).data, (*it_r).type);
 				//	ATItem item((*it_r), *it_p);
 				//	(*it_f).other.push_back(item);
 				//}
-				//ÅĞ¶ÏÊÇ·ñ¼ÌĞøÑ­»·
+				//åˆ¤æ–­æ˜¯å¦ç»§ç»­å¾ªç¯
 				list<First>::iterator it_f_t = getFirstAsNonterminator((*it_r).data);
 				if (existATItemInATItemList((*it_f_t).mFirst, "$"))
 				{
@@ -176,7 +176,7 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 						loop = true;
 					else
 					{
-						if (!existATItemInATItemList((*it_f).mFirst, "$"))//²»´æÔÚ
+						if (!existATItemInATItemList((*it_f).mFirst, "$"))//ä¸å­˜åœ¨
 						{
 							Token nu("$", Delimiter_Dollar);
 							AnalysisTableItem item(nu, prod);
@@ -185,11 +185,11 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 					}
 				}
 			}
-			else if (g.isTerminator((*it_r).data))//ÊÇ·ñÎªÖÕ½á·û
+			else if (g.isTerminator((*it_r).data))//æ˜¯å¦ä¸ºç»ˆç»“ç¬¦
 			{
-				if ((*it_r).data != "$")	//²»Îª$
+				if ((*it_r).data != "$")	//ä¸ä¸º$
 				{
-					if (!existATItemInATItemList((*it_f).mFirst, (*it_r).data))//ÔÚFirst¼¯ÖĞ²»´æÔÚ
+					if (!existATItemInATItemList((*it_f).mFirst, (*it_r).data))//åœ¨Firsté›†ä¸­ä¸å­˜åœ¨
 					{
 						AnalysisTableItem item((*it_r), prod);
 						(*it_f).mFirst.push_back(item);
@@ -198,8 +198,8 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 			}
 		}
 	}
-#if false //2016-04-13 ¸ù¾İÉè¼ÆµÄÎÄ·¨¸üĞÂµÄËã·¨
-	//4. A->X¦Á
+#if false //2016-04-13 æ ¹æ®è®¾è®¡çš„æ–‡æ³•æ›´æ–°çš„ç®—æ³•
+	//4. A->XÎ±
 	bool loop = true;
 	for (it_p = g.Production.begin(); it_p != g.Production.end(); it_p++)
 	{
@@ -212,17 +212,17 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 		while (loop)
 		{
 			loop = false;
-			if (g.isNonterminator((*it_r).data))//ÊÇ·ñÎª·ÇÖÕ½á·û
+			if (g.isNonterminator((*it_r).data))//æ˜¯å¦ä¸ºéç»ˆç»“ç¬¦
 			{
 				if (!existATItemInATItemList((*it_f).other, (*it_r).data) && (*it_r).data != (*it_f).Nonterminator.data)
 				{
-					//²»´æÔÚÇÒ²»Îª×Ô¼º£¬·ÇÖÕ½á·ûÔÚotherÖĞÊÇ·ñ´æÔÚ
-					//Ìí¼Óother¼¯ÖĞ
+					//ä¸å­˜åœ¨ä¸”ä¸ä¸ºè‡ªå·±ï¼Œéç»ˆç»“ç¬¦åœ¨otherä¸­æ˜¯å¦å­˜åœ¨
+					//æ·»åŠ otheré›†ä¸­
 					//Tok tok((*it_r).data, (*it_r).type);
 					ATItem item((*it_r), *it_p);
 					(*it_f).other.push_back(item);
 				}
-				//ÅĞ¶ÏÊÇ·ñ¼ÌĞøÑ­»·
+				//åˆ¤æ–­æ˜¯å¦ç»§ç»­å¾ªç¯
 				list<First>::iterator it_f_t = getFirstAsNonterminator((*it_r).data);
 				if (existATItemInATItemList((*it_f_t).first, "$"))
 				{
@@ -233,17 +233,17 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 		}
 	}
 
-	//5.Ïû³ıFirst¼¯ÖĞotherµÄÄÚÈİ
-	//·½·¨£ºÏÈÕÒµ½otherÎª¿ÕµÄFirst¼¯£¬È¥Ìæ»»otherÖĞµÄ·ÇÖÕ½á·û
+	//5.æ¶ˆé™¤Firsté›†ä¸­otherçš„å†…å®¹
+	//æ–¹æ³•ï¼šå…ˆæ‰¾åˆ°otherä¸ºç©ºçš„Firsté›†ï¼Œå»æ›¿æ¢otherä¸­çš„éç»ˆç»“ç¬¦
 	loop = true;
 	unsigned int count = 0;
 	while (loop)
 	{
 		list<First>::iterator it_f;
-		//5.1.ÕÒµ½Ò»¸öother.size()Îª0µÄFirst¼¯
+		//5.1.æ‰¾åˆ°ä¸€ä¸ªother.size()ä¸º0çš„Firsté›†
 		for (it_f = firstSet.begin(); it_f != firstSet.end(); it_f++)
 		{
-			//5.2.ÅĞ¶Ïother.size()ÊÇ·ñÎª0
+			//5.2.åˆ¤æ–­other.size()æ˜¯å¦ä¸º0
 			if ((*it_f).other.size() == 0)
 			{
 				First first = *it_f;
@@ -255,17 +255,17 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 					{
 						if ((*it_t).Terminator.data == first.Nonterminator.data)
 						{
-							//cout << "Ìí¼Ó" << first.Nonterminator.data << endl;
+							//cout << "æ·»åŠ " << first.Nonterminator.data << endl;
 							list<ATItem>::iterator terminator;
 							for (terminator = (*it_f).first.begin(); terminator != (*it_f).first.end(); terminator++)
 							{
-								if (!existATItemInATItemList((*it_f1).first, (*terminator).Terminator.data))//²»´æÔÚ
+								if (!existATItemInATItemList((*it_f1).first, (*terminator).Terminator.data))//ä¸å­˜åœ¨
 								{
 									ATItem item((*terminator).Terminator, (*it_t).Production);
 									(*it_f1).first.push_back(item);
 								}
 							}
-							//É¾³ı
+							//åˆ é™¤
 							list<ATItem>::iterator tmp;
 							tmp = it_t;
 							it_t++;
@@ -279,9 +279,9 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 				}
 			}
 		}
-		//ÅĞ¶ÏÊÇ·ñ»¹Òª¼ÌĞø
+		//åˆ¤æ–­æ˜¯å¦è¿˜è¦ç»§ç»­
 		loop = false;
-		//Èç¹ûÑ­»·´ÎÊı´óÓÚ Nonterminator.size()µÄÆ½·½´Î£¬Á¢¼´½áÊø
+		//å¦‚æœå¾ªç¯æ¬¡æ•°å¤§äº Nonterminator.size()çš„å¹³æ–¹æ¬¡ï¼Œç«‹å³ç»“æŸ
 		if (++count > (g.Nonterminator.size()*g.Nonterminator.size()))
 		{
 			return false;
@@ -300,25 +300,25 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 	//cout << "count: " << count << endl;  
 #endif
 #if false
-	//5.Ïû³ıFirst¼¯ÖĞotherµÄÄÚÈİ
+	//5.æ¶ˆé™¤Firsté›†ä¸­otherçš„å†…å®¹
 	loop = true;
 	unsigned int count = 0;
 	while (loop)
 	{
 		list<First>::iterator it_f;
-		//1.ÕÒµ½otherÖĞĞèÒªÖÃ»»µÄ·ÇÖÕ½á·û
+		//1.æ‰¾åˆ°otherä¸­éœ€è¦ç½®æ¢çš„éç»ˆç»“ç¬¦
 		for (it_f = firstSet.begin(); it_f != firstSet.end(); it_f++)
 		{
 			list<Tok>::iterator it_t;
 			for (it_t = (*it_f).other.begin(); it_t != (*it_f).other.end(); )
 			{
 				string s = (*it_t).data;
-				list<First>::iterator f = getFirstAsNonterminator(s);//»ñµÃFirst¼¯
+				list<First>::iterator f = getFirstAsNonterminator(s);//è·å¾—Firsté›†
 				if (f != firstSet.end())
 				{
 					if ((*f).other.size() == 0)
 					{
-						//½«fÖĞµÄfirstÄÚµÄ³ı#ÒÔÍâµÄÖÕ½á·ûÈ«²¿Ìí¼Óµ½it_f
+						//å°†fä¸­çš„firstå†…çš„é™¤#ä»¥å¤–çš„ç»ˆç»“ç¬¦å…¨éƒ¨æ·»åŠ åˆ°it_f
 						/*list<Tok>::iterator tok;
 						for (tok = (*f).first.begin(); tok != (*f).first.end(); tok++)
 						{
@@ -355,7 +355,7 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 				}
 			}
 		}
-		//ÅĞ¶ÏÊÇ·ñ»¹Òª¼ÌĞø
+		//åˆ¤æ–­æ˜¯å¦è¿˜è¦ç»§ç»­
 		loop = false;
 		if (++count > (g.Nonterminator.size()*g.Nonterminator.size()))
 		{
@@ -379,14 +379,14 @@ bool LL_1_Analysis::initFirstSet(Grammar& g)
 
 bool LL_1_Analysis::initFollowSet(Grammar & g)
 {
-	//1.¸ù¾İÎÄ·¨ÖĞµÄ·ÇÖÕ½á·û³õÊ¼»¯Follow¼¯
+	//1.æ ¹æ®æ–‡æ³•ä¸­çš„éç»ˆç»“ç¬¦åˆå§‹åŒ–Followé›†
 	list<Token>::iterator it_t1;
 	for (it_t1 = g.mNonterminator.begin(); it_t1 != g.mNonterminator.end(); it_t1++)
 	{
 		Follow follow((*it_t1));
-		followSet.push_back(follow);	//½«ĞÂ½¨ÏîÌí¼Óµ½Follow¼¯ÖĞ
+		followSet.push_back(follow);	//å°†æ–°å»ºé¡¹æ·»åŠ åˆ°Followé›†ä¸­
 	}
-	//2.Èç¹ûAÊÇ¿ªÊ¼·ûºÅ£¬#ÊôÓÚFollow(A)
+	//2.å¦‚æœAæ˜¯å¼€å§‹ç¬¦å·ï¼Œ#å±äºFollow(A)
 	list<Follow>::iterator it_f2;
 	for (it_f2 = followSet.begin(); it_f2 != followSet.end(); it_f2++)
 	{
@@ -397,37 +397,37 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 			break;
 		}
 	}
-	//3.ÈôÓĞ²úÉúÊ½  B->--Aa-- ,aÊôÓÚVt,°Ña¼ÓÈëµ½Follow(A)ÖĞ
+	//3.è‹¥æœ‰äº§ç”Ÿå¼  B->--Aa-- ,aå±äºVt,æŠŠaåŠ å…¥åˆ°Follow(A)ä¸­
 	list<Production>::iterator it_p3;
 	for (it_p3 = g.mProduction.begin(); it_p3 != g.mProduction.end(); it_p3++)
 	{
-		Token tok_left = (*it_p3).left;			//²úÉúÊ½×ó²¿
-		list<Token>::iterator it_right = (*it_p3).right.begin();	//²úÉúÊ½ÓÒ²¿ µü´ú
-		list<Token>::iterator it_pre = it_right;			//²úÉúÊ½ÓÒ²¿ µü´ú
+		Token tok_left = (*it_p3).left;			//äº§ç”Ÿå¼å·¦éƒ¨
+		list<Token>::iterator it_right = (*it_p3).right.begin();	//äº§ç”Ÿå¼å³éƒ¨ è¿­ä»£
+		list<Token>::iterator it_pre = it_right;			//äº§ç”Ÿå¼å³éƒ¨ è¿­ä»£
 		if (it_right == (*it_p3).right.end())
 		{
 			continue;
 		}
 		for (it_right++; it_right != (*it_p3).right.end(); it_right++)
 		{
-			//Âú×ãÌõ¼ş preÎª·ÇÖÕ½á·û £¬rightÎªÖÕ½á·û
+			//æ»¡è¶³æ¡ä»¶ preä¸ºéç»ˆç»“ç¬¦ ï¼Œrightä¸ºç»ˆç»“ç¬¦
 			if (g.isNonterminator((*it_pre).data) && g.isTerminator((*it_right).data))
 			{
 				list<Follow>::iterator it_follow3 = getFollowAsNonterminator((*it_pre).data);
 				if (it_follow3 != followSet.end())
 				{
 					Token tok((*it_right).data, (*it_right).type);
-					(*it_follow3).mFollow.push_back(tok);	//Ìí¼Óµ½Ö¸¶¨·ÇÖÕ¼«·ûµÄFollow¼¯ÖĞ
+					(*it_follow3).mFollow.push_back(tok);	//æ·»åŠ åˆ°æŒ‡å®šéç»ˆæç¬¦çš„Followé›†ä¸­
 				}
 				else
 				{
-					cout << "¼ÓÔØFollow¼¯µÚ2²½³öÏÖ´íÎó" << endl;
+					cout << "åŠ è½½Followé›†ç¬¬2æ­¥å‡ºç°é”™è¯¯" << endl;
 				}
 			}
 			it_pre = it_right;
 		}
 	}
-	//4.ÈôÓĞ²úÉúÊ½ B->--AX--,XÊôÓÚVn,°ÑFirst(X--)ÖĞ·Ç$ÔªËØ¼ÓÈëFollow(A)ÖĞ
+	//4.è‹¥æœ‰äº§ç”Ÿå¼ B->--AX--,Xå±äºVn,æŠŠFirst(X--)ä¸­é$å…ƒç´ åŠ å…¥Follow(A)ä¸­
 	list<Production>::iterator it_p4;
 	for (it_p4 = g.mProduction.begin(); it_p4 != g.mProduction.end(); it_p4++)
 	{
@@ -439,10 +439,10 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 		}
 		for (it_right++; it_right != (*it_p4).right.end(); it_right++)
 		{
-			//Âú×ãÌõ¼ş preÎª·ÇÖÕ½á·û £¬rightÒ²Îª·ÇÖÕ½á·û
+			//æ»¡è¶³æ¡ä»¶ preä¸ºéç»ˆç»“ç¬¦ ï¼Œrightä¹Ÿä¸ºéç»ˆç»“ç¬¦
 			if (g.isNonterminator((*it_pre).data) && g.isNonterminator((*it_right).data))
 			{
-				bool isLoop = true;	//ÊÇ·ñÑ­»·
+				bool isLoop = true;	//æ˜¯å¦å¾ªç¯
 				list<Follow>::iterator it_follow4 = getFollowAsNonterminator((*it_pre).data);
 				list<Token>::iterator tmp_right = it_right;
 				while (isLoop)
@@ -452,7 +452,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 					list<AnalysisTableItem>::iterator it_tok4;
 					for (it_tok4 = (*it_first4).mFirst.begin(); it_tok4 != (*it_first4).mFirst.end(); it_tok4++)
 					{
-						if ((*it_tok4).mTerminator.data == "$")//ÊÇ·ñÎª$
+						if ((*it_tok4).mTerminator.data == "$")//æ˜¯å¦ä¸º$
 						{
 							isLoop = true;
 						}
@@ -475,7 +475,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 						else
 						{
 							isLoop = false;
-							if (g.isTerminator((*tmp_right).data))	//ÎªÖÕ½á·û
+							if (g.isTerminator((*tmp_right).data))	//ä¸ºç»ˆç»“ç¬¦
 							{
 								if (!existTokInTokList((*it_follow4).mFollow, (*tmp_right).data))
 								{
@@ -483,7 +483,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 									(*it_follow4).mFollow.push_back(tok);
 								}
 							}
-							else if (g.isNonterminator((*tmp_right).data))	//Îª·ÇÖÕ½á·û
+							else if (g.isNonterminator((*tmp_right).data))	//ä¸ºéç»ˆç»“ç¬¦
 							{
 								isLoop = true;
 							}
@@ -493,7 +493,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 			}
 		}
 	}//end for 4
-	 //5.Èô B->--A,»ò B->--AX ÇÒXÍÆµ¼³ö$£¬°ÑFollow(B)¼Óµ½Follow(A)ÖĞ
+	 //5.è‹¥ B->--A,æˆ– B->--AX ä¸”Xæ¨å¯¼å‡º$ï¼ŒæŠŠFollow(B)åŠ åˆ°Follow(A)ä¸­
 	list<Production>::iterator it_p5;
 	for (it_p5 = g.mProduction.begin(); it_p5 != g.mProduction.end(); it_p5++)
 	{
@@ -504,7 +504,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 		while (it_right != (*it_p5).right.rend() && isNonterm)
 		{
 			isNonterm = false;
-			if (g.isNonterminator((*it_right).data))//rightÎª·ÇÖÕ½á·û
+			if (g.isNonterminator((*it_right).data))//rightä¸ºéç»ˆç»“ç¬¦
 			{
 				bool isLoop = true;
 				list<Token>::reverse_iterator tmp = it_right;
@@ -513,16 +513,16 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 					isLoop = false;
 					list<Follow>::iterator follow = getFollowAsNonterminator((*tmp).data);
 					if (!existTokInTokList((*follow).mOther, left.data) && left.data != (*follow).mNonterminator.data)
-					{//²»´æÔÚÇÒ²»Îª×Ô¼º£¬ÔòÌí¼Óµ½otherÖĞ
+					{//ä¸å­˜åœ¨ä¸”ä¸ä¸ºè‡ªå·±ï¼Œåˆ™æ·»åŠ åˆ°otherä¸­
 						Token tok(left.data, left.type);
 						(*follow).mOther.push_back(tok);
 					}
 					list<First>::iterator first = getFirstAsNonterminator((*tmp).data);
-					if (existATItemInATItemList((*first).mFirst, (string&)"$"))// ÄÜ¹»ÍÆµ¼³ö$
+					if (existATItemInATItemList((*first).mFirst, (string&)"$"))// èƒ½å¤Ÿæ¨å¯¼å‡º$
 					{
 						tmp++;
 						if (tmp != (*it_p5).right.rend() && g.isNonterminator((*tmp).data))
-						{//µİÔöÓĞĞ§£¬²¢ÇÒÎª·ÇÖÕ½á·û
+						{//é€’å¢æœ‰æ•ˆï¼Œå¹¶ä¸”ä¸ºéç»ˆç»“ç¬¦
 							isLoop = true;
 						}
 					}
@@ -532,8 +532,8 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 			it_right++;
 		}
 	}
-	//6.Ïû³ıfollowÖĞµÄother
-	//Ñ­»·±éÀúother£¬Èç¹ûotherÖ¸ÏòµÄ·ÇÖÕ½á·ûotherÎª¿Õ£¬ÔòÖÃ»»
+	//6.æ¶ˆé™¤followä¸­çš„other
+	//å¾ªç¯éå†otherï¼Œå¦‚æœotheræŒ‡å‘çš„éç»ˆç»“ç¬¦otherä¸ºç©ºï¼Œåˆ™ç½®æ¢
 	bool loop = true;
 	unsigned int count = 0;
 	while (loop)
@@ -547,7 +547,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 				list<Follow>::iterator follow = this->getFollowAsNonterminator((*tok6).data);
 				if (0 == (*follow).mOther.size())
 				{
-					list<Token>::iterator it_t;//Ñ­»·Ìí¼Ó
+					list<Token>::iterator it_t;//å¾ªç¯æ·»åŠ 
 					for (it_t = (*follow).mFollow.begin(); it_t != (*follow).mFollow.end(); it_t++)
 					{
 						if (!existTokInTokList((*it_f6).mFollow, (*it_t).data))
@@ -556,7 +556,7 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 							(*it_f6).mFollow.push_back(tok);
 						}
 					}
-					//Êä³öotherÔªËØ
+					//è¾“å‡ºotherå…ƒç´ 
 					list<Token>::iterator tmp = tok6;
 					tok6++;
 					(*it_f6).mOther.erase(tmp);
@@ -568,12 +568,12 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 			}//end for tok6
 		}// end for it_f6
 		 // ******
-		 //Èç¹ûÑ­»·´ÎÊı´óÓÚ Nonterminator.size()µÄÆ½·½´Î£¬Á¢¼´½áÊø
+		 //å¦‚æœå¾ªç¯æ¬¡æ•°å¤§äº Nonterminator.size()çš„å¹³æ–¹æ¬¡ï¼Œç«‹å³ç»“æŸ
 		if (++count > (g.mNonterminator.size()*g.mNonterminator.size()))
 		{
 			return false;
 		}
-		//ÅĞ¶ÏÊÇ·ñ¼ÌĞøÑ­»·Ïû³ı
+		//åˆ¤æ–­æ˜¯å¦ç»§ç»­å¾ªç¯æ¶ˆé™¤
 		loop = false;
 		for (it_f6 = followSet.begin(); it_f6 != followSet.end(); it_f6++)
 		{
@@ -590,27 +590,27 @@ bool LL_1_Analysis::initFollowSet(Grammar & g)
 
 bool LL_1_Analysis::initAnalysisTable(Grammar& g)
 {
-	//1.¸ù¾İ·ÇÖÕ½á·û³õÊ¼»¯Ô¤²â·ÖÎö±í
+	//1.æ ¹æ®éç»ˆç»“ç¬¦åˆå§‹åŒ–é¢„æµ‹åˆ†æè¡¨
 	list<Token>::iterator it_t1;
 	for (it_t1 = g.mNonterminator.begin(); it_t1 != g.mNonterminator.end(); it_t1++)
 	{
 		AnalysisTable at(*it_t1);
 		analysisTable.push_back(at);
 	}
-	//2.¹¹ÔìÔ¤²â·ÖÎö±í
+	//2.æ„é€ é¢„æµ‹åˆ†æè¡¨
 	list<First>::iterator it_first;
-	//2.1±éÀú First¼¯
+	//2.1éå† Firsté›†
 	for (it_first = firstSet.begin(); it_first != firstSet.end(); it_first++)
 	{
-		Token nonterm = (*it_first).mNonterminator;	//First¼¯·ÇÖÕ¼«·û
+		Token nonterm = (*it_first).mNonterminator;	//Firsté›†éç»ˆæç¬¦
 		list<AnalysisTable>::iterator it_at = getAnalysisTableAsNonterminator(nonterm.data);
 		if (it_at == analysisTable.end())
 			return false;
 		list<AnalysisTableItem>::iterator it_item;
-		//2.2±éÀú ATItem
+		//2.2éå† ATItem
 		for (it_item = (*it_first).mFirst.begin(); it_item != (*it_first).mFirst.end(); it_item++)
 		{
-			//2.3 ÊÇÖÕ½á·û£¬³ı$Íâ£¬ÔòÌí¼Ó
+			//2.3 æ˜¯ç»ˆç»“ç¬¦ï¼Œé™¤$å¤–ï¼Œåˆ™æ·»åŠ 
 			if (g.isTerminator((*it_item).mTerminator.data))
 			{
 				AnalysisTableItem item((*it_item).mTerminator, (*it_item).mProduction);
@@ -619,7 +619,7 @@ bool LL_1_Analysis::initAnalysisTable(Grammar& g)
 		}
 		for (it_item = (*it_first).mFirst.begin(); it_item != (*it_first).mFirst.end(); it_item++)
 		{
-			//2.4 ÊÇ$£¬±éÀúFollow¼¯Ìí¼Ó
+			//2.4 æ˜¯$ï¼Œéå†Followé›†æ·»åŠ 
 			if ("$" == (*it_item).mTerminator.data)
 			{
 				list<Follow>::iterator it_follow = getFollowAsNonterminator(nonterm.data);
@@ -644,13 +644,13 @@ bool LL_1_Analysis::initAnalysisTable(Grammar& g)
 
 bool LL_1_Analysis::runGrammarAnalysis(list<Token>& list_t)
 {
-	//1.ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ½øĞĞÓï·¨·ÖÎö
+	//1.åˆ¤æ–­æ˜¯å¦å¯ä»¥è¿›è¡Œè¯­æ³•åˆ†æ
 	if (!isReady)
 	{
-		cout << "LL_1Ô¤²â·ÖÎöÈ±ÉÙÇ°ÌáÌõ¼ş£¬²»ÄÜ½øĞĞÓï·¨·ÖÎö!" << endl;
+		cout << "LL_1é¢„æµ‹åˆ†æç¼ºå°‘å‰ææ¡ä»¶ï¼Œä¸èƒ½è¿›è¡Œè¯­æ³•åˆ†æ!" << endl;
 		return false;
 	}
-	//2.ĞÂ½¨Ò»¸ölist£¬¿½±´listÔ­ÓĞµÄÄÚÈİ£¬²¢ÔÚlistµÄÄ©Î²Ìí¼Ó "#"
+	//2.æ–°å»ºä¸€ä¸ªlistï¼Œæ‹·è´liståŸæœ‰çš„å†…å®¹ï¼Œå¹¶åœ¨listçš„æœ«å°¾æ·»åŠ  "#"
 	list<Token> list_left;
 	for_each(list_t.begin(), list_t.end(), [&list_left](const Token& t) {
 		Token tt(t.data, t.type);
@@ -658,10 +658,10 @@ bool LL_1_Analysis::runGrammarAnalysis(list<Token>& list_t)
 	});
 	Token tok("#", Delimiter_Pound_Sign);
 	list_left.push_back(tok);
-	//´òÓ¡Token´®ÖĞµÄdata
+	//æ‰“å°Tokenä¸²ä¸­çš„data
 	//for_each(list_left.begin(), list_left.end(), [](const Token& t) { cout << t.data << " "; });
 	//cout << endl;
-	//3.ĞÂ½¨Ò»¸ö·ÖÎöÕ»£¬²¢³õÊ¼»¯
+	//3.æ–°å»ºä¸€ä¸ªåˆ†ææ ˆï¼Œå¹¶åˆå§‹åŒ–
 	stack<Token> analysisStack;
 	analysisStack.push(tok);
 	tok = g.mStarter;
@@ -671,39 +671,39 @@ bool LL_1_Analysis::runGrammarAnalysis(list<Token>& list_t)
 	string analysisStackData;
 	while (true)
 	{
-		if (!analysisStack.empty())	//stack²»Îª¿Õ
+		if (!analysisStack.empty())	//stackä¸ä¸ºç©º
 		{
 			analysisStackData = getTokStackData(analysisStack);
 			Token X = analysisStack.top();
 			analysisStack.pop();
-			if (g.isTerminator(X.type))	//ÊÇÖÕ½á·û
+			if (g.isTerminator(X.type))	//æ˜¯ç»ˆç»“ç¬¦
 			{
-				if (X.type == a.type)//¶ÁÈëÏÂÒ»¸ö·ûºÅµ½aÖĞ
+				if (X.type == a.type)//è¯»å…¥ä¸‹ä¸€ä¸ªç¬¦å·åˆ°aä¸­
 				{
 					LL_1_AnalysisItem item(analysisResult.size() + 1, analysisStackData, list_left, a.data.append("match"));
 					analysisResult.push_back(item);
-					//cout << a.data << "Æ¥Åä" << endl;
+					//cout << a.data << "åŒ¹é…" << endl;
 					list_left.pop_front();
 					a = list_left.front();
 				}
 				else
-				{	//±¨´í
+				{	//æŠ¥é”™
 					return false;
 				}
 			}
 			else
 			{
-				if (X.type == Delimiter_Pound_Sign)	//ÊÇ·ñ "#"
+				if (X.type == Delimiter_Pound_Sign)	//æ˜¯å¦ "#"
 				{
 					if (X.type == a.type)
-					{	//·ÖÎö½áÊø
+					{	//åˆ†æç»“æŸ
 						LL_1_AnalysisItem item(analysisResult.size() + 1, analysisStackData, list_left, string().append("accept"));
 						analysisResult.push_back(item);
-						//cout << "½ÓÊÜ" << endl;
+						//cout << "æ¥å—" << endl;
 						return true;
 					}
 					else
-					{	//±¨´í
+					{	//æŠ¥é”™
 						return false;
 					}
 				}
@@ -715,7 +715,7 @@ bool LL_1_Analysis::runGrammarAnalysis(list<Token>& list_t)
 						list<AnalysisTableItem>::iterator it_item = getATItemAsNonterminator(it_at, a.type);
 						list<Token>::reverse_iterator it_tok;
 						it_tok = (*it_item).mProduction.right.rbegin();
-						if ((*it_tok).data != "$")	//ÈôÓÒ²¿·ûºÅÎª$£¬ÔòÒâÎ¶×ÅÊ²Ã´Ò²²»Ñ¹ÈëÕ»
+						if ((*it_tok).data != "$")	//è‹¥å³éƒ¨ç¬¦å·ä¸º$ï¼Œåˆ™æ„å‘³ç€ä»€ä¹ˆä¹Ÿä¸å‹å…¥æ ˆ
 						{
 							for (; it_tok != (*it_item).mProduction.right.rend(); it_tok++)
 							{
@@ -728,14 +728,14 @@ bool LL_1_Analysis::runGrammarAnalysis(list<Token>& list_t)
 						//(*it_item).mProduction.printProdLine();
 					}
 					else
-					{	//±¨´í
+					{	//æŠ¥é”™
 						return false;
 					}
 				}
 			}
 		}
 		else
-		{	//Èç¹ûÃ»ÓĞ·ÖÎö½áÊø£¬·ÖÎöÕ»¾Í¿ÕÁË£¬Ôò±¨´í
+		{	//å¦‚æœæ²¡æœ‰åˆ†æç»“æŸï¼Œåˆ†ææ ˆå°±ç©ºäº†ï¼Œåˆ™æŠ¥é”™
 			return false;
 		}
 	}
@@ -745,7 +745,7 @@ bool LL_1_Analysis::runGrammarAnalysis(list<Token>& list_t)
 bool LL_1_Analysis::writeAnalysisTableBinary(const string & at_name)
 {
 	FileOperation<AnalysisTable> fo;
-	if (fo.openFile(at_name))	//´ò¿ªÎÄ¼ş³É¹¦
+	if (fo.openFile(at_name))	//æ‰“å¼€æ–‡ä»¶æˆåŠŸ
 	{
 		list<AnalysisTable>::iterator it = analysisTable.begin();
 		for (; it != analysisTable.end(); it++)
@@ -991,7 +991,7 @@ void LL_1_Analysis::saveAnalysisResultToFile(ofstream& fout)
 	unsigned int leftString_len = 0;
 	unsigned int deduceProd_len = 0;
 	list<LL_1_AnalysisItem>::iterator it;
-	//¼ÆËãÃ¿¸öÊôĞÔµÄ×î´óÊä³ö³¤¶È
+	//è®¡ç®—æ¯ä¸ªå±æ€§çš„æœ€å¤§è¾“å‡ºé•¿åº¦
 	for (it = analysisResult.begin(); it != analysisResult.end(); it++)
 	{
 		if (id_len < getIntLength((*it).id))

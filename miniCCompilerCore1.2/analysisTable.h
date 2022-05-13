@@ -6,8 +6,8 @@ using namespace std;
 class AnalysisTable
 {
 public:
-	Token mNonterminator;		//非终结符
-	list<AnalysisTableItem> mItemList;	//分析表项链表
+	Token mNonterminator;		//闈炵粓缁撶
+	list<AnalysisTableItem> mItemList;	//鍒嗘瀽琛ㄩ」閾捐〃
 public:
 	AnalysisTable();
 	AnalysisTable(Token& token);

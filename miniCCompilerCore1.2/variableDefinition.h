@@ -1,20 +1,20 @@
 #pragma once
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º ±äÁ¿¶¨Òå
-* Àà Ãû£º VariableDefinition    extend Node
+* åŠŸ èƒ½ï¼š å˜é‡å®šä¹‰
+* ç±» åï¼š VariableDefinition    extend Node
 *
-* Ver  2016-06-10  ÕÅÈü  ¶¨Òå±äÁ¿¶¨ÒåÀà
-                         °üº¬£º´æ´¢Àà±ð¡¢Êý¾ÝÀàÐÍ¡¢±äÁ¿±íÁÐ¡¢×÷ÓÃÓò
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver  2016-06-10  å¼ èµ›  å®šä¹‰å˜é‡å®šä¹‰ç±»
+                         åŒ…å«ï¼šå­˜å‚¨ç±»åˆ«ã€æ•°æ®ç±»åž‹ã€å˜é‡è¡¨åˆ—ã€ä½œç”¨åŸŸ
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõÐÅÏ¢Îª±¾¹«Ë¾»úÃÜÐÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈý·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓÐ£º*****ÓÐÏÞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼Žã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 #include <iostream>
 #include <list>
@@ -27,10 +27,10 @@ using namespace std;
 class VariableDefinition :public Node
 {
 public:
-	int memoryType;						//´æ´¢Àà±ð
-	int dataType;						//Êý¾ÝÀàÐÍ
-	list<VariableList> variableList;	//±äÁ¿±íÁÐ
-	string actionScope;					//×÷ÓÃÓò
+	int memoryType;						//å­˜å‚¨ç±»åˆ«
+	int dataType;						//æ•°æ®ç±»åž‹
+	list<VariableList> variableList;	//å˜é‡è¡¨åˆ—
+	string actionScope;					//ä½œç”¨åŸŸ
 public:
 	VariableDefinition();
 	VariableDefinition(GrammarTreeTmp& tmp);

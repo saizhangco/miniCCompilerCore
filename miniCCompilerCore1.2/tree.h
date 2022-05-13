@@ -1,20 +1,20 @@
 #pragma once
 
 /**
-* ÃüÃû¿Õ¼ä: None
+* å‘½åç©ºé—´: None
 *
-* ¹¦ ÄÜ£º ¶¨ÒåÊ÷ÐÍ½á¹¹
-* Àà Ãû£º Tree
+* åŠŸ èƒ½ï¼š å®šä¹‰æ ‘åž‹ç»“æž„
+* ç±» åï¼š Tree
 *
-* Ver 2016-06-10 ÕÅÈü ¶¨ÒåÀà¡¢ÊôÐÔºÍ·½·¨
-* ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-* V0.02 2016-06-10 ÕÅÈü 2°æ
+* Ver 2016-06-10 å¼ èµ› å®šä¹‰ç±»ã€å±žæ€§å’Œæ–¹æ³•
+* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+* V0.02 2016-06-10 å¼ èµ› 2ç‰ˆ
 *
 * Copyright (c) 2015 Lir Corporation. All rights reserved.
-*©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-*©¦¡¡´Ë¼¼ÊõÐÅÏ¢Îª±¾¹«Ë¾»úÃÜÐÅÏ¢£¬Î´¾­±¾¹«Ë¾ÊéÃæÍ¬Òâ½ûÖ¹ÏòµÚÈý·½ÅûÂ¶£®¡¡©¦
-*©¦¡¡°æÈ¨ËùÓÐ£º*****ÓÐÏÞ¹«Ë¾ ¡¡¡¡¡¡              ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡©¦
-*©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+*â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+*â”‚ã€€æ­¤æŠ€æœ¯ä¿¡æ¯ä¸ºæœ¬å…¬å¸æœºå¯†ä¿¡æ¯ï¼Œæœªç»æœ¬å…¬å¸ä¹¦é¢åŒæ„ç¦æ­¢å‘ç¬¬ä¸‰æ–¹æŠ«éœ²ï¼Žã€€â”‚
+*â”‚ã€€ç‰ˆæƒæ‰€æœ‰ï¼š*****æœ‰é™å…¬å¸ ã€€ã€€ã€€              ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â”‚
+*â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 
 #include <iostream>
@@ -30,6 +30,6 @@ public:
 public:
 	Tree();
 	~Tree();
-	void printTree(Node* node);	//ÔÚ¿ØÖÆÌ¨´òÓ¡TreeÐÍ½á¹¹ÄÚÈÝ
-	void deleteNodes(Node* node);	//É¾³ýÊ÷ÐÎÊý¾Ý½á¹¹ÖÐµÄËùÓÐ½áµã
+	void printTree(Node* node);	//åœ¨æŽ§åˆ¶å°æ‰“å°Treeåž‹ç»“æž„å†…å®¹
+	void deleteNodes(Node* node);	//åˆ é™¤æ ‘å½¢æ•°æ®ç»“æž„ä¸­çš„æ‰€æœ‰ç»“ç‚¹
 };

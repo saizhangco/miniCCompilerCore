@@ -16,24 +16,24 @@ using namespace std;
 class LL_1_Analysis
 {
 public:
-	list<First> firstSet;	//First¼¯
-	list<Follow> followSet;	//Follow¼¯
-	list<AnalysisTable> analysisTable;//Ô¤²â·ÖÎö±í
-	list<LL_1_AnalysisItem> analysisResult;	//Ô¤²â·ÖÎö½á¹û
+	list<First> firstSet;	//Firsté›†
+	list<Follow> followSet;	//Followé›†
+	list<AnalysisTable> analysisTable;//é¢„æµ‹åˆ†æè¡¨
+	list<LL_1_AnalysisItem> analysisResult;	//é¢„æµ‹åˆ†æç»“æœ
 	Grammar g;
-	bool isReady;			//ÊÇ·ñ¿ÉÒÔ½øĞĞÓï·¨·ÖÎö
+	bool isReady;			//æ˜¯å¦å¯ä»¥è¿›è¡Œè¯­æ³•åˆ†æ
 public:
-	LL_1_Analysis();	//ÎŞ²Î¹¹Ôìº¯Êı
+	LL_1_Analysis();	//æ— å‚æ„é€ å‡½æ•°
 	LL_1_Analysis(const string& fileName);
-	~LL_1_Analysis();	//Îö¹¹º¯Êı
-	bool initFirstSet(Grammar& g);		//Í¨¹ıÎÄ·¨³õÊ¼»¯First¼¯
-	bool initFollowSet(Grammar& g);	//Í¨¹ıÎÄ·¨³õÊ¼»¯Follow¼¯
-	bool initAnalysisTable(Grammar& g);	//Í¨¹ıFirst¼¯ºÍFollow¼¯³õÊ¼»¯Ô¤²â·ÖÎö±í
-	bool runGrammarAnalysis(list<Token>& list);	//Ê¹ÓÃLL_1Ô¤²â·ÖÎö±í½øĞĞÓï·¨·ÖÎö
-	bool writeAnalysisTableBinary(const string& at_name);	//½«AnalysisTableÒÔ¶ş½øÖÆµÄ·½Ê½±£´æµ½ÎÄ¼şÖĞ
-	bool readAnalysisTableBinary(const string& at_name);	//½«AnalysisTableÒÔ¶ş½øÖÆµÄ·½Ê½´ÓÎÄ¼şÖĞ¶ÁÈ¡
+	~LL_1_Analysis();	//ææ„å‡½æ•°
+	bool initFirstSet(Grammar& g);		//é€šè¿‡æ–‡æ³•åˆå§‹åŒ–Firsté›†
+	bool initFollowSet(Grammar& g);	//é€šè¿‡æ–‡æ³•åˆå§‹åŒ–Followé›†
+	bool initAnalysisTable(Grammar& g);	//é€šè¿‡Firsté›†å’ŒFollowé›†åˆå§‹åŒ–é¢„æµ‹åˆ†æè¡¨
+	bool runGrammarAnalysis(list<Token>& list);	//ä½¿ç”¨LL_1é¢„æµ‹åˆ†æè¡¨è¿›è¡Œè¯­æ³•åˆ†æ
+	bool writeAnalysisTableBinary(const string& at_name);	//å°†AnalysisTableä»¥äºŒè¿›åˆ¶çš„æ–¹å¼ä¿å­˜åˆ°æ–‡ä»¶ä¸­
+	bool readAnalysisTableBinary(const string& at_name);	//å°†AnalysisTableä»¥äºŒè¿›åˆ¶çš„æ–¹å¼ä»æ–‡ä»¶ä¸­è¯»å–
 
-	bool existInListTok(list<Token>& tok, string& s) const;	//ÔÚlist<Tok>ÊÇ·ñ´æÔÚ
+	bool existInListTok(list<Token>& tok, string& s) const;	//åœ¨list<Tok>æ˜¯å¦å­˜åœ¨
 
 	bool existInFirstSet(string& d);
 	bool existInFollowSet(string& d);
@@ -43,12 +43,12 @@ public:
 	bool existATItemInATItemList(list<AnalysisTableItem>& item, const char* s);
 	bool existATItemInATItemList(list<AnalysisTableItem>& item, int& t);
 
-	void printFirstSet();	//´òÓ¡First¼¯
-	void printFollowSet();	//´òÓ¡Follow¼¯
-	void printFirstSetFormat_1();	//°´ÕÕ¸ñÊ½Ò»´òÓ¡First¼¯
-	void printFollowSetFormat_1();	//°´ÕÕ¸ñÊ½Ò»´òÓ¡Follow¼¯
-	void printAnalysisTable();	//´òÓ¡Ô¤²â·ÖÎö±í
-	void printAnalysisResult();	//´òÓ¡Ô¤²â·ÖÎö½á¹û
+	void printFirstSet();	//æ‰“å°Firsté›†
+	void printFollowSet();	//æ‰“å°Followé›†
+	void printFirstSetFormat_1();	//æŒ‰ç…§æ ¼å¼ä¸€æ‰“å°Firsté›†
+	void printFollowSetFormat_1();	//æŒ‰ç…§æ ¼å¼ä¸€æ‰“å°Followé›†
+	void printAnalysisTable();	//æ‰“å°é¢„æµ‹åˆ†æè¡¨
+	void printAnalysisResult();	//æ‰“å°é¢„æµ‹åˆ†æç»“æœ
 	void saveAnalysisResultToFile(ofstream& fout);
 private:
 	list<First>::iterator getFirstAsNonterminator(string& s);

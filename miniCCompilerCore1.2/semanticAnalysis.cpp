@@ -8,7 +8,7 @@
 
 SemanticAnalysis::SemanticAnalysis()
 {
-	//cout << "¿ªÊ¼½øĞĞÓïÒå·ÖÎö:" << endl;
+	//cout << "å¼€å§‹è¿›è¡Œè¯­ä¹‰åˆ†æ:" << endl;
 	mFourElementTypeList.clear();
 	mVariableDefinitionList.clear();
 	mFunctionDefinitionList.clear();
@@ -26,11 +26,11 @@ SemanticAnalysis::~SemanticAnalysis()
 }
 //-----------------------------------------------------------------------------------------------------------
 /*
-	ÓïÒå·ÖÎöÖ´ĞĞº¯Êı
+	è¯­ä¹‰åˆ†ææ‰§è¡Œå‡½æ•°
 */
 bool SemanticAnalysis::runSemanticAnalysis(list<Token>& TokenenList)
 {
-	/*cout << "´ı·ÖÎöµÄTokenen´®:" << endl;
+	/*cout << "å¾…åˆ†æçš„Tokenenä¸²:" << endl;
 	list<Token>::iterator it;
 	for (it = TokenenList.begin(); it != TokenenList.end(); it++)
 	{
@@ -51,31 +51,31 @@ bool SemanticAnalysis::runSemanticAnalysis(list<Token>& TokenenList)
 	
 	if (!semanticAnalysisS(itAnalysisCur, TokenenList))
 	{
-		//cout << "Íê³ÉÓïÒå·ÖÎö" << endl;
+		//cout << "å®Œæˆè¯­ä¹‰åˆ†æ" << endl;
 		return false;
 	}
-	/* ´òÓ¡ÓïÒå·ÖÎö¹ı³Ì
-	printFourElementTypeList();	//´òÓ¡ÖĞ¼ä´úÂë£¨ËÄÔªÊ½±íÊ¾£©
+	/* æ‰“å°è¯­ä¹‰åˆ†æè¿‡ç¨‹
+	printFourElementTypeList();	//æ‰“å°ä¸­é—´ä»£ç ï¼ˆå››å…ƒå¼è¡¨ç¤ºï¼‰
 	cout << "--------------------" << endl;
-	cout << "´íÎóĞÅÏ¢" << endl;
-	printErrorInfo();	//´òÓ¡´íÎóĞÅÏ¢
+	cout << "é”™è¯¯ä¿¡æ¯" << endl;
+	printErrorInfo();	//æ‰“å°é”™è¯¯ä¿¡æ¯
 	cout << "--------------------" << endl;
-	cout << "ÓÃ»§¶¨Òå±äÁ¿" << endl;
+	cout << "ç”¨æˆ·å®šä¹‰å˜é‡" << endl;
 	list<VariableDefinition>::iterator it = mVariableDefinitionList.begin();
 	for (; it != mVariableDefinitionList.end(); it++)
 	{
 		(*it).printContent();
 	}
 	cout << "--------------------" << endl;
-	cout << "º¯ÊıÉùÃ÷»òÊµÏÖ" << endl;
+	cout << "å‡½æ•°å£°æ˜æˆ–å®ç°" << endl;
 	list<FunctionDefinition>::iterator it1 = mFunctionDefinitionList.begin();
 	for (; it1 != mFunctionDefinitionList.end(); it1++)
 	{
 		(*it1).printContent();
 	}
 	*/
-	//ÅĞ¶Ï³ÌĞòÊÇ·ñÈ±ÉÙº¯ÊıÈë¿Ú
-	bool isExistProgramEnter = false;	//ÊÇ·ñ´æÔÚº¯ÊıÈë¿Ú
+	//åˆ¤æ–­ç¨‹åºæ˜¯å¦ç¼ºå°‘å‡½æ•°å…¥å£
+	bool isExistProgramEnter = false;	//æ˜¯å¦å­˜åœ¨å‡½æ•°å…¥å£
 	list<FunctionDefinition>::iterator itFunctionDefinitionList = mFunctionDefinitionList.begin();
 	for (; itFunctionDefinitionList != mFunctionDefinitionList.end(); itFunctionDefinitionList++)
 	{
@@ -87,11 +87,11 @@ bool SemanticAnalysis::runSemanticAnalysis(list<Token>& TokenenList)
 	}
 	if (!isExistProgramEnter)
 	{
-		mErrorInfo.push_back("³ÌĞòÈ±ÉÙº¯ÊıÈë¿Ú");
+		mErrorInfo.push_back("ç¨‹åºç¼ºå°‘å‡½æ•°å…¥å£");
 	}
-	//½«ËÄÔªÊ½±£´æÔÚÎÄ¼şÖĞ
+	//å°†å››å…ƒå¼ä¿å­˜åœ¨æ–‡ä»¶ä¸­
 	saveSemanticInfoToFile();
-	//Êä³ö´íÎóĞÅÏ¢
+	//è¾“å‡ºé”™è¯¯ä¿¡æ¯
 	list<string>::iterator itErrorInfo = mErrorInfo.begin();
 	for (; itErrorInfo != mErrorInfo.end(); itErrorInfo++)
 	{
@@ -116,7 +116,7 @@ void SemanticAnalysis::printFourElementTypeList()
 }
 void SemanticAnalysis::printErrorInfo()
 {
-	cout << "ÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << mErrorInfo.size() << "´íÎó" << endl;
+	cout << "è¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << mErrorInfo.size() << "é”™è¯¯" << endl;
 	list<string>::iterator it = mErrorInfo.begin();
 	for (; it != mErrorInfo.end(); it++)
 	{
@@ -137,20 +137,20 @@ string SemanticAnalysis::clearUpString(string str)
 	//cout << ret << endl;
 	return ret;
 }
-//½«ÖĞ¼ä´úÂë±£´æÔÚÎÄ¼şÖĞ
+//å°†ä¸­é—´ä»£ç ä¿å­˜åœ¨æ–‡ä»¶ä¸­
 void SemanticAnalysis::saveSemanticInfoToFile()
 {
 	ofstream outFile("analysis\\semanticAnalysis.txt");
-	//ÓïÒå·ÖÎö½á¹û
+	//è¯­ä¹‰åˆ†æç»“æœ
 	outFile << "********************************************" << endl;
-	outFile << "*            ÓïÒå·ÖÎö¼°ÖĞ¼ä´úÂë            *" << endl;
+	outFile << "*            è¯­ä¹‰åˆ†æåŠä¸­é—´ä»£ç             *" << endl;
 	outFile << "********************************************" << endl;
 
-	//±£´æ´íÎóĞÅÏ¢
+	//ä¿å­˜é”™è¯¯ä¿¡æ¯
 	outFile << endl;
 	outFile << "--------------------------------------------" << endl;
-	outFile << "´íÎóĞÅÏ¢" << endl;
-	outFile << "ÓïÒå·ÖÎö½áÊø£¬´æÔÚ" << mErrorInfo.size() << "´íÎó" << endl;
+	outFile << "é”™è¯¯ä¿¡æ¯" << endl;
+	outFile << "è¯­ä¹‰åˆ†æç»“æŸï¼Œå­˜åœ¨" << mErrorInfo.size() << "é”™è¯¯" << endl;
 	list<string>::iterator it = mErrorInfo.begin();
 	for (; it != mErrorInfo.end(); it++)
 	{
@@ -158,10 +158,10 @@ void SemanticAnalysis::saveSemanticInfoToFile()
 	}
 	outFile << "--------------------------------------------" << endl;
 
-	//±äÁ¿¶¨Òå
+	//å˜é‡å®šä¹‰
 	outFile << endl;
 	outFile << "--------------------------------------------" << endl;
-	outFile << "±äÁ¿¶¨Òå" << endl;
+	outFile << "å˜é‡å®šä¹‰" << endl;
 	list<VariableDefinition>::iterator it1 = mVariableDefinitionList.begin();
 	for (; it1 != mVariableDefinitionList.end(); it1++)
 	{
@@ -169,10 +169,10 @@ void SemanticAnalysis::saveSemanticInfoToFile()
 	}
 	outFile << "--------------------------------------------" << endl;
 
-	//º¯ÊıÉùÃ÷»òÊµÏÖ
+	//å‡½æ•°å£°æ˜æˆ–å®ç°
 	outFile << endl;
 	outFile << "--------------------------------------------" << endl;
-	outFile << "º¯ÊıÉùÃ÷»òÊµÏÖ" << endl;
+	outFile << "å‡½æ•°å£°æ˜æˆ–å®ç°" << endl;
 	list<FunctionDefinition>::iterator it2 = mFunctionDefinitionList.begin();
 	for (; it2 != mFunctionDefinitionList.end(); it2++)
 	{
@@ -180,10 +180,10 @@ void SemanticAnalysis::saveSemanticInfoToFile()
 	}
 	outFile << "--------------------------------------------" << endl;
 
-	//ÖĞ¼ä´úÂë
+	//ä¸­é—´ä»£ç 
 	outFile << endl;
 	outFile << "--------------------------------------------" << endl;
-	outFile << "ÖĞ¼ä´úÂë[ËÄÔªÊ½ĞÎÊ½]" << endl;
+	outFile << "ä¸­é—´ä»£ç [å››å…ƒå¼å½¢å¼]" << endl;
 	list<FourElementType>::iterator it3;
 	for (it3 = mFourElementTypeList.begin(); it3 != mFourElementTypeList.end(); it3++)
 	{
@@ -196,7 +196,7 @@ void SemanticAnalysis::saveSemanticInfoToFile()
 }
 void SemanticAnalysis::modify_end_c(unsigned int pId, unsigned int c)
 {	
-	//½«×îºóµÄÖ¸ÏòĞŞ¸ÄÎªc
+	//å°†æœ€åçš„æŒ‡å‘ä¿®æ”¹ä¸ºc
 	unsigned int tempId = pId;
 	list<FourElementType>::iterator it = this->getFourElementType(tempId);
 	while (tempId > 0 && tempId <= mFourElementTypeList.size())
@@ -311,7 +311,7 @@ int SemanticAnalysis::stringConvertNumberHexadecimal(string & str)
 	return result;
 }
 //---------------------------------------------------------------------------------------------------
-// È«¾Ö±äÁ¿¶¨Òå¡¢º¯ÊıÉùÃ÷¡¢º¯ÊıÊµÏÖ
+// å…¨å±€å˜é‡å®šä¹‰ã€å‡½æ•°å£°æ˜ã€å‡½æ•°å®ç°
 //---------------------------------------------------------------------------------------------------
 /*
 	S -> $
@@ -321,7 +321,7 @@ bool SemanticAnalysis::semanticAnalysisS(list<Token>::iterator & itAnalysisCur, 
 {
 	if (itAnalysisCur == TokenenList.end())
 	{
-		//³ÌĞò½áÊø
+		//ç¨‹åºç»“æŸ
 		FourElementTypeItem nullId;
 		FourElementType four(mFourElementTypeList.size() + 1, Sys, nullId, nullId, nullId);
 		mFourElementTypeList.push_back(four);
@@ -329,12 +329,12 @@ bool SemanticAnalysis::semanticAnalysisS(list<Token>::iterator & itAnalysisCur, 
 	}
 	else
 	{
-		//·ÖÎö F
+		//åˆ†æ F
 		if (!semanticAnalysisF(itAnalysisCur, TokenenList))
 		{
 			return false;
 		}
-		//·ÖÎö S
+		//åˆ†æ S
 		if (!semanticAnalysisS(itAnalysisCur, TokenenList))
 		{
 			return false;
@@ -348,21 +348,21 @@ bool SemanticAnalysis::semanticAnalysisS(list<Token>::iterator & itAnalysisCur, 
 bool SemanticAnalysis::semanticAnalysisF(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
 	GrammarTreeTmp grammarTreeTmp;
-	// ·ÖÎö MT1
+	// åˆ†æ MT1
 	grammarTreeTmp.memoryType = Keyword_extern;
 	if (!semanticAnalysisMT1(itAnalysisCur, TokenenList, grammarTreeTmp.memoryType))
 	{
-		//·ÖÎöÊ§°Ü
+		//åˆ†æå¤±è´¥
 		return false;
 	}
-	// ·ÖÎö DT
+	// åˆ†æ DT
 	grammarTreeTmp.dataType = Error;
 	if (!semanticAnalysisDT(itAnalysisCur, TokenenList, grammarTreeTmp.dataType))
 	{
 		return false;
 	}
 	//grammarTreeTmp.dataType = dataType;
-	// ·ÖÎö F1
+	// åˆ†æ F1
 	int funcEnter = mFourElementTypeList.size() + 1;
 	if (!semanticAnalysisF1(itAnalysisCur, TokenenList, grammarTreeTmp))
 	{
@@ -378,7 +378,7 @@ bool SemanticAnalysis::semanticAnalysisF(list<Token>::iterator & itAnalysisCur, 
 		mVariableDefinitionList.push_back(vd);
 		break;
 	}
-	case 2:	//º¯ÊıÉùÃ÷
+	case 2:	//å‡½æ•°å£°æ˜
 	{
 		//FunctionDefinition *fd = new FunctionDefinition(grammarTreeTmp);
 		//node->addChildToRoot(fd);
@@ -386,12 +386,12 @@ bool SemanticAnalysis::semanticAnalysisF(list<Token>::iterator & itAnalysisCur, 
 		fd.isComeTrue = false;
 		if (!isMatchFunctionComeTrueAndDefine(fd))
 		{
-			//²»´æÔÚ
+			//ä¸å­˜åœ¨
 			mFunctionDefinitionList.push_back(fd);
 		}
 		break;
 	}
-	case 3:	//º¯ÊıÊµÏÖ
+	case 3:	//å‡½æ•°å®ç°
 	{
 		//FunctionDeclaration *fd = new FunctionDeclaration(grammarTreeTmp);
 		//node->addChildToRoot(fd);
@@ -400,7 +400,7 @@ bool SemanticAnalysis::semanticAnalysisF(list<Token>::iterator & itAnalysisCur, 
 		fd.funcEnter = funcEnter;
 		if (!isMatchFunctionComeTrueAndDefine(fd))
 		{
-			//²»´æÔÚ
+			//ä¸å­˜åœ¨
 			mFunctionDefinitionList.push_back(fd);
 		}
 		break;
@@ -417,48 +417,48 @@ bool SemanticAnalysis::semanticAnalysisF(list<Token>::iterator & itAnalysisCur, 
 bool SemanticAnalysis::semanticAnalysisF1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, GrammarTreeTmp& tmp)
 {
 	string functionName = (*itAnalysisCur).data;
-	// ·ÖÎö ID ºÍ ×óĞ¡À¨ºÅ
+	// åˆ†æ ID å’Œ å·¦å°æ‹¬å·
 	if ((*itAnalysisCur).type == Identifier && (++itAnalysisCur) != TokenenList.end() &&
-		(*itAnalysisCur).type == Delimiter_Left_Small_Bracket)	// id ( ×óĞ¡À¨ºÅ
+		(*itAnalysisCur).type == Delimiter_Left_Small_Bracket)	// id ( å·¦å°æ‹¬å·
 	{
-		curFunctionName = functionName;		//µ±Ç°·ÖÎöµÄº¯ÊıÃû
-		tmp.functionName = functionName;	//½«º¯ÊıÃû¼ÓÔØµ½tmpÖĞÈ¥
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-							//·ÖÎö PL
-		if (!semanticAnalysisPL(itAnalysisCur, TokenenList, tmp.parameterList))	//·ÖÎöPL£¬³ö´í
+		curFunctionName = functionName;		//å½“å‰åˆ†æçš„å‡½æ•°å
+		tmp.functionName = functionName;	//å°†å‡½æ•°ååŠ è½½åˆ°tmpä¸­å»
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+							//åˆ†æ PL
+		if (!semanticAnalysisPL(itAnalysisCur, TokenenList, tmp.parameterList))	//åˆ†æPLï¼Œå‡ºé”™
 		{
 			return false;
 		}
-		//·ÖÎö ÓÒĞ¡À¨ºÅ
+		//åˆ†æ å³å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	// ) ÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	// ) å³å°æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		if (!semanticAnalysisF2(itAnalysisCur, TokenenList, tmp))	//·ÖÎöº¯ÊıÌå
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		if (!semanticAnalysisF2(itAnalysisCur, TokenenList, tmp))	//åˆ†æå‡½æ•°ä½“
 		{
 			return false;
 		}
 	}
 	else // F1 -> VL ;
 	{
-		--itAnalysisCur;	//·µ»ØÖ®Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//·ÖÎöVL
-		tmp.tmpType = 1;	//Íâ²¿Êı¾İ¶¨Òå
+		--itAnalysisCur;	//è¿”å›ä¹‹å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//åˆ†æVL
+		tmp.tmpType = 1;	//å¤–éƒ¨æ•°æ®å®šä¹‰
 		// tmp.variableList;
 		if (!semanticAnalysisVL(itAnalysisCur, TokenenList, tmp.variableList, true))
 		{
 			return false;
 		}
-		if (itAnalysisCur == TokenenList.end())	//·ÖÎöµ½º¯ÊıÄ©Î²
+		if (itAnalysisCur == TokenenList.end())	//åˆ†æåˆ°å‡½æ•°æœ«å°¾
 		{
 			return false;
 		}
-		//·ÖÎö·ÖºÃ ;
+		//åˆ†æåˆ†å¥½ ;
 		if (Delimiter_Semicolon != (*itAnalysisCur).type)
 		{
 			return false;
@@ -473,21 +473,21 @@ bool SemanticAnalysis::semanticAnalysisF1(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisF2(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, GrammarTreeTmp& tmp)
 {
-	if (itAnalysisCur == TokenenList.end())//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (itAnalysisCur == TokenenList.end())//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
 		return false;
 	}
-	//·ÖºÃ
-	if ((*itAnalysisCur).type == Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÃ
+	//åˆ†å¥½
+	if ((*itAnalysisCur).type == Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å¥½
 	{
-		tmp.tmpType = 2;	//º¯ÊıÉùÃ÷
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		tmp.tmpType = 2;	//å‡½æ•°å£°æ˜
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//×ó´óÀ¨ºÅ
-	else if ((*itAnalysisCur).type == Delimiter_Left_Large_Bracket)	//ÊÇ·ñÎª×ó´óÀ¨ºÅ
+	//å·¦å¤§æ‹¬å·
+	else if ((*itAnalysisCur).type == Delimiter_Left_Large_Bracket)	//æ˜¯å¦ä¸ºå·¦å¤§æ‹¬å·
 	{
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		tmp.tmpType = 3;	//º¯ÊıÊµÏÖ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		tmp.tmpType = 3;	//å‡½æ•°å®ç°
 		// FB
 		int chain = 0;
 		if (!semanticAnalysis_FB(itAnalysisCur, TokenenList, chain))
@@ -499,19 +499,19 @@ bool SemanticAnalysis::semanticAnalysisF2(list<Token>::iterator & itAnalysisCur,
 			int NXQ = mFourElementTypeList.size() + 1;
 			modify_end_c(chain, NXQ);
 		}
-		// } ÓÒ´óÀ¨ºÅ
-		if (itAnalysisCur == TokenenList.end())	//·ÖÎöµ½º¯ÊıÄ©Î²
+		// } å³å¤§æ‹¬å·
+		if (itAnalysisCur == TokenenList.end())	//åˆ†æåˆ°å‡½æ•°æœ«å°¾
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Large_Bracket)	//ÊÇ·ñÎªÓÒ´óÀ¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Large_Bracket)	//æ˜¯å¦ä¸ºå³å¤§æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 
 		int tmpReturn = mFourElementTypeList.size() + 1;	//tmpReturn = NXQ
-		//¸üĞÂreturnPosiµÄĞÅÏ¢
+		//æ›´æ–°returnPosiçš„ä¿¡æ¯
 		if (returnPosiList.size() > 0)
 		{
 			list<int>::iterator it = returnPosiList.begin();
@@ -523,7 +523,7 @@ bool SemanticAnalysis::semanticAnalysisF2(list<Token>::iterator & itAnalysisCur,
 			returnPosiList.clear();
 		}
 	}
-	curFunctionName = "";;	//Çå¿Õµ±Ç°·ÖÎöµÄº¯ÊıÃû
+	curFunctionName = "";;	//æ¸…ç©ºå½“å‰åˆ†æçš„å‡½æ•°å
 	return true;
 }
 /*
@@ -533,20 +533,20 @@ bool SemanticAnalysis::semanticAnalysisF2(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisMT(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& memoryType)
 {
-	if (itAnalysisCur == TokenenList.end())	//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (itAnalysisCur == TokenenList.end())	//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
 		return false;
 	}
 	if ((*itAnalysisCur).type == Keyword_auto)	//auto
 	{
 		memoryType = Keyword_auto;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*itAnalysisCur).type == Keyword_register)
 	{
 		memoryType = Keyword_register;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if (semanticAnalysisMT1(itAnalysisCur, TokenenList, memoryType))
@@ -565,20 +565,20 @@ bool SemanticAnalysis::semanticAnalysisMT(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisMT1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& memoryType)
 {
-	if (itAnalysisCur == TokenenList.end())	//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (itAnalysisCur == TokenenList.end())	//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
 		return false;
 	}
 	if ((*itAnalysisCur).type == Keyword_extern)
 	{
 		memoryType = Keyword_extern;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*itAnalysisCur).type == Keyword_static)
 	{
 		memoryType = Keyword_static;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	return true;
@@ -592,38 +592,38 @@ bool SemanticAnalysis::semanticAnalysisMT1(list<Token>::iterator & itAnalysisCur
 */
 bool SemanticAnalysis::semanticAnalysisDT(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& dataType)
 {
-	if (itAnalysisCur == TokenenList.end())//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (itAnalysisCur == TokenenList.end())//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
 		return false;
 	}
 	if ((*itAnalysisCur).type == Keyword_void)
 	{
 		dataType = Keyword_void;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöToken´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*itAnalysisCur).type == Keyword_int)
 	{
 		dataType = Keyword_int;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöToken´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*itAnalysisCur).type == Keyword_char)
 	{
 		//dataType = Keyword_char;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*itAnalysisCur).type == Keyword_float)
 	{
 		//dataType = Keyword_float;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*itAnalysisCur).type == Keyword_double)
 	{
 		//dataType = Keyword_double;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	return false;
@@ -633,14 +633,14 @@ bool SemanticAnalysis::semanticAnalysisDT(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisVL(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, list<VariableList>& variableList, bool isGlobal)
 {
-	//·ÖÎöVD
+	//åˆ†æVD
 	VariableList variable;
 	if (!semanticAnalysisVD(itAnalysisCur, TokenenList, variable, isGlobal))
 	{
 		return false;
 	}
 	variableList.push_back(variable);
-	//·ÖÎöVL1
+	//åˆ†æVL1
 	if (!semanticAnalysisVL1(itAnalysisCur, TokenenList, variableList, isGlobal))
 	{
 		return false;
@@ -653,17 +653,17 @@ bool SemanticAnalysis::semanticAnalysisVL(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisVL1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, list<VariableList>& variableList, bool isGlobal)
 {
-	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Ä©Î²
+	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°æœ«å°¾
 	if (itAnalysisCur == TokenenList.end())
 	{
 		return false;
 	}
 	// VL1 -> , VD VL1
-	//·ÖÎöÊÇ·ñÎª¶ººÅ ,
+	//åˆ†ææ˜¯å¦ä¸ºé€—å· ,
 	if (Delimiter_Comma == (*itAnalysisCur).type)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//·ÖÎöVL1
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//åˆ†æVL1
 		VariableList variable;
 		if (!semanticAnalysisVD(itAnalysisCur, TokenenList, variable, isGlobal))
 		{
@@ -686,22 +686,22 @@ bool SemanticAnalysis::semanticAnalysisVL1(list<Token>::iterator & itAnalysisCur
 */
 bool SemanticAnalysis::semanticAnalysisVD(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, VariableList& variable, bool isGlobal)
 {
-	//ÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
-	if (itAnalysisCur == TokenenList.end())	//Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	//æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
+	if (itAnalysisCur == TokenenList.end())	//æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
 		return false;
 	}
-	//ÅĞ¶ÏÊÇ·ñÎªID
+	//åˆ¤æ–­æ˜¯å¦ä¸ºID
 	if (Identifier == (*itAnalysisCur).type)
 	{
 		variable.varName = (*itAnalysisCur).data;
 		if (isRepetDefineVariable((*itAnalysisCur).data, isGlobal))
 		{
-			mErrorInfo.push_back("±äÁ¿ " + (*itAnalysisCur).data + " ÖØ¸´¶¨Òå");
+			mErrorInfo.push_back("å˜é‡ " + (*itAnalysisCur).data + " é‡å¤å®šä¹‰");
 		}
 		variableCache.push_back((*itAnalysisCur).data);
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//·ÖÎöVD1
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//åˆ†æVD1
 		if (!semanticAnalysisVD1(itAnalysisCur, TokenenList, variable.initValue, variable.varName))
 		{
 			return false;
@@ -715,48 +715,48 @@ bool SemanticAnalysis::semanticAnalysisVD(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisVD1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, list<Token>& initValue, string variableName)
 {
-	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
-	if (itAnalysisCur == TokenenList.end())	//Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
+	if (itAnalysisCur == TokenenList.end())	//æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
 		return false;
 	}
 	// VD1 -> = PR
-	//·ÖÎöÊÇ·ñÎªµÈºÅ =
-	if (Operator_Equal == (*itAnalysisCur).type)	//ÎªµÈºÅ
+	//åˆ†ææ˜¯å¦ä¸ºç­‰å· =
+	if (Operator_Equal == (*itAnalysisCur).type)	//ä¸ºç­‰å·
 	{
-		itAnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		list<Token>::iterator it = itAnalysisCur;
 		FourElementTypeItem bexpr;
 		if (!semanticAnalysis_bexpr(itAnalysisCur, TokenenList, bexpr))
 		{
-			//outAnalysisFile << "E: ·ÖÎö PR ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ PR å‡ºé”™" << endl;
 			return false;
 		}
 
-		if (bexpr.mType == 4)	//Èç¹ûbexprÎªBOOLÁ¿£¬ĞèÒªÏÈ×ª»»Îª·ÇBOOLÁ¿
+		if (bexpr.mType == 4)	//å¦‚æœbexprä¸ºBOOLé‡ï¼Œéœ€è¦å…ˆè½¬æ¢ä¸ºéBOOLé‡
 		{
 			FourElementTypeItem nullId;
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem constant;
 			constant.mType = 1;
 			constant.mConstantType = 1;
-			//Õæ³ö¿Ú
+			//çœŸå‡ºå£
 			constant.mConstantInteger = 1;
 			int mTC = mFourElementTypeList.size() + 1;
 			FourElementType four(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four);
-			//Ìø×ªÓï¾ä
+			//è·³è½¬è¯­å¥
 			FourElementTypeItem pFour;
 			pFour.mType = 5;
 			pFour.mNumber = mTC + 3;
 			FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 			mFourElementTypeList.push_back(four1);
-			//¼Ù³ö¿Ú
+			//å‡å‡ºå£
 			constant.mConstantInteger = 0;
 			int mFC = mFourElementTypeList.size() + 1;
 			FourElementType four2(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four2);
-			//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+			//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 			//cout << "mFC " << bexpr.mFC << endl;
 			modify_end_c(bexpr.mTC, mTC);
 			modify_end_c(bexpr.mFC, mFC);
@@ -769,7 +769,7 @@ bool SemanticAnalysis::semanticAnalysisVD1(list<Token>::iterator & itAnalysisCur
 		FourElementTypeItem nullId;
 		FourElementType four(mFourElementTypeList.size() + 1, Equal, bexpr, nullId, variable);
 		mFourElementTypeList.push_back(four);
-		initValue.clear();	//Çå¿ÕinitValue
+		initValue.clear();	//æ¸…ç©ºinitValue
 		for (; it != itAnalysisCur; it++)
 		{
 			initValue.push_back(*it);
@@ -801,15 +801,15 @@ bool SemanticAnalysis::semanticAnalysisPL(list<Token>::iterator & itAnalysisCur,
 */
 bool SemanticAnalysis::semanticAnalysisPL1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, list<ParameterList>& parameterList)
 {
-	//·ÖÎöPD
+	//åˆ†æPD
 	ParameterList parameter;
-	if (!semanticAnalysisPD(itAnalysisCur, TokenenList, parameter))	//·ÖÎöPD£¬±¨´í
+	if (!semanticAnalysisPD(itAnalysisCur, TokenenList, parameter))	//åˆ†æPDï¼ŒæŠ¥é”™
 	{
 		return false;
 	}
 	parameterList.push_back(parameter);
-	//·ÖÎöPL2
-	if (!semanticAnalysisPL2(itAnalysisCur, TokenenList, parameterList))	//·ÖÎöPL2£¬±¨´í
+	//åˆ†æPL2
+	if (!semanticAnalysisPL2(itAnalysisCur, TokenenList, parameterList))	//åˆ†æPL2ï¼ŒæŠ¥é”™
 	{
 		return false;
 	}
@@ -821,12 +821,12 @@ bool SemanticAnalysis::semanticAnalysisPL1(list<Token>::iterator & itAnalysisCur
 */
 bool SemanticAnalysis::semanticAnalysisPL2(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, list<ParameterList>& parameterList)
 {
-	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	if (itAnalysisCur == TokenenList.end())
 	{
 		return false;
 	}
-	//ÅĞ¶ÏÊÇ·ñÎª ¶ººÅ ,
+	//åˆ¤æ–­æ˜¯å¦ä¸º é€—å· ,
 	if (Delimiter_Comma == (*itAnalysisCur).type) // PL2 -> , PD PL2
 	{
 		itAnalysisCur++;
@@ -835,8 +835,8 @@ bool SemanticAnalysis::semanticAnalysisPL2(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		parameterList.push_back(parameter);	//Ìí¼Óµ½List
-		//¼ÌĞøÑ­»·PL2
+		parameterList.push_back(parameter);	//æ·»åŠ åˆ°List
+		//ç»§ç»­å¾ªç¯PL2
 		if (!semanticAnalysisPL2(itAnalysisCur, TokenenList, parameterList))
 		{
 			return false;
@@ -859,7 +859,7 @@ bool SemanticAnalysis::semanticAnalysisPD(list<Token>::iterator & itAnalysisCur,
 		return false;
 	}
 	parameter.parameterType = dataType;
-	string parameterName = "";	//³õÊ¼»¯Îª¿Õ×Ö·û´®
+	string parameterName = "";	//åˆå§‹åŒ–ä¸ºç©ºå­—ç¬¦ä¸²
 	if (!semanticAnalysisPD1(itAnalysisCur, TokenenList, parameterName))
 	{
 		return false;
@@ -876,12 +876,12 @@ bool SemanticAnalysis::semanticAnalysisPD1(list<Token>::iterator & itAnalysisCur
 	if ((*itAnalysisCur).type == Identifier)
 	{
 		parameterName = (*itAnalysisCur).data;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	return true;
 }
-//-------------------------------------------¿ØÖÆÓï¾ä-----------------------------------------------
+//-------------------------------------------æ§åˆ¶è¯­å¥-----------------------------------------------
 /*
 	FB -> $
 	FB -> RS FB
@@ -889,18 +889,18 @@ bool SemanticAnalysis::semanticAnalysisPD1(list<Token>::iterator & itAnalysisCur
 bool SemanticAnalysis::semanticAnalysis_FB(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& FB_CHAIN)
 {
 	list<Token>::iterator tempCur = itAnalysisCur;
-	//±£´æÏÖ³¡
-	list<FourElementType> tempFourElementTypeList = mFourElementTypeList;	//ËÄÔªÊ½List
-	list<FourElementTypeItem> tempTempIdentifierList = mTempIdentifierList;	//ÁÙÊ±±äÁ¿List
-	list<string> tempErrorInfo = mErrorInfo;	//ÓïÒå´íÎó
+	//ä¿å­˜ç°åœº
+	list<FourElementType> tempFourElementTypeList = mFourElementTypeList;	//å››å…ƒå¼List
+	list<FourElementTypeItem> tempTempIdentifierList = mTempIdentifierList;	//ä¸´æ—¶å˜é‡List
+	list<string> tempErrorInfo = mErrorInfo;	//è¯­ä¹‰é”™è¯¯
 	//int chain = FB_CHAIN;
 	if (semanticAnalysis_RS(itAnalysisCur, TokenenList, FB_CHAIN))
 	{
 		semanticAnalysis_FB(itAnalysisCur, TokenenList, FB_CHAIN);
 		return true;
 	}
-	itAnalysisCur = tempCur;	//ÎŞ·¨·ÖÎö³öRS£¬Ôò»Ö¸´Ö®Ç°µÄÎ»ÖÃ
-	//»Ö¸´ÏÖ³¡
+	itAnalysisCur = tempCur;	//æ— æ³•åˆ†æå‡ºRSï¼Œåˆ™æ¢å¤ä¹‹å‰çš„ä½ç½®
+	//æ¢å¤ç°åœº
 	mFourElementTypeList = tempFourElementTypeList;
 	mTempIdentifierList = tempTempIdentifierList;
 	mErrorInfo = tempErrorInfo;
@@ -921,25 +921,25 @@ bool SemanticAnalysis::semanticAnalysis_FB(list<Token>::iterator & itAnalysisCur
 */
 bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& RS_CHAIN)
 {
-	// ÊÇ·ñ·ÖÎöµ½Ä©Î²
-	if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	// æ˜¯å¦åˆ†æåˆ°æœ«å°¾
+	if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
 		return false;
 	}
 	//RS CHAIN
 	if (RS_CHAIN != 0)
 	{
-		int NXQ = mFourElementTypeList.size() + 1;//»ØÌîÉÏÒ»¸öÄ£¿éµÄchain
+		int NXQ = mFourElementTypeList.size() + 1;//å›å¡«ä¸Šä¸€ä¸ªæ¨¡å—çš„chain
 		modify_end_c(RS_CHAIN, NXQ);
 
 	}
 	//------------------------------
-	//·ÖÎö if
+	//åˆ†æ if
 	// RS -> if ( PR ) SB RS1
 	if ((*itAnalysisCur).type == Keyword_if)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//1.·ÖÎö×óÀ¨ºÅ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//1.åˆ†æå·¦æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -948,20 +948,20 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//2.·ÖÎöPR
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//2.åˆ†æPR
 		FourElementTypeItem express;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express))
 		{
 			//cout << (*itAnalysisCur).data << endl;
 			return false;
 		}
-		//·ÖÎöeexpr BOOLÁ¿ ·ÇBOOLÁ¿->¸ÄÎªBOOLÁ¿
+		//åˆ†æeexpr BOOLé‡ éBOOLé‡->æ”¹ä¸ºBOOLé‡
 		if (express.mType <= 0 || express.mType > 4)
 		{
 			return false;
 		}
-		if (express.mType != 4)	//Èç¹ûeexpr²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		if (express.mType != 4)	//å¦‚æœeexprä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -979,24 +979,24 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		}
 		backpatch(express.mTC, mFourElementTypeList.size() + 1);	// backpatch(E.TC,NXQ)
 		int mFC = express.mFC;	//
-		//3.·ÖÎöÓÒÀ¨ºÅ
+		//3.åˆ†æå³æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//4.·ÖÎöSB
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//4.åˆ†æSB
 		int SB_CHAIN = 0;
 		if (!semanticAnalysis_SB(itAnalysisCur, TokenenList, SB_CHAIN))
 		{
-			//cout << "·ÖÎöSB³ö´í" << endl;
+			//cout << "åˆ†æSBå‡ºé”™" << endl;
 			return false;
 		}
-		//ÉèÖÃ SB chain
+		//è®¾ç½® SB chain
 		int NXQ = mFourElementTypeList.size() + 1;
 		if (SB_CHAIN != 0)
 		{
@@ -1014,14 +1014,14 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		//RS_CHAIN = NXQ
 		RS_CHAIN = NXQ;
 
-		//5.·ÖÎöRS1
+		//5.åˆ†æRS1
 		// int RS1_CHAIN = 0;
 		if (!semanticAnalysis_RS1(itAnalysisCur, TokenenList, RS_CHAIN, mFC))
 		{
-			//cout << "·ÖÎöRS1³ö´í" << endl;
+			//cout << "åˆ†æRS1å‡ºé”™" << endl;
 			return false;
 		}
-		//ÉèÖÃ SB chain
+		//è®¾ç½® SB chain
 		/*int NXQ = mFourElementTypeList.size() + 1;
 		if (RS1_CHAIN != 0)
 		{
@@ -1031,26 +1031,26 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		return true;
 	}
 	//------------------------------
-	//·ÖÎö while
+	//åˆ†æ while
 	//RS -> while (PR) SB
 	else if ((*itAnalysisCur).type == Keyword_while)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//1.·ÖÎö×óĞ¡À¨ºÅ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//1.åˆ†æå·¦å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			cout << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			cout << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*itAnalysisCur).type != Delimiter_Left_Small_Bracket)
 		{
-			cout << "µ±Ç°Î»ÖÃÈ±ÉÙ×óĞ¡À¨ºÅ" << endl;
+			cout << "å½“å‰ä½ç½®ç¼ºå°‘å·¦å°æ‹¬å·" << endl;
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//2.·ÖÎöPR
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//2.åˆ†æPR
 		int RETURN = mFourElementTypeList.size() + 1;	//RETURN = NXQ
-		int tmpContinue = RETURN;	//continueº¯Êı·µ»ØµÄÎ»ÖÃ tmpContinue = RETURN
+		int tmpContinue = RETURN;	//continueå‡½æ•°è¿”å›çš„ä½ç½® tmpContinue = RETURN
 		FourElementTypeItem express;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express))
 		{
@@ -1061,7 +1061,7 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		if (express.mType != 4)	//Èç¹ûexpress²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		if (express.mType != 4)	//å¦‚æœexpressä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -1077,37 +1077,37 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 			express.mTC = mTC;
 			express.mFC = mFC;
 		}
-		//3.·ÖÎöÓÒĞ¡À¨ºÅ
+		//3.åˆ†æå³å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			//cout << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//cout << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
-			//cout << "µ±Ç°Î»ÖÃÈ±ÉÙÓÒĞ¡À¨ºÅ" << endl;
+			//cout << "å½“å‰ä½ç½®ç¼ºå°‘å³å°æ‹¬å·" << endl;
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//4.·ÖÎöSB
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//4.åˆ†æSB
 		int HEAD = mFourElementTypeList.size() + 1;	// HEAD = NXQ
 		backpatch(express.mTC, HEAD);	// backpatch(E.TC,HEAD)
 		RS_CHAIN = express.mFC;	// RS.CHAIN = E.FC
-		int tmpBreak = RS_CHAIN;	//breakº¯ÊıÌø³öµÄÎ»ÖÃ tmpBreak = E.FC
+		int tmpBreak = RS_CHAIN;	//breakå‡½æ•°è·³å‡ºçš„ä½ç½® tmpBreak = E.FC
 		//cout << "tmpBreak " << tmpBreak << endl;
 		int SB_CHAIN = 0;	// SB_CHAIN
 		if (!semanticAnalysis_SB(itAnalysisCur, TokenenList, SB_CHAIN))
 		{
 			return false;
 		}
-		//ÉèÖÃ SB chain
+		//è®¾ç½® SB chain
 		if (SB_CHAIN != 0)
 		{
 			int NXQ = mFourElementTypeList.size() + 1;
 			modify_end_c(SB_CHAIN, NXQ);
 
 		}
-		//¸üĞÂcontinue_posiºÍbreak_posiÎ»ÖÃĞÅÏ¢
+		//æ›´æ–°continue_posiå’Œbreak_posiä½ç½®ä¿¡æ¯
 		if (continuePosiList.size() > 0)
 		{
 			list<int>::iterator it = continuePosiList.begin();
@@ -1130,7 +1130,7 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 			breakPosiList.clear();
 		}
 		//RETURN E.start
-		//ËÄÔªÊ½ (Jump,_,_,RETUREN)
+		//å››å…ƒå¼ (Jump,_,_,RETUREN)
 		FourElementTypeItem pFour;
 		pFour.mType = 5;
 		pFour.mNumber = RETURN;
@@ -1141,26 +1141,26 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		return true;
 	}
 	//------------------------------
-	//·ÖÎö do
+	//åˆ†æ do
 	//RS -> do SB while ( PR ) ;
 	else if ((*itAnalysisCur).type == Keyword_do)
 	{
 		int HEAD = mFourElementTypeList.size() + 1;	//HEAD = NXQ
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//1.·ÖÎöSB
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//1.åˆ†æSB
 		int SB_CHAIN = 0;
 		if (!semanticAnalysis_SB(itAnalysisCur, TokenenList, SB_CHAIN))
 		{
-			//cout << "·ÖÎöSB³ö´í" << endl;
+			//cout << "åˆ†æSBå‡ºé”™" << endl;
 			return false;
 		}
-		//ÉèÖÃ SB chain
+		//è®¾ç½® SB chain
 		if (SB_CHAIN != 0)
 		{
 			int NXQ = mFourElementTypeList.size() + 1;
 			modify_end_c(SB_CHAIN, NXQ);
 		}
-		//2.·ÖÎöwhile
+		//2.åˆ†æwhile
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -1169,8 +1169,8 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//3.·ÖÎö×óĞ¡À¨ºÅ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//3.åˆ†æå·¦å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -1179,9 +1179,9 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//4.·ÖÎöPR
-		int tmpContinue = mFourElementTypeList.size() + 1;	//continueÌø×ªµÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//4.åˆ†æPR
+		int tmpContinue = mFourElementTypeList.size() + 1;	//continueè·³è½¬çš„ä½ç½®
 		FourElementTypeItem express;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express))
 		{
@@ -1192,7 +1192,7 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		if (express.mType != 4)	//Èç¹ûexpress²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		if (express.mType != 4)	//å¦‚æœexpressä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -1209,8 +1209,8 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 			express.mFC = mFC;
 			//cout << "express" << "eexpr> TC:" << mTC << " FC:" << mFC << endl;
 		}
-		int tmpBreak = express.mFC;	//breakÌø×ªµÄÎ»ÖÃ
-		//¸üĞÂ continue_posi ºÍ break_posi Î»ÖÃĞÅÏ¢
+		int tmpBreak = express.mFC;	//breakè·³è½¬çš„ä½ç½®
+		//æ›´æ–° continue_posi å’Œ break_posi ä½ç½®ä¿¡æ¯
 		if (continuePosiList.size() > 0)
 		{
 			list<int>::iterator it = continuePosiList.begin();
@@ -1236,17 +1236,17 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		backpatch(express.mTC, HEAD);	// backpatch(E.TC,HEAD)
 		//chain
 		RS_CHAIN = express.mFC;// RS.CHAIN = E.FC
-		//5.·ÖÎöÓÒĞ¡À¨ºÅ
+		//5.åˆ†æå³å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//6.·ÖÎö·ÖºÅ ;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//6.åˆ†æåˆ†å· ;
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -1255,16 +1255,16 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	//------------------------------
-	//·ÖÎö for
+	//åˆ†æ for
 	//RS -> for ( PR ; PR ; PR ) SB
 	else if ((*itAnalysisCur).type == Keyword_for)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//1.·ÖÎö×óĞ¡À¨ºÅ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//1.åˆ†æå·¦å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -1273,49 +1273,49 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//2.·ÖÎöPR µÚÒ»¸ö±í´ïÊ½ ³õÊ¼»¯Óï¾ä
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//2.åˆ†æPR ç¬¬ä¸€ä¸ªè¡¨è¾¾å¼ åˆå§‹åŒ–è¯­å¥
 		FourElementTypeItem express_1;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express_1))
 		{
 			//cout << (*itAnalysisCur).data << endl;
 			return false;
 		}
-		//·ÖÎöexpress_1 BOOLÁ¿ ·ÇBOOLÁ¿->¸ÄÎªBOOLÁ¿
+		//åˆ†æexpress_1 BOOLé‡ éBOOLé‡->æ”¹ä¸ºBOOLé‡
 		if (express_1.mType <= 0 || express_1.mType > 4)
 		{
 			return false;
 		}
-		if (express_1.mType == 4)	//Èç¹ûexpress_1ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»Îª->·ÇBOOLÁ¿
+		if (express_1.mType == 4)	//å¦‚æœexpress_1ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸º->éBOOLé‡
 		{
 			FourElementTypeItem nullId;
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem constant;
 			constant.mType = 1;
 			constant.mConstantType = 1;
-			//Õæ³ö¿Ú
+			//çœŸå‡ºå£
 			constant.mConstantInteger = 1;
 			int mTC = mFourElementTypeList.size() + 1;
 			FourElementType four(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four);
-			//Ìø×ªÓï¾ä
+			//è·³è½¬è¯­å¥
 			FourElementTypeItem pFour;
 			pFour.mType = 5;
 			pFour.mNumber = mTC + 3;
 			FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 			mFourElementTypeList.push_back(four1);
-			//¼Ù³ö¿Ú
+			//å‡å‡ºå£
 			constant.mConstantInteger = 0;
 			int mFC = mFourElementTypeList.size() + 1;
 			FourElementType four2(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four2);
-			//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+			//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 			//cout << "mFC " << express_1.mFC << endl;
 			modify_end_c(express_1.mTC, mTC);
 			modify_end_c(express_1.mFC, mFC);
 			express_1 = tempId;
 		}
-		//3.·ÖÎö·ÖºÅ 
+		//3.åˆ†æåˆ†å· 
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -1324,23 +1324,23 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//4.·ÖÎöPR µÚ¶ş¸ö±í´ïÊ½ ÅĞ¶¨Ìõ¼ş
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//4.åˆ†æPR ç¬¬äºŒä¸ªè¡¨è¾¾å¼ åˆ¤å®šæ¡ä»¶
 		//judge
 		int JUDGE = mFourElementTypeList.size() + 1;	//JUDGE = NXQ
-		//int tmpContinue = JUDGE;	//continueÌø×ªµÄÎ»ÖÃ ĞŞ¸ÄÎªAGAIN
+		//int tmpContinue = JUDGE;	//continueè·³è½¬çš„ä½ç½® ä¿®æ”¹ä¸ºAGAIN
 		FourElementTypeItem express_2;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express_2))
 		{
 			cout << (*itAnalysisCur).data << endl;
 			return false;
 		}
-		//·ÖÎöexpress_2 BOOLÁ¿ ·ÇBOOLÁ¿->¸ÄÎªBOOLÁ¿
+		//åˆ†æexpress_2 BOOLé‡ éBOOLé‡->æ”¹ä¸ºBOOLé‡
 		if (express_2.mType <= 0 || express_2.mType > 4)
 		{
 			return false;
 		}
-		if (express_2.mType != 4)	//Èç¹ûexpress_2²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		if (express_2.mType != 4)	//å¦‚æœexpress_2ä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -1358,9 +1358,9 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 			//cout << "express_2" << "eexpr> TC:" << mTC << " FC:" << mFC << endl;
 		}
 		int chain = express_2.mFC;	// chain = PR(2).FC
-		int tmpBreak = chain;	//breakÌø×ªµÄÎ»ÖÃ tmpBreak = E2.FC
+		int tmpBreak = chain;	//breakè·³è½¬çš„ä½ç½® tmpBreak = E2.FC
 		int mTC = express_2.mTC;	//mTC = PR(2).TC
-		//5.·ÖÎö·ÖºÅ
+		//5.åˆ†æåˆ†å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
@@ -1369,46 +1369,46 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 
-		//6.·ÖÎöPR µÚÈı¸ö±í´ïÊ½ Ñ­»·Ö´ĞĞ±í´ïÊ½
+		//6.åˆ†æPR ç¬¬ä¸‰ä¸ªè¡¨è¾¾å¼ å¾ªç¯æ‰§è¡Œè¡¨è¾¾å¼
 		int AGAIN = mFourElementTypeList.size() + 1;	// AGAIN = NXQ
-		int tmpContinue = AGAIN;	//continueÌø×ªµÄÎ»ÖÃ tmpContinue = AGAIN
+		int tmpContinue = AGAIN;	//continueè·³è½¬çš„ä½ç½® tmpContinue = AGAIN
 		FourElementTypeItem express_3;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express_3))
 		{
 			//cout << (*itAnalysisCur).data << endl;
 			return false;
 		}
-		//·ÖÎöexpress_3 BOOLÁ¿ ·ÇBOOLÁ¿->¸ÄÎªBOOLÁ¿
+		//åˆ†æexpress_3 BOOLé‡ éBOOLé‡->æ”¹ä¸ºBOOLé‡
 		if (express_3.mType <= 0 || express_3.mType > 4)
 		{
 			return false;
 		}
-		if (express_3.mType == 4)	//Èç¹ûexpress_3ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»Îª->·ÇBOOLÁ¿
+		if (express_3.mType == 4)	//å¦‚æœexpress_3ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸º->éBOOLé‡
 		{
 			FourElementTypeItem nullId;
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem constant;
 			constant.mType = 1;
 			constant.mConstantType = 1;
-			//Õæ³ö¿Ú
+			//çœŸå‡ºå£
 			constant.mConstantInteger = 1;
 			int mTC = mFourElementTypeList.size() + 1;
 			FourElementType four(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four);
-			//Ìø×ªÓï¾ä
+			//è·³è½¬è¯­å¥
 			FourElementTypeItem pFour;
 			pFour.mType = 5;
 			pFour.mNumber = mTC + 3;
 			FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 			mFourElementTypeList.push_back(four1);
-			//¼Ù³ö¿Ú
+			//å‡å‡ºå£
 			constant.mConstantInteger = 0;
 			int mFC = mFourElementTypeList.size() + 1;
 			FourElementType four2(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four2);
-			//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+			//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 			//cout << "mFC " << express_1.mFC << endl;
 			modify_end_c(express_3.mTC, mTC);
 			modify_end_c(express_3.mFC, mFC);
@@ -1421,32 +1421,32 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		FourElementTypeItem nullId;
 		FourElementType four(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 		mFourElementTypeList.push_back(four);
-		//7.·ÖÎöÓÒĞ¡À¨ºÅ
+		//7.åˆ†æå³å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		int SB_start = mFourElementTypeList.size() + 1;	//SB_start = NXQ
 		modify_end_c(mTC, SB_start);					//modify_end_c(mTC ,SB_start )
-		//·ÖÎöSB
+		//åˆ†æSB
 		int SB_CHAIN = 0;
 		if (!semanticAnalysis_SB(itAnalysisCur, TokenenList, SB_CHAIN))
 		{
 			return false;
 		}
-		//ÉèÖÃ SB chain
+		//è®¾ç½® SB chain
 		if (SB_CHAIN != 0)
 		{
 			int NXQ = mFourElementTypeList.size() + 1;
 			modify_end_c(SB_CHAIN, NXQ);
 
 		}
-		//¸üĞÂ continue_posi ºÍ break_posi Î»ÖÃĞÅÏ¢
+		//æ›´æ–° continue_posi å’Œ break_posi ä½ç½®ä¿¡æ¯
 		if (continuePosiList.size() > 0)
 		{
 			list<int>::iterator it = continuePosiList.begin();
@@ -1476,24 +1476,24 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		return true;
 	}
 	//------------------------------
-	//·ÖÎö break
+	//åˆ†æ break
 	//RS -> break ;
 	else if ((*itAnalysisCur).type == Keyword_break)
 	{
 		//cout << "break" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//·ÖÎö·ÖºÅ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//åˆ†æåˆ†å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//ĞèÒª»ØÌî
-		//±£´æ»ØÌîÎ»ÖÃ breakPosiList.Add( NXQ )
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//éœ€è¦å›å¡«
+		//ä¿å­˜å›å¡«ä½ç½® breakPosiList.Add( NXQ )
 		breakPosiList.push_back(mFourElementTypeList.size() + 1);
 		// JUMP (j,_,_,0)
 		FourElementTypeItem pFour;
@@ -1506,23 +1506,23 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		return true;
 	}
 	//------------------------------
-	//·ÖÎö continue
+	//åˆ†æ continue
 	// RS -> continue;
 	else if ((*itAnalysisCur).type == Keyword_continue)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//·ÖÎö·ÖºÅ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//åˆ†æåˆ†å·
 		if (itAnalysisCur == TokenenList.end())
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//ĞèÒª»ØÌî
-		//±£´æ»ØÌîÎ»ÖÃcontinuePosiList.Add( NXQ )
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//éœ€è¦å›å¡«
+		//ä¿å­˜å›å¡«ä½ç½®continuePosiList.Add( NXQ )
 		continuePosiList.push_back(mFourElementTypeList.size() + 1);
 		// JUMP (j,_,_,0) (Jump,_,_,0)
 		FourElementTypeItem pFour;
@@ -1535,74 +1535,74 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		return true;
 	}
 	//------------------------------
-	//·ÖÎö return
+	//åˆ†æ return
 	//RS -> return PR ;
 	else if ((*itAnalysisCur).type == Keyword_return)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//1.·ÖÎöPR
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//1.åˆ†æPR
 		list<Token> tmpList;
 		while (itAnalysisCur != TokenenList.end())
 		{
-			if ((*itAnalysisCur).type == Delimiter_Semicolon) //µ½·ÖºÅ½áÊø
+			if ((*itAnalysisCur).type == Delimiter_Semicolon) //åˆ°åˆ†å·ç»“æŸ
 			{
 				break;
 			}
 			tmpList.push_back(*itAnalysisCur);
-			itAnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+			itAnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		}
 		FourElementTypeItem eexpr;
 		if (!semanticAnalysis_aexpr(itAnalysisCur, TokenenList, eexpr))
 		{
-			//±í´ïÊ½·ÖÎö´íÎó
+			//è¡¨è¾¾å¼åˆ†æé”™è¯¯
 			return false;
 		}
-		//Èç¹ûeexprÎªBOOLÁ¿£¬ĞèÒªÏÈ×ª»»Îª·ÇBOOLÁ¿
-		if (eexpr.mType == 4)	//Èç¹ûbexprÎªBOOLÁ¿£¬ĞèÒªÏÈ×ª»»Îª·ÇBOOLÁ¿
+		//å¦‚æœeexprä¸ºBOOLé‡ï¼Œéœ€è¦å…ˆè½¬æ¢ä¸ºéBOOLé‡
+		if (eexpr.mType == 4)	//å¦‚æœbexprä¸ºBOOLé‡ï¼Œéœ€è¦å…ˆè½¬æ¢ä¸ºéBOOLé‡
 		{
 			FourElementTypeItem nullId;
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem constant;
 			constant.mType = 1;
 			constant.mConstantType = 1;
-			//Õæ³ö¿Ú
+			//çœŸå‡ºå£
 			constant.mConstantInteger = 1;
 			int mTC = mFourElementTypeList.size() + 1;
 			FourElementType four(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four);
-			//Ìø×ªÓï¾ä
+			//è·³è½¬è¯­å¥
 			FourElementTypeItem pFour;
 			pFour.mType = 5;
 			pFour.mNumber = mTC + 3;
 			FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 			mFourElementTypeList.push_back(four1);
-			//¼Ù³ö¿Ú
+			//å‡å‡ºå£
 			constant.mConstantInteger = 0;
 			int mFC = mFourElementTypeList.size() + 1;
 			FourElementType four2(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four2);
-			//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+			//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 			//cout << "mFC " << eexpr.mFC << endl;
 			modify_end_c(eexpr.mTC, mTC);
 			modify_end_c(eexpr.mFC, mFC);
 			eexpr = tempId;
 		}
 		
-		//2.·ÖÎö·ÖºÅ
+		//2.åˆ†æåˆ†å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			//cout << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//cout << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			//cout << "µ±Ç°Î»ÖÃÈ±ÉÙ·ÖºÅ" << endl;
+			//cout << "å½“å‰ä½ç½®ç¼ºå°‘åˆ†å·" << endl;
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 
-		//ĞèÒª»ØÌî
-		//±£´æ»ØÌîÎ»ÖÃreturnPosiList.Add( NXQ )
+		//éœ€è¦å›å¡«
+		//ä¿å­˜å›å¡«ä½ç½®returnPosiList.Add( NXQ )
 		returnPosiList.push_back(mFourElementTypeList.size() + 1);
 		// JUMP (j,_,_,0) (Jump,_,_,0)
 		FourElementTypeItem pFour;
@@ -1615,110 +1615,110 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		return true;
 	}
 	/*
-	//·ÖÎö goto
+	//åˆ†æ goto
 	else if ((*it_AnalysisCur).type == Keyword_goto)
 	{
-	it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-	//·ÖÎöId
+	it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+	//åˆ†æId
 	if (it_AnalysisCur == listToken.end())
 	{
-	cout << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+	cout << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 	return false;
 	}
-	if ((*it_AnalysisCur).type != Identifier) //²»ÎªId
+	if ((*it_AnalysisCur).type != Identifier) //ä¸ä¸ºId
 	{
-	cout << "µ±Ç°Î»ÖÃÈ±ÉÙ±êÊ¶·û" << endl;
+	cout << "å½“å‰ä½ç½®ç¼ºå°‘æ ‡è¯†ç¬¦" << endl;
 	return false;
 	}
-	it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+	it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	*/
-	//·ÖÎö print
+	//åˆ†æ print
 	//RS -> print ( Print
 	else if ((*itAnalysisCur).type == Keyword_print)
 	{
 		//outAnalysisFile << "G: RS -> print ( Print" << endl;
-		//outAnalysisFile << "1> ·ÖÎö³ö print" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						//·ÖÎö ×óĞ¡À¨ºÅ
+		//outAnalysisFile << "1> åˆ†æå‡º print" << endl;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						//åˆ†æ å·¦å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			//outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Left_Small_Bracket)	//ÊÇ·ñÎª×óĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Left_Small_Bracket)	//æ˜¯å¦ä¸ºå·¦å°æ‹¬å·
 		{
-			//outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		//outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		//outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		if (!semanticAnalysisPrint(itAnalysisCur, TokenenList, RS_CHAIN))
 		{
-			//outAnalysisFile << "E: ·ÖÎö Print ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ Print å‡ºé”™" << endl;
 			return false;
 		}
 		return true;
 	}
-	//·ÖÎö scan
+	//åˆ†æ scan
 	//RS -> scan ( id ) ;
 	else if ((*itAnalysisCur).type == Keyword_scan)
 	{
 		//outAnalysisFile << "G: RS -> scan ( id ) ;" << endl;
-		//outAnalysisFile << "1> ·ÖÎö³ö scan" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						//1.·ÖÎö ×óĞ¡À¨ºÅ
+		//outAnalysisFile << "1> åˆ†æå‡º scan" << endl;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						//1.åˆ†æ å·¦å°æ‹¬å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			//outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Left_Small_Bracket)	//ÊÇ·ñÎª×óĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Left_Small_Bracket)	//æ˜¯å¦ä¸ºå·¦å°æ‹¬å·
 		{
-			//outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		//outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						//2.·ÖÎö id
+		//outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						//2.åˆ†æ id
 		if (itAnalysisCur == TokenenList.end())
 		{
-			//outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Identifier)	//ÊÇ·ñÎªid
+		if ((*itAnalysisCur).type != Identifier)	//æ˜¯å¦ä¸ºid
 		{
-			//outAnalysisFile << "E: ·ÖÎö id ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ id å‡ºé”™" << endl;
 			return false;
 		}
-		//outAnalysisFile << "1> ·ÖÎö³ö id" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						//3.·ÖÎö ÓÒĞ¡À¨ºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		//outAnalysisFile << "1> åˆ†æå‡º id" << endl;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						//3.åˆ†æ å³å°æ‹¬å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			//outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÊÇ·ñÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//æ˜¯å¦ä¸ºå³å°æ‹¬å·
 		{
-			//outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		//outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						//4.·ÖÎö ·ÖºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		//outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						//4.åˆ†æ åˆ†å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			//outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
-			//outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		//outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		//it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		//outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		//it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	//RS -> MT DT VL ;
@@ -1728,86 +1728,86 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		(*itAnalysisCur).type == Keyword_float || (*itAnalysisCur).type == Keyword_double)
 	{
 		VariableDefinition variableDefinition;
-		//·ÖÎöMT
+		//åˆ†æMT
 		variableDefinition.memoryType = Keyword_extern;
 		if (semanticAnalysisMT(itAnalysisCur, TokenenList, variableDefinition.memoryType))
 		{
-			//cout << "·ÖÎöMT1³ö´í" << endl;
+			//cout << "åˆ†æMT1å‡ºé”™" << endl;
 			//return false;
 		}
-		//·ÖÎöDT
+		//åˆ†æDT
 		variableDefinition.dataType = Error;
 		if (!semanticAnalysisDT(itAnalysisCur, TokenenList, variableDefinition.dataType))
 		{
-			//cout << "·ÖÎöDT³ö´í" << endl;
+			//cout << "åˆ†æDTå‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöVL
+		//åˆ†æVL
 		if (!semanticAnalysisVL(itAnalysisCur, TokenenList, variableDefinition.variableList, false))
 		{
-			//cout << "·ÖÎöVL³ö´í" << endl;
+			//cout << "åˆ†æVLå‡ºé”™" << endl;
 			return false;
 		}
 		mVariableDefinitionList.push_back(variableDefinition);
-		//·ÖÎö·ÖºÅ
+		//åˆ†æåˆ†å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			//cout << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			//cout << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			//cout << "µ±Ç°Î»ÖÃÈ±ÉÙ·ÖºÅ" << endl;
+			//cout << "å½“å‰ä½ç½®ç¼ºå°‘åˆ†å·" << endl;
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	//PR ;
 	else if (expressPreAnalysis((*itAnalysisCur).type))
 	{
-		//·ÖÎöPR ¸³Öµ±í´ïÊ½ ²¼¶û±í´ïÊ½ Âß¼­±í´ïÊ½
+		//åˆ†æPR èµ‹å€¼è¡¨è¾¾å¼ å¸ƒå°”è¡¨è¾¾å¼ é€»è¾‘è¡¨è¾¾å¼
 		FourElementTypeItem express;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, express))
 		{
 			cout << (*itAnalysisCur).data << endl;
 			return false;
 		}
-		//·ÖÎöexpress ²»ÎªBOOLÁ¿ BOOLÁ¿->¸ÄÎª·ÇBOOLÁ¿
+		//åˆ†æexpress ä¸ä¸ºBOOLé‡ BOOLé‡->æ”¹ä¸ºéBOOLé‡
 		if (express.mType <= 0 || express.mType > 4)
 		{
 			return false;
 		}
-		if (express.mType == 4)	//Èç¹ûexpressÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»Îª·ÇBOOLÁ¿
+		if (express.mType == 4)	//å¦‚æœexpressä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºéBOOLé‡
 		{
 			FourElementTypeItem nullId;
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem constant;
 			constant.mType = 1;
 			constant.mConstantType = 1;
-			//Õæ³ö¿Ú
+			//çœŸå‡ºå£
 			constant.mConstantInteger = 1;
 			int mTC = mFourElementTypeList.size() + 1;
 			FourElementType four(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four);
-			//Ìø×ªÓï¾ä
+			//è·³è½¬è¯­å¥
 			FourElementTypeItem pFour;
 			pFour.mType = 5;
 			pFour.mNumber = mTC + 3;
 			FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 			mFourElementTypeList.push_back(four1);
-			//¼Ù³ö¿Ú
+			//å‡å‡ºå£
 			constant.mConstantInteger = 0;
 			int mFC = mFourElementTypeList.size() + 1;
 			FourElementType four2(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four2);
-			//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+			//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 			modify_end_c(express.mTC, mTC);
 			modify_end_c(express.mFC, mFC);
 			express = tempId;
 			//cout << "express" << "eexpr> TC:" << mTC << " FC:" << mFC << endl;
 		}
-		//²Ù×÷Á´×Ó
+		//æ“ä½œé“¾å­
 		//mNXQ = NXQ
 		int NXQ = mFourElementTypeList.size() + 1;
 		//(Jump,_,_,0)
@@ -1819,28 +1819,28 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		mFourElementTypeList.push_back(four3);
 		//RS.CHAIN = mNXQ
 		RS_CHAIN = NXQ;
-		//·ÖÎö·ÖºÅ
+		//åˆ†æåˆ†å·
 		if (itAnalysisCur == TokenenList.end())
 		{
-			cout << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			cout << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			cout << "µ±Ç°Î»ÖÃÈ±ÉÙ·ÖºÅ" << endl;
+			cout << "å½“å‰ä½ç½®ç¼ºå°‘åˆ†å·" << endl;
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
-	//ÅĞ¶ÏÊÇ·ñÎªÓÒ´óÀ¨ºÅ
+	//åˆ¤æ–­æ˜¯å¦ä¸ºå³å¤§æ‹¬å·
 	else if ((*itAnalysisCur).type != Delimiter_Right_Large_Bracket)
 	{
 		return true;
 	}
 	else
 	{
-		//cout << (*itAnalysisCur).data << " ÎŞ·¨Ê¶±ğ" << endl;
+		//cout << (*itAnalysisCur).data << " æ— æ³•è¯†åˆ«" << endl;
 		return false;
 	}
 	return true;
@@ -1851,25 +1851,25 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 */
 bool SemanticAnalysis::semanticAnalysis_RS1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& chain, int& FC)
 {
-	//ÊÇ·ñ·ÖÎöµ½Ä©Î²
-	if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	//æ˜¯å¦åˆ†æåˆ°æœ«å°¾
+	if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
 		return false;
 	}
 	// else
 	if (Keyword_else != (*itAnalysisCur).type)
 	{
-		// TC ºÍ FC ºÏ²¢
+		// TC å’Œ FC åˆå¹¶
 		modify_end_c(FC, chain);
-		return true;	//²»ÎªelseÒ²ÊÇ¶ÔµÄ
+		return true;	//ä¸ä¸ºelseä¹Ÿæ˜¯å¯¹çš„
 	}
-	itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-	//·ÖÎöSB ¸ßÄÜÇø
+	itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+	//åˆ†æSB é«˜èƒ½åŒº
 	//int NXQ = mFourElementTypeList.size() + 1;
 	// FC = NXQ
 	//modify_end_c(FC, NXQ);
 
-	//·ÖÎöSB
+	//åˆ†æSB
 	if (!semanticAnalysis_SB(itAnalysisCur, TokenenList, FC))
 	{
 		return false;
@@ -1896,18 +1896,18 @@ bool SemanticAnalysis::semanticAnalysis_RS1(list<Token>::iterator & itAnalysisCu
 */
 bool SemanticAnalysis::semanticAnalysis_SB(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& SB_CHAIN)
 {
-	if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
 		return false;
 	}
-	//1.·ÖÎö×ó´óÀ¨ºÅ
+	//1.åˆ†æå·¦å¤§æ‹¬å·
 	if ((*itAnalysisCur).type == Delimiter_Left_Large_Bracket)
 	{
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		//2.·ÖÎöSB1£¬²¢´¦Àíchain
-		semanticAnalysis_SB1(itAnalysisCur, TokenenList, SB_CHAIN);	//·ÖÎöSB1·µ»ØÖµÔÚÕâ¸öÎ»ÖÃÓÀÔ¶Îªtrue
-		//3.·ÖÎöÓÒ´óÀ¨ºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		//2.åˆ†æSB1ï¼Œå¹¶å¤„ç†chain
+		semanticAnalysis_SB1(itAnalysisCur, TokenenList, SB_CHAIN);	//åˆ†æSB1è¿”å›å€¼åœ¨è¿™ä¸ªä½ç½®æ°¸è¿œä¸ºtrue
+		//3.åˆ†æå³å¤§æ‹¬å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
 			return false;
 		}
@@ -1915,11 +1915,11 @@ bool SemanticAnalysis::semanticAnalysis_SB(list<Token>::iterator & itAnalysisCur
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	else
 	{
-		//1.·ÖÎöRS£¬²¢´¦Àíchain
+		//1.åˆ†æRSï¼Œå¹¶å¤„ç†chain
 		//int chain = 0;
 		if (!semanticAnalysis_RS(itAnalysisCur, TokenenList, SB_CHAIN))
 		{
@@ -1932,14 +1932,14 @@ bool SemanticAnalysis::semanticAnalysis_SB(list<Token>::iterator & itAnalysisCur
 	SB1 -> $
 	SB1 -> RS SB1
 */
-bool SemanticAnalysis::semanticAnalysis_SB1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& SB1_CHAIN)	//ÎŞÂÛÔõÑù¶¼»á·µ»Øtrue
+bool SemanticAnalysis::semanticAnalysis_SB1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& SB1_CHAIN)	//æ— è®ºæ€æ ·éƒ½ä¼šè¿”å›true
 {
 	list<Token>::iterator it_tmp = itAnalysisCur;
-	//·ÖÎöRS
+	//åˆ†æRS
 	//int chain = 0;
 	if (semanticAnalysis_RS(itAnalysisCur, TokenenList, SB1_CHAIN))
 	{
-		//·ÖÎöSB1
+		//åˆ†æSB1
 		semanticAnalysis_SB1(itAnalysisCur, TokenenList, SB1_CHAIN);
 	}
 	else
@@ -1955,17 +1955,17 @@ bool SemanticAnalysis::semanticAnalysis_SB1(list<Token>::iterator & itAnalysisCu
 */
 bool SemanticAnalysis::semanticAnalysisPrint(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList, int& chain)
 {
-	if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
 		return false;
 	}
-	//·ÖÎö string ) ;
-	if ((*itAnalysisCur).type == String)	//ÊÇ·ñÎª×Ö·û´®
+	//åˆ†æ string ) ;
+	if ((*itAnalysisCur).type == String)	//æ˜¯å¦ä¸ºå­—ç¬¦ä¸²
 	{
 		FourElementTypeItem nullId;
 		FourElementTypeItem  printString;
-		printString.mType = 1;	//ÉèÖÃÎª³£Á¿
-		printString.mConstantType = 4;	//³£Á¿ÀàĞÍÎª×Ö·û´®
+		printString.mType = 1;	//è®¾ç½®ä¸ºå¸¸é‡
+		printString.mConstantType = 4;	//å¸¸é‡ç±»å‹ä¸ºå­—ç¬¦ä¸²
 		printString.mPrintString = clearUpString((*itAnalysisCur).data);
 		FourElementType four(mFourElementTypeList.size() + 1, Print, printString, nullId, nullId);
 		mFourElementTypeList.push_back(four);
@@ -1978,89 +1978,89 @@ bool SemanticAnalysis::semanticAnalysisPrint(list<Token>::iterator & itAnalysisC
 
 		chain = mFourElementTypeList.size();
 
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						// ·ÖÎö ÓÒĞ¡À¨ºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						// åˆ†æ å³å°æ‹¬å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÊÇ·ñÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//æ˜¯å¦ä¸ºå³å°æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						// ·ÖÎö ·ÖºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						// åˆ†æ åˆ†å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	else
 	{
 		FourElementTypeItem fourElementTypeItem;
 		if (!semanticAnalysis_eexpr(itAnalysisCur, TokenenList, fourElementTypeItem))
 		{
-			//outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+			//outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 			return false;
 		}
-		//´¦Àífour ³£Á¿¡¢±äÁ¿
+		//å¤„ç†four å¸¸é‡ã€å˜é‡
 		switch (fourElementTypeItem.mType)
 		{
-		case 1:	//³£Á¿
+		case 1:	//å¸¸é‡
 		{
 			FourElementTypeItem nullId;
 			FourElementTypeItem  printString;
-			printString.mType = 1;	//ÉèÖÃÎª³£Á¿
-			printString.mConstantType = 4;	//³£Á¿ÀàĞÍÎª×Ö·û´®
+			printString.mType = 1;	//è®¾ç½®ä¸ºå¸¸é‡
+			printString.mConstantType = 4;	//å¸¸é‡ç±»å‹ä¸ºå­—ç¬¦ä¸²
 			printString.mPrintString = fourElementTypeItem.mCacheBuffer;
 			FourElementType four(mFourElementTypeList.size() + 1, Print, printString, nullId, nullId);
 			mFourElementTypeList.push_back(four);
 			break;
 		}
-		case 2:	//ÓÃ»§¶¨Òå±äÁ¿
+		case 2:	//ç”¨æˆ·å®šä¹‰å˜é‡
 		{
 			FourElementTypeItem nullId;
-			FourElementType four(mFourElementTypeList.size() + 1, Print, fourElementTypeItem, nullId, nullId);	//fourÊÇ±äÁ¿
+			FourElementType four(mFourElementTypeList.size() + 1, Print, fourElementTypeItem, nullId, nullId);	//fouræ˜¯å˜é‡
 			mFourElementTypeList.push_back(four);
 			break;
 		}
-		case 3:	//ÁÙÊ±±äÁ¿
+		case 3:	//ä¸´æ—¶å˜é‡
 		{
 			FourElementTypeItem nullId;
-			FourElementType four(mFourElementTypeList.size() + 1, Print, fourElementTypeItem, nullId, nullId);	//fourÊÇ±äÁ¿
+			FourElementType four(mFourElementTypeList.size() + 1, Print, fourElementTypeItem, nullId, nullId);	//fouræ˜¯å˜é‡
 			mFourElementTypeList.push_back(four);
 			break;
 		}
-		case 4:	//²¼¶û±í´ïÊ½
+		case 4:	//å¸ƒå°”è¡¨è¾¾å¼
 		{
-			//Èç¹ûbexprÎªBOOLÁ¿£¬ĞèÒªÏÈ×ª»»Îª·ÇBOOLÁ¿
+			//å¦‚æœbexprä¸ºBOOLé‡ï¼Œéœ€è¦å…ˆè½¬æ¢ä¸ºéBOOLé‡
 			FourElementTypeItem nullId;
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem constant;
-			constant.mType = 1;	//ÉèÎª³£Á¿
-			constant.mConstantType = 4;	//ÉèÎª×Ö·û´®
-										//Õæ³ö¿Ú
+			constant.mType = 1;	//è®¾ä¸ºå¸¸é‡
+			constant.mConstantType = 4;	//è®¾ä¸ºå­—ç¬¦ä¸²
+										//çœŸå‡ºå£
 			constant.mPrintString = "true";
 			int mTC = mFourElementTypeList.size() + 1;
 			FourElementType four(mFourElementTypeList.size() + 1, Print, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four);
-			//Ìø×ªÓï¾ä
+			//è·³è½¬è¯­å¥
 			FourElementTypeItem pFour;
 			pFour.mType = 5;
 			pFour.mNumber = mTC + 3;
 			FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 			mFourElementTypeList.push_back(four1);
-			//¼Ù³ö¿Ú
+			//å‡å‡ºå£
 			constant.mPrintString = "false";
 			int mFC = mFourElementTypeList.size() + 1;
 			FourElementType four2(mFourElementTypeList.size() + 1, Print, constant, nullId, tempId);
 			mFourElementTypeList.push_back(four2);
-			//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+			//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 			modify_end_c(fourElementTypeItem.mTC, mTC);
 			modify_end_c(fourElementTypeItem.mFC, mFC);
 			//fourElementTypeItem = tempId;
@@ -2079,36 +2079,36 @@ bool SemanticAnalysis::semanticAnalysisPrint(list<Token>::iterator & itAnalysisC
 		mFourElementTypeList.push_back(four1);
 		chain = mFourElementTypeList.size();
 
-		// ·ÖÎö ÓÒĞ¡À¨ºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		// åˆ†æ å³å°æ‹¬å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÊÇ·ñÎªÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//æ˜¯å¦ä¸ºå³å°æ‹¬å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		// ·ÖÎö ·ÖºÅ
-		if (itAnalysisCur == TokenenList.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		// åˆ†æ åˆ†å·
+		if (itAnalysisCur == TokenenList.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*itAnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
 			return false;
 		}
-		itAnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		itAnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	return true;
 }
-//------------------------------------------±í´ïÊ½----------------------------------------------------------------------------
+//------------------------------------------è¡¨è¾¾å¼----------------------------------------------------------------------------
 /*
-	Á¬µÈ¹Ø¼üÓĞÁ½µã£º
-	1¡¢ÔËËã·ûµÄÓÅÏÈ¼¶¸ú½áºÏĞÔ¡£
-	2¡¢Ò»¸ö¸³Öµ±í´ïÊ½ÊÇÓĞÖµµÄ£¬Öµ¾ÍÊÇ±»¸³µÄÖµ£¬±ÈÈça=3 £¬Õâ¸ö¸³Öµ±í´ïÊ½µÄÖµ¾ÍÊÇ3£¬ÈôÓĞb=£¨a=3£©£¬ÔòbµÄÖµÎª3.
-	ÀıÈç£º
-	a=b=cÖĞÖ»ÓĞÒ»¸öÔËËã·û£¬µÈºÅ£¬ËùÒÔÓÅÏÈ¼¶ÊÇÒ»ÑùµÄ£¬¶øµÈºÅµÄ½áºÏĞÔÊÇ´ÓÓÒÏò×óµÄ(Ò²¾ÍÊÇµÈÊ½´ÓÓÒÍù×ó¼ÆËã)£¬ËùÒÔa=b=c µÈÍ¬ÓÚ a=(b=c),¹Êa=4,b=4;
+	è¿ç­‰å…³é”®æœ‰ä¸¤ç‚¹ï¼š
+	1ã€è¿ç®—ç¬¦çš„ä¼˜å…ˆçº§è·Ÿç»“åˆæ€§ã€‚
+	2ã€ä¸€ä¸ªèµ‹å€¼è¡¨è¾¾å¼æ˜¯æœ‰å€¼çš„ï¼Œå€¼å°±æ˜¯è¢«èµ‹çš„å€¼ï¼Œæ¯”å¦‚a=3 ï¼Œè¿™ä¸ªèµ‹å€¼è¡¨è¾¾å¼çš„å€¼å°±æ˜¯3ï¼Œè‹¥æœ‰b=ï¼ˆa=3ï¼‰ï¼Œåˆ™bçš„å€¼ä¸º3.
+	ä¾‹å¦‚ï¼š
+	a=b=cä¸­åªæœ‰ä¸€ä¸ªè¿ç®—ç¬¦ï¼Œç­‰å·ï¼Œæ‰€ä»¥ä¼˜å…ˆçº§æ˜¯ä¸€æ ·çš„ï¼Œè€Œç­‰å·çš„ç»“åˆæ€§æ˜¯ä»å³å‘å·¦çš„(ä¹Ÿå°±æ˜¯ç­‰å¼ä»å³å¾€å·¦è®¡ç®—)ï¼Œæ‰€ä»¥a=b=c ç­‰åŒäº a=(b=c),æ•…a=4,b=4;
 */
 /*
 	eexpr -> bexpr eexpr1
@@ -2120,9 +2120,9 @@ bool SemanticAnalysis::semanticAnalysis_eexpr(list<Token>::iterator& itAnalysisC
 
 	int ao = 0;
 	string ao_str = "";
-	//1.Ô¤ÏÈ·ÖÎöÏÂÒ»¸öTokenen´®ÊÇ·ñÎª¸³ÖµÔËËã·û
+	//1.é¢„å…ˆåˆ†æä¸‹ä¸€ä¸ªTokenenä¸²æ˜¯å¦ä¸ºèµ‹å€¼è¿ç®—ç¬¦
 	list<Token>::iterator tmp = itAnalysisCur;
-	if (semanticAnalysis_ao(itAnalysisCur, TokenenList, ao))	//ÏÂÒ»¸öTokenen´®Îª¸³ÖµÔËËã·û£¬bexprÓ¦¸ÃÎª±äÁ¿
+	if (semanticAnalysis_ao(itAnalysisCur, TokenenList, ao))	//ä¸‹ä¸€ä¸ªTokenenä¸²ä¸ºèµ‹å€¼è¿ç®—ç¬¦ï¼Œbexpråº”è¯¥ä¸ºå˜é‡
 	{
 		switch (ao)
 		{
@@ -2134,10 +2134,10 @@ bool SemanticAnalysis::semanticAnalysis_eexpr(list<Token>::iterator& itAnalysisC
 		default:
 			break;
 		}
-		//1.1·ÖÎöbexprÊÇ·ñÎª±äÁ¿£¬Èç¹û²»Îª±äÁ¿Ôò±¨´í
-		if (!(eexpr.mType == 2 || eexpr.mType == 3))	//ÊÇ·ñÎªÓÃ»§×Ô¶¨Òå±äÁ¿»òÁÙÊ±±äÁ¿
+		//1.1åˆ†æbexpræ˜¯å¦ä¸ºå˜é‡ï¼Œå¦‚æœä¸ä¸ºå˜é‡åˆ™æŠ¥é”™
+		if (!(eexpr.mType == 2 || eexpr.mType == 3))	//æ˜¯å¦ä¸ºç”¨æˆ·è‡ªå®šä¹‰å˜é‡æˆ–ä¸´æ—¶å˜é‡
 		{
-			mErrorInfo.push_back("µÚnĞĞ£¬ÔËËã·û" + ao_str + "×ó±ßÓ¦¸ÃÎªÒ»¸ö±äÁ¿");
+			mErrorInfo.push_back("ç¬¬nè¡Œï¼Œè¿ç®—ç¬¦" + ao_str + "å·¦è¾¹åº”è¯¥ä¸ºä¸€ä¸ªå˜é‡");
 			return false;	//
 		}
 	}//end if
@@ -2161,11 +2161,11 @@ bool SemanticAnalysis::semanticAnalysis_eexpr1(list<Token>::iterator& itAnalysis
 		FourElementTypeItem bexpr;
 		semanticAnalysis_bexpr(itAnalysisCur, TokenenList, bexpr);	//bexpr
 
-		//1.Ô¤ÏÈ·ÖÎöÏÂÒ»¸öTokenen´®ÊÇ·ñÎª¸³ÖµÔËËã·û
+		//1.é¢„å…ˆåˆ†æä¸‹ä¸€ä¸ªTokenenä¸²æ˜¯å¦ä¸ºèµ‹å€¼è¿ç®—ç¬¦
 		list<Token>::iterator tmp = itAnalysisCur;
 		int ao_tmp = 0;
 		string ao_str_tmp = "";
-		if (semanticAnalysis_ao(itAnalysisCur, TokenenList, ao_tmp))	//bexprÓ¦¸ÃÎª±äÁ¿
+		if (semanticAnalysis_ao(itAnalysisCur, TokenenList, ao_tmp))	//bexpråº”è¯¥ä¸ºå˜é‡
 		{
 			switch (ao_tmp)
 			{
@@ -2177,46 +2177,46 @@ bool SemanticAnalysis::semanticAnalysis_eexpr1(list<Token>::iterator& itAnalysis
 			default:
 				break;
 			}
-			//2.1·ÖÎöeexpr1ÊÇ·ñÎª±äÁ¿£¬Èç¹û²»Îª±äÁ¿Ôò±¨´í
-			if (!(bexpr.mType == 2 || bexpr.mType == 3))	//ÊÇ·ñÎªÓÃ»§×Ô¶¨Òå±äÁ¿»òÁÙÊ±±äÁ¿
+			//2.1åˆ†æeexpr1æ˜¯å¦ä¸ºå˜é‡ï¼Œå¦‚æœä¸ä¸ºå˜é‡åˆ™æŠ¥é”™
+			if (!(bexpr.mType == 2 || bexpr.mType == 3))	//æ˜¯å¦ä¸ºç”¨æˆ·è‡ªå®šä¹‰å˜é‡æˆ–ä¸´æ—¶å˜é‡
 			{
-				mErrorInfo.push_back("µÚnĞĞ£¬ÔËËã·û" + ao_str_tmp + "×ó±ßÓ¦¸ÃÎªÒ»¸ö±äÁ¿");
+				mErrorInfo.push_back("ç¬¬nè¡Œï¼Œè¿ç®—ç¬¦" + ao_str_tmp + "å·¦è¾¹åº”è¯¥ä¸ºä¸€ä¸ªå˜é‡");
 				return false;	//
 			}
-		}// end if bexprÓ¦¸ÃÎª±äÁ¿
+		}// end if bexpråº”è¯¥ä¸ºå˜é‡
 		itAnalysisCur = tmp;
 
 		if (!semanticAnalysis_eexpr1(itAnalysisCur, TokenenList, bexpr))	//bexpr
 		{
 			return false;
 		}
-		//¸³Öµ²Ù×÷£¬×ÔÓÒÏò×ó£¬½«bexpr±äÁ¿¸³Öµ¸øeexpr1
+		//èµ‹å€¼æ“ä½œï¼Œè‡ªå³å‘å·¦ï¼Œå°†bexprå˜é‡èµ‹å€¼ç»™eexpr1
 		if (bexpr.mType >= 1 && bexpr.mType <= 4)
 		{
-			if (bexpr.mType == 4)	//Èç¹ûbexprÎªBOOLÁ¿£¬ĞèÒªÏÈ×ª»»Îª·ÇBOOLÁ¿
+			if (bexpr.mType == 4)	//å¦‚æœbexprä¸ºBOOLé‡ï¼Œéœ€è¦å…ˆè½¬æ¢ä¸ºéBOOLé‡
 			{
 				FourElementTypeItem nullId;
 				FourElementTypeItem tempId = newTempIdentifier();
 				FourElementTypeItem constant;
 				constant.mType = 1;
 				constant.mConstantType = 1;
-				//Õæ³ö¿Ú
+				//çœŸå‡ºå£
 				constant.mConstantInteger = 1;
 				int mTC = mFourElementTypeList.size() + 1;
 				FourElementType four(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 				mFourElementTypeList.push_back(four);
-				//Ìø×ªÓï¾ä
+				//è·³è½¬è¯­å¥
 				FourElementTypeItem pFour;
 				pFour.mType = 5;
 				pFour.mNumber = mTC + 3;
 				FourElementType four1(mFourElementTypeList.size() + 1, Jump, nullId, nullId, pFour);
 				mFourElementTypeList.push_back(four1);
-				//¼Ù³ö¿Ú
+				//å‡å‡ºå£
 				constant.mConstantInteger = 0;
 				int mFC = mFourElementTypeList.size() + 1;
 				FourElementType four2(mFourElementTypeList.size() + 1, Equal, constant, nullId, tempId);
 				mFourElementTypeList.push_back(four2);
-				//ĞŞ¸ÄËÄÔªÊ½ÁĞ±í
+				//ä¿®æ”¹å››å…ƒå¼åˆ—è¡¨
 				cout << "mFC " << bexpr.mFC << endl;
 				modify_end_c(bexpr.mTC, mTC);
 				modify_end_c(bexpr.mFC, mFC);
@@ -2347,8 +2347,8 @@ bool SemanticAnalysis::semanticAnalysis_bexpr1(list<Token>::iterator& itAnalysis
 	if ((*itAnalysisCur).type == Operator_Or)	// ||
 	{
 		FourElementTypeItem bexpr1_tmp;
-		//1.ÅĞ¶Ïbexpr1ÊÇ·ñÎªBOOLÁ¿
-		if (bexpr1.mType != 4)	//Èç¹û²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		//1.åˆ¤æ–­bexpr1æ˜¯å¦ä¸ºBOOLé‡
+		if (bexpr1.mType != 4)	//å¦‚æœä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -2375,8 +2375,8 @@ bool SemanticAnalysis::semanticAnalysis_bexpr1(list<Token>::iterator& itAnalysis
 		{
 			return false;
 		}
-		//1.ÅĞ¶ÏbtermÊÇ·ñÎªBOOLÁ¿
-		if (bterm.mType != 4)	//Èç¹û²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		//1.åˆ¤æ–­btermæ˜¯å¦ä¸ºBOOLé‡
+		if (bterm.mType != 4)	//å¦‚æœä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -2445,8 +2445,8 @@ bool SemanticAnalysis::semanticAnalysis_bterm1(list<Token>::iterator& itAnalysis
 	if ((*itAnalysisCur).type == Operator_And)	// &&
 	{
 		FourElementTypeItem bterm1_tmp;
-		//1.ÅĞ¶Ïbterm1ÊÇ·ñÎªBOOLÁ¿
-		if (bterm1.mType != 4)	//Èç¹û²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		//1.åˆ¤æ–­bterm1æ˜¯å¦ä¸ºBOOLé‡
+		if (bterm1.mType != 4)	//å¦‚æœä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
@@ -2473,10 +2473,10 @@ bool SemanticAnalysis::semanticAnalysis_bterm1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 		//cout << "rterm -> mType " << rterm.mType << endl;
-		//2.ÅĞ¶ÏtermÊÇ·ñÎªBOOLÁ¿
-		if (rterm.mType != 4)	//Èç¹ûrterm²»ÎªBOOLÁ¿£¬ÔòĞèÒªÏÈ×ª»»ÎªBOOLÁ¿
+		//2.åˆ¤æ–­termæ˜¯å¦ä¸ºBOOLé‡
+		if (rterm.mType != 4)	//å¦‚æœrtermä¸ä¸ºBOOLé‡ï¼Œåˆ™éœ€è¦å…ˆè½¬æ¢ä¸ºBOOLé‡
 		{
-			//2.1½«rterm×ª»»ÎªBOOLÁ¿
+			//2.1å°†rtermè½¬æ¢ä¸ºBOOLé‡
 			int mTC = mFourElementTypeList.size() + 1;
 			int mFC = mFourElementTypeList.size() + 2;
 			FourElementTypeItem pFour;
@@ -2490,7 +2490,7 @@ bool SemanticAnalysis::semanticAnalysis_bterm1(list<Token>::iterator& itAnalysis
 			rterm.mType = 4;
 			rterm.mTC = mTC;
 			rterm.mFC = mFC;
-			//×ª»»½áÊø
+			//è½¬æ¢ç»“æŸ
 		}
 		bterm1_tmp.mType = 4;
 		bterm1_tmp.mTC = rterm.mTC;
@@ -2529,7 +2529,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr(list<Token>::iterator& itAnalysisC
 	rexpr1 -> != aexpr
 	rexpr1 -> == aexpr
 	rexpr1 -> $
-	//Ç°4¸öÔËËã·ûºÍºóÃæ2¸öÔËËã·ûµÄÓÅÏÈ¼¶È·ÊµÊÇ²»Ò»ÑùµÄ£¬µ«ÊÇÕâ6¸öÔËËã·û¶¼²»ÄÜÁ¬½Ó£¬Òò´ËĞ´ÔÚÒ»ÆğÊÇ¿ÉÒÔµÄ£¬Ö®Ç°µÄÉè¼ÆÊÇ´íÎó
+	//å‰4ä¸ªè¿ç®—ç¬¦å’Œåé¢2ä¸ªè¿ç®—ç¬¦çš„ä¼˜å…ˆçº§ç¡®å®æ˜¯ä¸ä¸€æ ·çš„ï¼Œä½†æ˜¯è¿™6ä¸ªè¿ç®—ç¬¦éƒ½ä¸èƒ½è¿æ¥ï¼Œå› æ­¤å†™åœ¨ä¸€èµ·æ˜¯å¯ä»¥çš„ï¼Œä¹‹å‰çš„è®¾è®¡æ˜¯é”™è¯¯
 */
 bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& rterm1)
 {
@@ -2544,7 +2544,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 
-		//Ç°·½¸ßÄÜ
+		//å‰æ–¹é«˜èƒ½
 		int mTC = mFourElementTypeList.size() + 1;
 		int mFC = mFourElementTypeList.size() + 2;
 		FourElementTypeItem pFour;
@@ -2569,7 +2569,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 
-		//Ç°·½¸ßÄÜ
+		//å‰æ–¹é«˜èƒ½
 		int mTC = mFourElementTypeList.size() + 1;
 		int mFC = mFourElementTypeList.size() + 2;
 		FourElementTypeItem pFour;
@@ -2594,7 +2594,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 
-		//Ç°·½¸ßÄÜ
+		//å‰æ–¹é«˜èƒ½
 		int mTC = mFourElementTypeList.size() + 1;
 		int mFC = mFourElementTypeList.size() + 2;
 		FourElementTypeItem pFour;
@@ -2619,7 +2619,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 
-		//Ç°·½¸ßÄÜ
+		//å‰æ–¹é«˜èƒ½
 		int mTC = mFourElementTypeList.size() + 1;
 		int mFC = mFourElementTypeList.size() + 2;
 		FourElementTypeItem pFour;
@@ -2634,7 +2634,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 		rterm1.mTC = mTC;
 		rterm1.mFC = mFC;
 	}
-	//ĞŞ¸ÄÎÄ·¨ºóÌí¼ÓµÄÄÚÈİ
+	//ä¿®æ”¹æ–‡æ³•åæ·»åŠ çš„å†…å®¹
 	else if ((*itAnalysisCur).type == Operator_Not_Equal_To)	// !=
 	{
 		itAnalysisCur++;
@@ -2644,7 +2644,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 
-		//Ç°·½¸ßÄÜ
+		//å‰æ–¹é«˜èƒ½
 		int mTC = mFourElementTypeList.size() + 1;
 		int mFC = mFourElementTypeList.size() + 2;
 		FourElementTypeItem pFour;
@@ -2668,7 +2668,7 @@ bool SemanticAnalysis::semanticAnalysis_rexpr1(list<Token>::iterator& itAnalysis
 			return false;
 		}
 
-		//Ç°·½¸ßÄÜ
+		//å‰æ–¹é«˜èƒ½
 		int mTC = mFourElementTypeList.size() + 1;
 		int mFC = mFourElementTypeList.size() + 2;
 		FourElementTypeItem pFour;
@@ -2936,7 +2936,7 @@ bool SemanticAnalysis::semanticAnalysis_term(list<Token>::iterator& itAnalysisCu
 */
 bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& term1)
 {
-	// ÅĞ¶Ïterm1ºÍfactorÊÇ·ñ¶¼Îª³£Á¿£¬Èç¹ûÎª³£Á¿Ôò¼ÆËã³öËüÃÇµÄÖµ
+	// åˆ¤æ–­term1å’Œfactoræ˜¯å¦éƒ½ä¸ºå¸¸é‡ï¼Œå¦‚æœä¸ºå¸¸é‡åˆ™è®¡ç®—å‡ºå®ƒä»¬çš„å€¼
 	//FourElementTypeItem term1;
 	int op = 0;
 	if (itAnalysisCur == TokenenList.end())
@@ -2961,10 +2961,10 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 		FourElementTypeItem factor;
 		semanticAnalysis_factor(itAnalysisCur, TokenenList, factor);//factor
 		//factor.printFourElementTypeItem();
-		//ÓïÒå·ÖÎö£ºÔËËã·û%µÄ×óÓÒ²Ù×÷Êı±ØĞë¶¼ÎªintĞÍ
-		if (factor.mType == 1 && term1.mType == 1)	//Ö±½Ó¼ÆËã£¬½«µÃµ½µÄ½á¹û¸³Öµ¸øterm1
+		//è¯­ä¹‰åˆ†æï¼šè¿ç®—ç¬¦%çš„å·¦å³æ“ä½œæ•°å¿…é¡»éƒ½ä¸ºintå‹
+		if (factor.mType == 1 && term1.mType == 1)	//ç›´æ¥è®¡ç®—ï¼Œå°†å¾—åˆ°çš„ç»“æœèµ‹å€¼ç»™term1
 		{
-			if (term1.mConstantType == 1)	//ÊÇ·ñÎªintÀàĞÍ
+			if (term1.mConstantType == 1)	//æ˜¯å¦ä¸ºintç±»å‹
 			{
 				switch (op)
 				{
@@ -3014,7 +3014,7 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 				}
 				case Mod:
 				{
-					//ÔËËã·û%ÓÒ±ßÓ¦¸øÎªintÀàĞÍ
+					//è¿ç®—ç¬¦%å³è¾¹åº”ç»™ä¸ºintç±»å‹
 					switch (factor.mConstantType)
 					{
 					case 1:	//int
@@ -3022,9 +3022,9 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 						break;
 					case 2:	//float
 					{
-						//ÔËËã·û%ÓÒ±ßÓ¦¸øÎªintÀàĞÍ
-						mErrorInfo.push_back("ÔËËã·û%ÓÒ±ß²Ù×÷Êı±ØĞëÎªintĞÍ");
-						return false;	//·µ»Ø
+						//è¿ç®—ç¬¦%å³è¾¹åº”ç»™ä¸ºintç±»å‹
+						mErrorInfo.push_back("è¿ç®—ç¬¦%å³è¾¹æ“ä½œæ•°å¿…é¡»ä¸ºintå‹");
+						return false;	//è¿”å›
 						break;
 					}
 					case 3:	//char
@@ -3039,7 +3039,7 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 					break;
 				}
 			}
-			else if (term1.mConstantType == 2) //ÊÇ·ñÎªfloatÀàĞÍ
+			else if (term1.mConstantType == 2) //æ˜¯å¦ä¸ºfloatç±»å‹
 			{
 				switch (op)
 				{
@@ -3081,16 +3081,16 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 				}
 				case Mod:
 				{
-					//ÔËËã·û%×ó±ßÓ¦¸øÎªintÀàĞÍ
-					mErrorInfo.push_back("ÔËËã·û%×ó±ß²Ù×÷Êı±ØĞëÎªintĞÍ");
-					return false;	//·µ»Ø
+					//è¿ç®—ç¬¦%å·¦è¾¹åº”ç»™ä¸ºintç±»å‹
+					mErrorInfo.push_back("è¿ç®—ç¬¦%å·¦è¾¹æ“ä½œæ•°å¿…é¡»ä¸ºintå‹");
+					return false;	//è¿”å›
 					break;
 				}
 				default:
 					break;
 				}
 			}
-			else    //ÎªcharÀàĞÍ
+			else    //ä¸ºcharç±»å‹
 			{
 				switch (op)
 				{
@@ -3160,9 +3160,9 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 					}
 					case 2: //float
 					{
-						//ÔËËã·û%ÓÒ±ßÓ¦¸øÎªintÀàĞÍ
-						mErrorInfo.push_back("ÔËËã·û%ÓÒ±ß²Ù×÷Êı±ØĞëÎªintĞÍ");
-						return false;	//·µ»Ø
+						//è¿ç®—ç¬¦%å³è¾¹åº”ç»™ä¸ºintç±»å‹
+						mErrorInfo.push_back("è¿ç®—ç¬¦%å³è¾¹æ“ä½œæ•°å¿…é¡»ä¸ºintå‹");
+						return false;	//è¿”å›
 						break;
 					}
 					case 3:	//char
@@ -3184,7 +3184,7 @@ bool SemanticAnalysis::semanticAnalysis_term1(list<Token>::iterator& itAnalysisC
 		else
 		{
 			FourElementTypeItem tempId = newTempIdentifier();
-			//Õâ¸öÎ»ÖÃÒª¼ì²é term1 ºÍ factor¶¨ÒåÀàĞÍ£¬ÓÈÆäÊÇÔËËã·û%
+			//è¿™ä¸ªä½ç½®è¦æ£€æŸ¥ term1 å’Œ factorå®šä¹‰ç±»å‹ï¼Œå°¤å…¶æ˜¯è¿ç®—ç¬¦%
 			FourElementType four(mFourElementTypeList.size() + 1, op, term1, factor, tempId);
 			mFourElementTypeList.push_back(four);
 			term1 = tempId;
@@ -3217,17 +3217,17 @@ bool SemanticAnalysis::semanticAnalysis_factor(list<Token>::iterator& itAnalysis
 	{
 		switch (ael.mType)
 		{
-		case 1://³£Á¿
+		case 1://å¸¸é‡
 		{
 			switch (ael.mConstantType)
 			{
-			case 1://ÕûĞÍ
+			case 1://æ•´å‹
 				ael.mConstantInteger == 0 ? ael.mConstantInteger = 1 : ael.mConstantInteger = 0;
 				break;
-			case 2://¸¡µãĞÍ
+			case 2://æµ®ç‚¹å‹
 				ael.mConstantFloat == 0.0 ? ael.mConstantFloat = 1.0 : ael.mConstantFloat == 0.0;
 				break;
-			case 3://×Ö·ûĞÍ
+			case 3://å­—ç¬¦å‹
 				ael.mConstantChar == 0 ? ael.mConstantChar = 1 : ael.mConstantChar = 0;
 				break;
 			default:
@@ -3236,7 +3236,7 @@ bool SemanticAnalysis::semanticAnalysis_factor(list<Token>::iterator& itAnalysis
 			factor = ael;
 			break;
 		}
-		case 2:	//ÓÃ»§¶¨ÒåµÄ±äÁ¿
+		case 2:	//ç”¨æˆ·å®šä¹‰çš„å˜é‡
 		{
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem nullId;
@@ -3245,7 +3245,7 @@ bool SemanticAnalysis::semanticAnalysis_factor(list<Token>::iterator& itAnalysis
 			factor = tempId;
 			break;
 		}
-		case 3:	//ÁÙÊ±±äÁ¿
+		case 3:	//ä¸´æ—¶å˜é‡
 		{
 			FourElementTypeItem tempId = newTempIdentifier();
 			FourElementTypeItem nullId;
@@ -3254,7 +3254,7 @@ bool SemanticAnalysis::semanticAnalysis_factor(list<Token>::iterator& itAnalysis
 			factor = tempId;
 			break;
 		}
-		case 4:	//BOOL±äÁ¿
+		case 4:	//BOOLå˜é‡
 		{
 			int mTC = factor.mTC;
 			int mFC = factor.mFC;
@@ -3275,14 +3275,14 @@ bool SemanticAnalysis::semanticAnalysis_ael(list<Token>::iterator& itAnalysisCur
 {
 	if (itAnalysisCur == TokenenList.end())
 		return false;
-	if ((*itAnalysisCur).type == Delimiter_Left_Small_Bracket)	//×óĞ¡À¨ºÅ
+	if ((*itAnalysisCur).type == Delimiter_Left_Small_Bracket)	//å·¦å°æ‹¬å·
 	{
 		itAnalysisCur++;
 		// bexpr
 		semanticAnalysis_bexpr(itAnalysisCur, TokenenList, ael);	//bexpr
 		if (itAnalysisCur == TokenenList.end())
 			return false;
-		if ((*itAnalysisCur).type == Delimiter_Right_Small_Bracket)	//ÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type == Delimiter_Right_Small_Bracket)	//å³å°æ‹¬å·
 		{
 			itAnalysisCur++;
 		}
@@ -3297,11 +3297,11 @@ bool SemanticAnalysis::semanticAnalysis_ael(list<Token>::iterator& itAnalysisCur
 
 /*
 	root -> id
-	root -> ÕûĞÍ(°Ë½øÖÆ¡¢Ê®½øÖÆ¡¢Ê®Áù½øÖÆ)
-	root -> ¸¡µãĞÍ( Ğ¡Êı¡¢Ö¸Êı )
-	root -> BOOL ²¼¶ûĞÍ
-	root -> ×Ö·ûĞÍ
-	//root -> ×Ö·û´®ĞÍ ÕâÔÚprintÎ»ÖÃÓÃµ½
+	root -> æ•´å‹(å…«è¿›åˆ¶ã€åè¿›åˆ¶ã€åå…­è¿›åˆ¶)
+	root -> æµ®ç‚¹å‹( å°æ•°ã€æŒ‡æ•° )
+	root -> BOOL å¸ƒå°”å‹
+	root -> å­—ç¬¦å‹
+	//root -> å­—ç¬¦ä¸²å‹ è¿™åœ¨printä½ç½®ç”¨åˆ°
 */
 bool SemanticAnalysis::semanticAnalysis_root(list<Token>::iterator& itAnalysisCur, list<Token>& TokenenList, FourElementTypeItem& root)
 {
@@ -3311,53 +3311,53 @@ bool SemanticAnalysis::semanticAnalysis_root(list<Token>::iterator& itAnalysisCu
 	{
 		if (!isUserVariableDefinition((*itAnalysisCur).data))
 		{
-			mErrorInfo.push_back("±äÁ¿ \"" + (*itAnalysisCur).data + "\" Î´¶¨Òå");
+			mErrorInfo.push_back("å˜é‡ \"" + (*itAnalysisCur).data + "\" æœªå®šä¹‰");
 		}
-		root.mType = 2;	//ÓÃ»§¶¨ÒåµÄ±äÁ¿
+		root.mType = 2;	//ç”¨æˆ·å®šä¹‰çš„å˜é‡
 		root.mUserIdentifierName = (*itAnalysisCur).data;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Character)	//×Ö·û
+	else if ((*itAnalysisCur).type == Character)	//å­—ç¬¦
 	{
-		root.mType = 1;	//³£Á¿
-		root.mConstantType = 3;	//×Ö·ûĞÍ
+		root.mType = 1;	//å¸¸é‡
+		root.mConstantType = 3;	//å­—ç¬¦å‹
 		root.mConstantChar = stringConvertCharacter((*itAnalysisCur).data);
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == String)	//×Ö·û´®
+	else if ((*itAnalysisCur).type == String)	//å­—ç¬¦ä¸²
 	{
-		//²»·ÖÎöÕâ¸öµØ·½£¬×Ö·û´®¾ÍÊÇN¸ö×Ö·ûµÄ×éºÏ
+		//ä¸åˆ†æè¿™ä¸ªåœ°æ–¹ï¼Œå­—ç¬¦ä¸²å°±æ˜¯Nä¸ªå­—ç¬¦çš„ç»„åˆ
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Octonary)	//ÕûĞÍ °Ë½øÖÆ
+	else if ((*itAnalysisCur).type == Number_Octonary)	//æ•´å‹ å…«è¿›åˆ¶
 	{
-		root.mCacheBuffer = (*itAnalysisCur).data;	//ÕûĞÍµÄ×Ö·û´®ĞÎÊ½Ìí¼Óµ½»º´æÖĞ
-		root.mType = 1;//³£Á¿
-		root.mConstantType = 1;	//ÕûĞÍ
+		root.mCacheBuffer = (*itAnalysisCur).data;	//æ•´å‹çš„å­—ç¬¦ä¸²å½¢å¼æ·»åŠ åˆ°ç¼“å­˜ä¸­
+		root.mType = 1;//å¸¸é‡
+		root.mConstantType = 1;	//æ•´å‹
 		root.mConstantInteger = stringConvertNumberOctonary((*itAnalysisCur).data);
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Decimalism)	//ÕûĞÍ Ê®½øÖÆ
+	else if ((*itAnalysisCur).type == Number_Decimalism)	//æ•´å‹ åè¿›åˆ¶
 	{
-		root.mCacheBuffer = (*itAnalysisCur).data;	//ÕûĞÍµÄ×Ö·û´®ĞÎÊ½Ìí¼Óµ½»º´æÖĞ
-		root.mType = 1;//³£Á¿
-		root.mConstantType = 1;	//ÕûĞÍ
+		root.mCacheBuffer = (*itAnalysisCur).data;	//æ•´å‹çš„å­—ç¬¦ä¸²å½¢å¼æ·»åŠ åˆ°ç¼“å­˜ä¸­
+		root.mType = 1;//å¸¸é‡
+		root.mConstantType = 1;	//æ•´å‹
 		root.mConstantInteger = stringConvertNumberDecimalism((*itAnalysisCur).data);
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Hexadecimal)	//ÕûĞÍ Ê®Áù½øÖÆ
+	else if ((*itAnalysisCur).type == Number_Hexadecimal)	//æ•´å‹ åå…­è¿›åˆ¶
 	{
-		root.mCacheBuffer = (*itAnalysisCur).data;	//ÕûĞÍµÄ×Ö·û´®ĞÎÊ½Ìí¼Óµ½»º´æÖĞ
-		root.mType = 1;//³£Á¿
-		root.mConstantType = 1;	//ÕûĞÍ
+		root.mCacheBuffer = (*itAnalysisCur).data;	//æ•´å‹çš„å­—ç¬¦ä¸²å½¢å¼æ·»åŠ åˆ°ç¼“å­˜ä¸­
+		root.mType = 1;//å¸¸é‡
+		root.mConstantType = 1;	//æ•´å‹
 		root.mConstantInteger = stringConvertNumberHexadecimal((*itAnalysisCur).data);
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Decimals)	//¸¡µãĞÍ Ğ¡Êı
+	else if ((*itAnalysisCur).type == Number_Decimals)	//æµ®ç‚¹å‹ å°æ•°
 	{
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Exponent)	//¸¡µãĞÍ Ö¸Êı
+	else if ((*itAnalysisCur).type == Number_Exponent)	//æµ®ç‚¹å‹ æŒ‡æ•°
 	{
 		itAnalysisCur++;
 	}
@@ -3382,15 +3382,15 @@ bool SemanticAnalysis::semanticAnalysis_BOOL(list<Token>::iterator& itAnalysisCu
 	if ((*itAnalysisCur).type == Keyword_true)
 	{
 		itAnalysisCur++;
-		BOOL.mType = 1;	//³£Á¿
-		BOOL.mConstantType = 1;	//ÕûĞÍ
+		BOOL.mType = 1;	//å¸¸é‡
+		BOOL.mConstantType = 1;	//æ•´å‹
 		BOOL.mConstantInteger = 1;
 	}
 	else if ((*itAnalysisCur).type == Keyword_false)
 	{
 		itAnalysisCur++;
-		BOOL.mType = 1;	//³£Á¿
-		BOOL.mConstantType = 1;	//ÕûĞÍ
+		BOOL.mType = 1;	//å¸¸é‡
+		BOOL.mConstantType = 1;	//æ•´å‹
 		BOOL.mConstantInteger = 0;
 	}
 	else
@@ -3402,7 +3402,7 @@ bool SemanticAnalysis::semanticAnalysis_BOOL(list<Token>::iterator& itAnalysisCu
 
 bool SemanticAnalysis::expressPreAnalysis(int type)
 {
-	// ! ( id ÕûĞÍ(°Ë£¬Ê®£¬Ê®Áù) ¸¡µã(Ğ¡£¬Ö¸) true false char
+	// ! ( id æ•´å‹(å…«ï¼Œåï¼Œåå…­) æµ®ç‚¹(å°ï¼ŒæŒ‡) true false char
 	if (type == Operator_Not || type == Identifier || type == Number_Octonary
 		|| type == Number_Decimalism || type == Number_Hexadecimal || type == Number_Decimals
 		|| type == Number_Exponent || type == Keyword_true || type == Keyword_false || type == Character)
@@ -3428,7 +3428,7 @@ bool SemanticAnalysis::isUserVariableDefinition(string variableName)
 	}
 	return false;
 }
-// true-ÖØ¸´ false-²»ÖØ¸´
+// true-é‡å¤ false-ä¸é‡å¤
 bool SemanticAnalysis::isRepetDefineVariable(string variableName, bool isGlobal)
 {
 	list<VariableDefinition>::iterator it = mVariableDefinitionList.begin();
@@ -3460,11 +3460,11 @@ bool SemanticAnalysis::isRepetDefineVariable(string variableName, bool isGlobal)
 	}
 	return false;
 }
-//ÅĞ¶Ïº¯ÊıÉùÃ÷ºÍº¯ÊıÊµÏÖÊÇ·ñÆ¥Åä
-// true-Æ¥Åä false-²»Æ¥Åä
+//åˆ¤æ–­å‡½æ•°å£°æ˜å’Œå‡½æ•°å®ç°æ˜¯å¦åŒ¹é…
+// true-åŒ¹é… false-ä¸åŒ¹é…
 bool SemanticAnalysis::isMatchFunctionComeTrueAndDefine(FunctionDefinition fd)
 {
-	//º¯ÊıÃûÏàÍ¬ ·µ»ØÖµÀàĞÍÏàÍ¬ ²ÎÊı¸öÊıÏàÍ¬ Ã¿¸ö²ÎÊıÀàĞÍÏàÍ¬
+	//å‡½æ•°åç›¸åŒ è¿”å›å€¼ç±»å‹ç›¸åŒ å‚æ•°ä¸ªæ•°ç›¸åŒ æ¯ä¸ªå‚æ•°ç±»å‹ç›¸åŒ
 	list<FunctionDefinition>::iterator it = mFunctionDefinitionList.begin();
 	for (; it != mFunctionDefinitionList.end(); it++)
 	{
@@ -3487,12 +3487,12 @@ bool SemanticAnalysis::isMatchFunctionComeTrueAndDefine(FunctionDefinition fd)
 		{
 			if ((*it).isComeTrue == fd.isComeTrue)
 			{
-				//ÖØ¸´¶¨ÒåµÄ´íÎó
-				mErrorInfo.push_back("º¯Êı " + fd.functionName + " ÖØ¸´¶¨Òå");
+				//é‡å¤å®šä¹‰çš„é”™è¯¯
+				mErrorInfo.push_back("å‡½æ•° " + fd.functionName + " é‡å¤å®šä¹‰");
 			}
-			if (fd.isComeTrue)	//ÊÇº¯ÊıÊµÏÖ
+			if (fd.isComeTrue)	//æ˜¯å‡½æ•°å®ç°
 				(*it).funcEnter = fd.funcEnter;
-			return true;	//´æÔÚ[ÓĞ¿ÉÄÜÊÇÖØ¸´¶¨Òå£¬²»Ìí¼Óµ½listÖĞ]
+			return true;	//å­˜åœ¨[æœ‰å¯èƒ½æ˜¯é‡å¤å®šä¹‰ï¼Œä¸æ·»åŠ åˆ°listä¸­]
 		}
 	}
 	return false;

@@ -31,7 +31,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main_0420.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="lexicalAnalysis.cpp">
@@ -121,7 +121,7 @@
     <ClCompile Include="objectCodeGeneration_Linux.cpp">
       <Filter>object</Filter>
     </ClCompile>
-    <ClCompile Include="main_arg_test_1.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main_0511.cpp">

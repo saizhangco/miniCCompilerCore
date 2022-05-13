@@ -25,24 +25,24 @@ GrammarAnalysis::~GrammarAnalysis()
 	//delete grammar_for_miniC_2;
 }
 //1.
-//½öÊ¹ÓÃLL1Ô¤²â·ÖÎö£¬·ÖÎöminiCÓïÑÔ£¨²»ÄÜ°üº¬È«¾Ö±äÁ¿£©
+//ä»…ä½¿ç”¨LL1é¢„æµ‹åˆ†æï¼Œåˆ†æminiCè¯­è¨€ï¼ˆä¸èƒ½åŒ…å«å…¨å±€å˜é‡ï¼‰
 bool GrammarAnalysis::grammarAnalysisUsingLL1WithoutGlobalVariable(list<Token>& listToken)
 {
 	ofstream fout("analysis\\grammarAnalysisUsingLL1.txt");
 	grammar_for_miniC = new LL_1_Analysis("grammar\\grammar_for_miniC.txt");
 	fout << "********************************************" << endl;
-	fout << "*        LL1Ô¤²â·ÖÎö,²»·ÖÎöÈ«¾Ö±äÁ¿        *" << endl;
+	fout << "*        LL1é¢„æµ‹åˆ†æ,ä¸åˆ†æå…¨å±€å˜é‡        *" << endl;
 	fout << "********************************************" << endl;
 	if ((*grammar_for_miniC).runGrammarAnalysis(listToken))
 	{
-		//cout << endl << "·ÖÎö³É¹¦" << endl << endl;
+		//cout << endl << "åˆ†ææˆåŠŸ" << endl << endl;
 		//(*grammar_for_miniC).printAnalysisResult();
-		(*grammar_for_miniC).saveAnalysisResultToFile(fout);	//½«LL1Ô¤²â·ÖÎö½á¹û±£´æÔÚÎÄ¼şÖĞ
+		(*grammar_for_miniC).saveAnalysisResultToFile(fout);	//å°†LL1é¢„æµ‹åˆ†æç»“æœä¿å­˜åœ¨æ–‡ä»¶ä¸­
 		//return true;
 	}
 	else
 	{
-		//cout << endl << "Óï·¨·ÖÎö´íÎó" << endl << endl;
+		//cout << endl << "è¯­æ³•åˆ†æé”™è¯¯" << endl << endl;
 		delete grammar_for_miniC;
 		return false;
 	}
@@ -51,26 +51,26 @@ bool GrammarAnalysis::grammarAnalysisUsingLL1WithoutGlobalVariable(list<Token>& 
 	return true;
 }
 //2.
-//Ê¹ÓÃµİ¹éÏÂ½µºÍLL1Ô¤²â·ÖÎö£¬·ÖÎöminiCÓïÑÔ£¬LL1·ÖÎö º¯ÊıÌå
+//ä½¿ç”¨é€’å½’ä¸‹é™å’ŒLL1é¢„æµ‹åˆ†æï¼Œåˆ†æminiCè¯­è¨€ï¼ŒLL1åˆ†æ å‡½æ•°ä½“
 bool GrammarAnalysis::grammarAnalysisUsingRecursiveDescentAndLL1_1(list<Token>& listToken)
 {
 	outAnalysisFile.open("analysis\\grammarAnalysisUsingRecursiveDescentAndLL1_1.txt");
 	grammar_for_function_body = new LL_1_Analysis("grammar\\grammar_for_function_body.txt");
 	analysis_function_body_using_LL1 = true;
 	outAnalysisFile << "********************************************" << endl;
-	outAnalysisFile << "*  LL1Ô¤²â·ÖÎöº¯Êı¶¨Òå¡¢ÊµÏÖ£¬È«¾Ö±äÁ¿¶¨Òå *" << endl;
-	outAnalysisFile << "*            µİ¹éÏÂ½µ·ÖÎöº¯ÊıÌå            *" << endl;
+	outAnalysisFile << "*  LL1é¢„æµ‹åˆ†æå‡½æ•°å®šä¹‰ã€å®ç°ï¼Œå…¨å±€å˜é‡å®šä¹‰ *" << endl;
+	outAnalysisFile << "*            é€’å½’ä¸‹é™åˆ†æå‡½æ•°ä½“            *" << endl;
 	outAnalysisFile << "********************************************" << endl;
 	list<Token>::iterator it_AnalysisCur = listToken.begin();
-	grammarTree->root->data = "Óï·¨·ÖÎöÊ÷";	//Óï·¨·ÖÎöÊ÷³õÊ¼»¯
+	grammarTree->root->data = "è¯­æ³•åˆ†ææ ‘";	//è¯­æ³•åˆ†ææ ‘åˆå§‹åŒ–
 	if (grammarAnalysisS(it_AnalysisCur, listToken, grammarTree->root))
 	{
-		//cout << endl << "·ÖÎö³É¹¦" << endl << endl;
+		//cout << endl << "åˆ†ææˆåŠŸ" << endl << endl;
 		//return true;
 	}
 	else
 	{
-		//cout << endl << "Óï·¨·ÖÎö´íÎó" << endl << endl;
+		//cout << endl << "è¯­æ³•åˆ†æé”™è¯¯" << endl << endl;
 		delete grammar_for_function_body;
 		return false;
 	}
@@ -79,26 +79,26 @@ bool GrammarAnalysis::grammarAnalysisUsingRecursiveDescentAndLL1_1(list<Token>& 
 	return true;
 }
 //3.
-//Ê¹ÓÃµİ¹éÏÂ½µºÍLL1Ô¤²â·ÖÎö£¬·ÖÎöminiCÓïÑÔ£¬LL1½ö·ÖÎö ±í´ïÊ½
+//ä½¿ç”¨é€’å½’ä¸‹é™å’ŒLL1é¢„æµ‹åˆ†æï¼Œåˆ†æminiCè¯­è¨€ï¼ŒLL1ä»…åˆ†æ è¡¨è¾¾å¼
 bool GrammarAnalysis::grammarAnalysisUsingRecursiveDescentAndLL1_2(list<Token>& listToken)
 {
 	outAnalysisFile.open("analysis\\grammarAnalysisUsingRecursiveDescentAndLL1_2.txt");
 	grammar_for_expression = new LL_1_Analysis("grammar\\grammar_for_expression.txt");
 	analysis_express_using_LL1 = true;
 	outAnalysisFile << "********************************************" << endl;
-	outAnalysisFile << "*             LL1Ô¤²â·ÖÎö±í´ïÊ½            *" << endl;
-	outAnalysisFile << "*            µİ¹éÏÂ½µ·ÖÎöÆäËûÓï·¨          *" << endl;
+	outAnalysisFile << "*             LL1é¢„æµ‹åˆ†æè¡¨è¾¾å¼            *" << endl;
+	outAnalysisFile << "*            é€’å½’ä¸‹é™åˆ†æå…¶ä»–è¯­æ³•          *" << endl;
 	outAnalysisFile << "********************************************" << endl;
 	list<Token>::iterator it_AnalysisCur = listToken.begin();
-	grammarTree->root->data = "Óï·¨·ÖÎöÊ÷";	//Óï·¨·ÖÎöÊ÷³õÊ¼»¯
+	grammarTree->root->data = "è¯­æ³•åˆ†ææ ‘";	//è¯­æ³•åˆ†ææ ‘åˆå§‹åŒ–
 	if (grammarAnalysisS(it_AnalysisCur, listToken, grammarTree->root))
 	{
-		//cout << endl << "·ÖÎö³É¹¦" << endl << endl;
+		//cout << endl << "åˆ†ææˆåŠŸ" << endl << endl;
 		//return true;
 	}
 	else
 	{
-		//cout << endl << "Óï·¨·ÖÎö´íÎó" << endl << endl;
+		//cout << endl << "è¯­æ³•åˆ†æé”™è¯¯" << endl << endl;
 		delete grammar_for_expression;
 		return false;
 	}
@@ -107,50 +107,50 @@ bool GrammarAnalysis::grammarAnalysisUsingRecursiveDescentAndLL1_2(list<Token>& 
 	return true;
 }
 //4.
-//½öÊ¹ÓÃµİ¹éÏÂ½µ·ÖÎöminiCÓïÑÔ
+//ä»…ä½¿ç”¨é€’å½’ä¸‹é™åˆ†æminiCè¯­è¨€
 bool GrammarAnalysis::grammarAnalysisUsingRecursiveDescent(list<Token>& TokenenList)
 {
 	outAnalysisFile.open("analysis\\grammarAnalysisUsingRecursiveDescent.txt");
 	outAnalysisFile << "********************************************" << endl;
-	outAnalysisFile << "*             µİ¹éÏÂ½µÓï·¨·ÖÎö             *" << endl;
+	outAnalysisFile << "*             é€’å½’ä¸‹é™è¯­æ³•åˆ†æ             *" << endl;
 	outAnalysisFile << "********************************************" << endl;
 
 	list<Token>::iterator it_AnalysisCur = TokenenList.begin();
-	grammarTree->root->data = "Óï·¨·ÖÎöÊ÷";	//Óï·¨·ÖÎöÊ÷³õÊ¼»¯
+	grammarTree->root->data = "è¯­æ³•åˆ†ææ ‘";	//è¯­æ³•åˆ†ææ ‘åˆå§‹åŒ–
 	if (grammarAnalysisS(it_AnalysisCur, TokenenList, grammarTree->root))
 	{
-		//cout << endl << "·ÖÎö³É¹¦" << endl << endl;
+		//cout << endl << "åˆ†ææˆåŠŸ" << endl << endl;
 		//ll1.printAnalysisResult();
 		//grammar_for_function_body.printAnalysisResult();
 		//return true;
 	}
 	else
 	{
-		//cout << endl << "Óï·¨·ÖÎö´íÎó" << endl << endl;
+		//cout << endl << "è¯­æ³•åˆ†æé”™è¯¯" << endl << endl;
 		return false;
 	}
 	outAnalysisFile.close();
 	return true;
 }
 //5.
-//Ê¹ÓÃLL1Ô¤²â·ÖÎö·¨°´ÕÕ¸üĞÂºóµÄÎÄ·¨·ÖÎö
+//ä½¿ç”¨LL1é¢„æµ‹åˆ†ææ³•æŒ‰ç…§æ›´æ–°åçš„æ–‡æ³•åˆ†æ
 bool GrammarAnalysis::grammarAnalysisUsingLL1_2(list<Token>& listToken)
 {
 	//analysis\\grammarAnalysisUsingLL1_2.txt
 	grammar_for_miniC_2 = new LL_1_Analysis("grammar\\grammar_for_miniC_2.txt");
 	ofstream fout("analysis\\grammarAnalysisUsingLL1_2.txt");
 	fout << "********************************************" << endl;
-	fout << "*         LL1Ô¤²â·ÖÎö,¸üĞÂºóµÄÎÄ·¨         *" << endl;
+	fout << "*         LL1é¢„æµ‹åˆ†æ,æ›´æ–°åçš„æ–‡æ³•         *" << endl;
 	fout << "********************************************" << endl;
 	if ((*grammar_for_miniC_2).runGrammarAnalysis(listToken))
 	{
-		//cout << endl << "LL1Ô¤²â·ÖÎöÊ¹ÓÃ¸üĞÂºóµÄÎÄ·¨£¬·ÖÎö³É¹¦" << endl << endl;
+		//cout << endl << "LL1é¢„æµ‹åˆ†æä½¿ç”¨æ›´æ–°åçš„æ–‡æ³•ï¼Œåˆ†ææˆåŠŸ" << endl << endl;
 		//(*grammar_for_miniC_2).printAnalysisResult();
 		(*grammar_for_miniC_2).saveAnalysisResultToFile(fout);
 	}
 	else
 	{
-		//cout << endl << "Óï·¨·ÖÎö´íÎó" << endl << endl;
+		//cout << endl << "è¯­æ³•åˆ†æé”™è¯¯" << endl << endl;
 		delete grammar_for_miniC_2;
 		return false;
 	}
@@ -164,7 +164,7 @@ void GrammarAnalysis::printGrammarTree()
 	grammarTree->printTree(grammarTree->root);
 }
 //---------------------------------------------------------------------------------------------------
-// È«¾Ö±äÁ¿¶¨Òå¡¢º¯ÊıÉùÃ÷¡¢º¯ÊıÊµÏÖ
+// å…¨å±€å˜é‡å®šä¹‰ã€å‡½æ•°å£°æ˜ã€å‡½æ•°å®ç°
 //---------------------------------------------------------------------------------------------------
 /*
 	S -> $
@@ -182,12 +182,12 @@ bool GrammarAnalysis::grammarAnalysisS(list<Token>::iterator & it_AnalysisCur, l
 		outAnalysisFile << "G: S -> F S" << endl;
 		if (!grammarAnalysisF(it_AnalysisCur, listToken, node))
 		{
-			outAnalysisFile << "E: ·ÖÎö F ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ F å‡ºé”™" << endl;
 			return false;
 		}
 		if (!grammarAnalysisS(it_AnalysisCur, listToken, node))
 		{
-			outAnalysisFile << "E: ·ÖÎö S ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ S å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -200,23 +200,23 @@ bool GrammarAnalysis::grammarAnalysisF(list<Token>::iterator & it_AnalysisCur, l
 {
 	outAnalysisFile << "G: F -> MT1 DT F1" << endl;
 	GrammarTreeTmp grammarTreeTmp;
-	// ·ÖÎö MT1
+	// åˆ†æ MT1
 	int memoryType = Keyword_extern;
 	if (grammarAnalysisMT1(it_AnalysisCur, listToken, memoryType))
 	{
-		//cout << "·ÖÎöMT1³É¹¦" << endl;
+		//cout << "åˆ†æMT1æˆåŠŸ" << endl;
 	}
-	// ·ÖÎö DT
+	// åˆ†æ DT
 	int dataType = Error;
 	if (grammarAnalysisDT(it_AnalysisCur, listToken, dataType))
 	{
-		//cout << "·ÖÎöDT³É¹¦" << endl;
+		//cout << "åˆ†æDTæˆåŠŸ" << endl;
 	}
 	grammarTreeTmp.dataType = dataType;
-	// ·ÖÎö F1
+	// åˆ†æ F1
 	if (!grammarAnalysisF1(it_AnalysisCur, listToken, grammarTreeTmp))
 	{
-		outAnalysisFile << "E: ·ÖÎö F1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ F1 å‡ºé”™" << endl;
 		return false;
 	}
 	switch (grammarTreeTmp.tmpType)
@@ -227,14 +227,14 @@ bool GrammarAnalysis::grammarAnalysisF(list<Token>::iterator & it_AnalysisCur, l
 		node->addChildToRoot(vd);
 		break;
 	}
-	case 2:	//º¯ÊıÉùÃ÷
+	case 2:	//å‡½æ•°å£°æ˜
 	{
 		FunctionDefinition *fd = new FunctionDefinition(grammarTreeTmp);
 		(*fd).isComeTrue = false;
 		node->addChildToRoot(fd);
 		break;
 	}
-	case 3:	//º¯ÊıÊµÏÖ
+	case 3:	//å‡½æ•°å®ç°
 	{
 		FunctionDefinition *fd = new FunctionDefinition(grammarTreeTmp);
 		(*fd).isComeTrue = true;
@@ -253,64 +253,64 @@ bool GrammarAnalysis::grammarAnalysisF(list<Token>::iterator & it_AnalysisCur, l
 bool GrammarAnalysis::grammarAnalysisF1(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, GrammarTreeTmp& tmp)
 {
 	string functionName = (*it_AnalysisCur).data;
-	// ·ÖÎö ID ºÍ ×óĞ¡À¨ºÅ
+	// åˆ†æ ID å’Œ å·¦å°æ‹¬å·
 	if ((*it_AnalysisCur).type == Identifier && (++it_AnalysisCur) != listToken.end() &&
-		(*it_AnalysisCur).type == Delimiter_Left_Small_Bracket)	// id ( ×óĞ¡À¨ºÅ
+		(*it_AnalysisCur).type == Delimiter_Left_Small_Bracket)	// id ( å·¦å°æ‹¬å·
 	{
 		outAnalysisFile << "G: F1 -> functionName ( PL ) F2" << endl;
-		//cout << "º¯ÊıÃû£º" << functionName << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö functionName " << functionName << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		tmp.functionName = functionName;	//½«º¯ÊıÃû¼ÓÔØµ½tmpÖĞÈ¥
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-							//·ÖÎö PL
-		if (!grammarAnalysisPL(it_AnalysisCur, listToken, tmp.parameterList))	//·ÖÎöPL£¬³ö´í
+		//cout << "å‡½æ•°åï¼š" << functionName << endl;
+		outAnalysisFile << "1> åˆ†æå‡º functionName " << functionName << endl;
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		tmp.functionName = functionName;	//å°†å‡½æ•°ååŠ è½½åˆ°tmpä¸­å»
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+							//åˆ†æ PL
+		if (!grammarAnalysisPL(it_AnalysisCur, listToken, tmp.parameterList))	//åˆ†æPLï¼Œå‡ºé”™
 		{
-			outAnalysisFile << "E: ·ÖÎö PL ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ PL å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎö ÓÒĞ¡À¨ºÅ
+		//åˆ†æ å³å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	// ) ÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	// ) å³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		if (!grammarAnalysisF2(it_AnalysisCur, listToken, tmp))	//·ÖÎöº¯ÊıÌå
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		if (!grammarAnalysisF2(it_AnalysisCur, listToken, tmp))	//åˆ†æå‡½æ•°ä½“
 		{
-			outAnalysisFile << "E: ·ÖÎö F2 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ F2 å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else // F1 -> VL ;
 	{
 		outAnalysisFile << "G: F1 -> VL ;" << endl;
-		--it_AnalysisCur;	//·µ»ØÖ®Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-							//·ÖÎöVL
-		tmp.tmpType = 1;	//Íâ²¿Êı¾İ¶¨Òå
+		--it_AnalysisCur;	//è¿”å›ä¹‹å‰åˆ†æTokenenä¸²çš„ä½ç½®
+							//åˆ†æVL
+		tmp.tmpType = 1;	//å¤–éƒ¨æ•°æ®å®šä¹‰
 		if (!grammarAnalysisVL(it_AnalysisCur, listToken, tmp.variableList))
 		{
-			outAnalysisFile << "E: ·ÖÎö VL ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ VL å‡ºé”™" << endl;
 			return false;
 		}
-		if (it_AnalysisCur == listToken.end())	//·ÖÎöµ½º¯ÊıÄ©Î²
+		if (it_AnalysisCur == listToken.end())	//åˆ†æåˆ°å‡½æ•°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		//·ÖÎö·ÖºÃ ;
+		//åˆ†æåˆ†å¥½ ;
 		if (Delimiter_Semicolon != (*it_AnalysisCur).type)
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
 		it_AnalysisCur++;
 	}
 	return true;
@@ -321,65 +321,65 @@ bool GrammarAnalysis::grammarAnalysisF1(list<Token>::iterator & it_AnalysisCur, 
 */
 bool GrammarAnalysis::grammarAnalysisF2(list<Token>::iterator& it_AnalysisCur, list<Token>& listToken, GrammarTreeTmp& tmp)
 {
-	if (it_AnalysisCur == listToken.end())//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (it_AnalysisCur == listToken.end())//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
-	if ((*it_AnalysisCur).type == Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÃ
+	if ((*it_AnalysisCur).type == Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å¥½
 	{
 		outAnalysisFile << "G: F2 -> ;" << endl;
-		tmp.tmpType = 2;	//º¯ÊıÉùÃ÷
-							//cout << "º¯ÊıÉùÃ÷·ÖÎö½áÊø" << endl;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		tmp.tmpType = 2;	//å‡½æ•°å£°æ˜
+							//cout << "å‡½æ•°å£°æ˜åˆ†æç»“æŸ" << endl;
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	else if ((*it_AnalysisCur).type == Delimiter_Left_Large_Bracket)	//ÊÇ·ñÎª×ó´óÀ¨ºÅ
+	else if ((*it_AnalysisCur).type == Delimiter_Left_Large_Bracket)	//æ˜¯å¦ä¸ºå·¦å¤§æ‹¬å·
 	{
 		outAnalysisFile << "G: F2 -> { FB }" << endl;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-		tmp.tmpType = 3;	//º¯ÊıÊµÏÖ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+		tmp.tmpType = 3;	//å‡½æ•°å®ç°
 		if (analysis_function_body_using_LL1)
 		{
 			list<Token> tempList;
-			int countFindRightLargeBracket = 0;	//ÕÒµ½ÓÒ´óÀ¨ºÅµÄ¸öÊı
+			int countFindRightLargeBracket = 0;	//æ‰¾åˆ°å³å¤§æ‹¬å·çš„ä¸ªæ•°
 			while (it_AnalysisCur != listToken.end())
 			{
-				if ((*it_AnalysisCur).type == Delimiter_Right_Large_Bracket)	//ÊÇ·ñÎªÓÒ´óÀ¨ºÅ
-				{	//Ìø³öwhileÑ­»·£¬¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-					countFindRightLargeBracket++;	//ÕÒµ½ÓÒ´óÀ¨ºÅ
+				if ((*it_AnalysisCur).type == Delimiter_Right_Large_Bracket)	//æ˜¯å¦ä¸ºå³å¤§æ‹¬å·
+				{	//è·³å‡ºwhileå¾ªç¯ï¼Œæ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+					countFindRightLargeBracket++;	//æ‰¾åˆ°å³å¤§æ‹¬å·
 					if (countFindRightLargeBracket == 1)
 					{
-						it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+						it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 						break;
 					}
 					else
 					{
-						tempList.push_back(*it_AnalysisCur);	//½«Tokenen´®Ìí¼Óµ½List»º´æÖĞ
-						it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+						tempList.push_back(*it_AnalysisCur);	//å°†Tokenenä¸²æ·»åŠ åˆ°Listç¼“å­˜ä¸­
+						it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 					}
 				}
-				else if ((*it_AnalysisCur).type == Delimiter_Left_Large_Bracket)	//ÊÇ·ñÎª×ó´óÀ¨ºÅ
+				else if ((*it_AnalysisCur).type == Delimiter_Left_Large_Bracket)	//æ˜¯å¦ä¸ºå·¦å¤§æ‹¬å·
 				{
-					tempList.push_back(*it_AnalysisCur);	//½«Tokenen´®Ìí¼Óµ½List»º´æÖĞ
-					it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+					tempList.push_back(*it_AnalysisCur);	//å°†Tokenenä¸²æ·»åŠ åˆ°Listç¼“å­˜ä¸­
+					it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 					countFindRightLargeBracket--;
 				}
 				else
 				{
-					tempList.push_back(*it_AnalysisCur);	//½«Tokenen´®Ìí¼Óµ½List»º´æÖĞ
-					it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+					tempList.push_back(*it_AnalysisCur);	//å°†Tokenenä¸²æ·»åŠ åˆ°Listç¼“å­˜ä¸­
+					it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 				}
 			}
 			if (!(*grammar_for_function_body).runGrammarAnalysis(tempList))
 			{
-				//cout << "º¯ÊıÌå´æÔÚ´íÎó" << endl;
+				//cout << "å‡½æ•°ä½“å­˜åœ¨é”™è¯¯" << endl;
 				(*grammar_for_function_body).printAnalysisResult();
 				return false;
 			}
 			(*grammar_for_function_body).saveAnalysisResultToFile(outAnalysisFile);
 			if (countFindRightLargeBracket != 1)
 			{
-				//cout << "È±ÉÙÓÒ´óÀ¨ºÅ" << endl;
+				//cout << "ç¼ºå°‘å³å¤§æ‹¬å·" << endl;
 			}
 		}
 		else
@@ -387,22 +387,22 @@ bool GrammarAnalysis::grammarAnalysisF2(list<Token>::iterator& it_AnalysisCur, l
 			// FB
 			if (!grammarAnalysisFB(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö FB ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ FB å‡ºé”™" << endl;
 				return false;
 			}
-			// } ÓÒ´óÀ¨ºÅ
-			if (it_AnalysisCur == listToken.end())	//·ÖÎöµ½º¯ÊıÄ©Î²
+			// } å³å¤§æ‹¬å·
+			if (it_AnalysisCur == listToken.end())	//åˆ†æåˆ°å‡½æ•°æœ«å°¾
 			{
-				outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+				outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 				return false;
 			}
-			if ((*it_AnalysisCur).type != Delimiter_Right_Large_Bracket)	//ÊÇ·ñÎªÓÒ´óÀ¨ºÅ
+			if ((*it_AnalysisCur).type != Delimiter_Right_Large_Bracket)	//æ˜¯å¦ä¸ºå³å¤§æ‹¬å·
 			{
-				outAnalysisFile << "E: ·ÖÎö } ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ } å‡ºé”™" << endl;
 				return false;
 			}
-			it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-			outAnalysisFile << "1> ·ÖÎö³ö }" << endl;
+			it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+			outAnalysisFile << "1> åˆ†æå‡º }" << endl;
 		}
 	}
 	return true;
@@ -414,25 +414,25 @@ bool GrammarAnalysis::grammarAnalysisF2(list<Token>::iterator& it_AnalysisCur, l
 */
 bool GrammarAnalysis::grammarAnalysisMT(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, int & memoryType)
 {
-	if (it_AnalysisCur == listToken.end())	//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (it_AnalysisCur == listToken.end())	//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	if ((*it_AnalysisCur).type == Keyword_auto)	//auto
 	{
 		outAnalysisFile << "G: MT -> auto" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö auto" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º auto" << endl;
 		memoryType = Keyword_auto;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*it_AnalysisCur).type == Keyword_register)
 	{
 		outAnalysisFile << "G: MT -> register" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö register" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º register" << endl;
 		memoryType = Keyword_register;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if (grammarAnalysisMT1(it_AnalysisCur, listToken, memoryType))
@@ -441,7 +441,7 @@ bool GrammarAnalysis::grammarAnalysisMT(list<Token>::iterator & it_AnalysisCur, 
 	}
 	else
 	{
-		outAnalysisFile << "E: ·ÖÎö MT1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ MT1 å‡ºé”™" << endl;
 		return false;
 	}
 }
@@ -452,25 +452,25 @@ bool GrammarAnalysis::grammarAnalysisMT(list<Token>::iterator & it_AnalysisCur, 
 */
 bool GrammarAnalysis::grammarAnalysisMT1(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, int& memoryType)
 {
-	if (it_AnalysisCur == listToken.end())	//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (it_AnalysisCur == listToken.end())	//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	if ((*it_AnalysisCur).type == Keyword_extern)
 	{
 		outAnalysisFile << "G: MT1 -> extern" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö extern" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º extern" << endl;
 		memoryType = Keyword_extern;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*it_AnalysisCur).type == Keyword_static)
 	{
 		outAnalysisFile << "G: MT1 -> static" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö static" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º static" << endl;
 		memoryType = Keyword_static;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	outAnalysisFile << "G: MT1 -> $" << endl;
@@ -485,49 +485,49 @@ bool GrammarAnalysis::grammarAnalysisMT1(list<Token>::iterator & it_AnalysisCur,
 */
 bool GrammarAnalysis::grammarAnalysisDT(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, int& dataType)
 {
-	if (it_AnalysisCur == listToken.end())//µ±Ç°·ÖÎöÎ»ÖÃÊÇ·ñ´æÔÚ
+	if (it_AnalysisCur == listToken.end())//å½“å‰åˆ†æä½ç½®æ˜¯å¦å­˜åœ¨
 	{
-		outAnalysisFile << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	if ((*it_AnalysisCur).type == Keyword_void)
 	{
 		outAnalysisFile << "G: DT -> void" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö void" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º void" << endl;
 		dataType = Keyword_void;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*it_AnalysisCur).type == Keyword_int)
 	{
 		outAnalysisFile << "G: DT -> int" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö int" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º int" << endl;
 		dataType = Keyword_int;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*it_AnalysisCur).type == Keyword_char)
 	{
 		outAnalysisFile << "G: DT -> char" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö char" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º char" << endl;
 		dataType = Keyword_char;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*it_AnalysisCur).type == Keyword_float)
 	{
 		outAnalysisFile << "G: DT -> float" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö float" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º float" << endl;
 		dataType = Keyword_float;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	else if ((*it_AnalysisCur).type == Keyword_double)
 	{
 		outAnalysisFile << "G: DT -> double" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö double" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º double" << endl;
 		dataType = Keyword_double;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	return false;
@@ -538,18 +538,18 @@ bool GrammarAnalysis::grammarAnalysisDT(list<Token>::iterator & it_AnalysisCur, 
 bool GrammarAnalysis::grammarAnalysisVL(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, list<VariableList>& variableList)
 {
 	outAnalysisFile << "G: VL -> VD VL1" << endl;
-	//·ÖÎöVD
+	//åˆ†æVD
 	VariableList variable;
 	if (!grammarAnalysisVD(it_AnalysisCur, listToken, variable))
 	{
-		outAnalysisFile << "E: ·ÖÎö VD ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ VD å‡ºé”™" << endl;
 		return false;
 	}
 	variableList.push_back(variable);
-	//·ÖÎöVL1
+	//åˆ†æVL1
 	if (!grammarAnalysisVL1(it_AnalysisCur, listToken, variableList))
 	{
-		outAnalysisFile << "E: ·ÖÎö VL1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ VL1 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -560,29 +560,29 @@ bool GrammarAnalysis::grammarAnalysisVL(list<Token>::iterator & it_AnalysisCur, 
 */
 bool GrammarAnalysis::grammarAnalysisVL1(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, list<VariableList>& variableList)
 {
-	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Ä©Î²
+	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°æœ«å°¾
 	if (it_AnalysisCur == listToken.end())
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	// VL1 -> , VD VL1
-	//·ÖÎöÊÇ·ñÎª¶ººÅ ,
+	//åˆ†ææ˜¯å¦ä¸ºé€—å· ,
 	if (Delimiter_Comma == (*it_AnalysisCur).type)
 	{
 		outAnalysisFile << "G: VL1 -> , VD VL1" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöVL1
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æVL1
 		VariableList variable;
 		if (!grammarAnalysisVD(it_AnalysisCur, listToken, variable))
 		{
-			outAnalysisFile << "E: ·ÖÎö VD ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ VD å‡ºé”™" << endl;
 			return false;
 		}
 		variableList.push_back(variable);
 		if (!grammarAnalysisVL1(it_AnalysisCur, listToken, variableList))
 		{
-			outAnalysisFile << "E: ·ÖÎö VL1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ VL1 å‡ºé”™" << endl;
 			return false;
 		}
 		return true;
@@ -599,22 +599,22 @@ bool GrammarAnalysis::grammarAnalysisVL1(list<Token>::iterator & it_AnalysisCur,
 */
 bool GrammarAnalysis::grammarAnalysisVD(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, VariableList& variable)
 {
-	//ÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
-	if (it_AnalysisCur == listToken.end())	//Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	//æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
+	if (it_AnalysisCur == listToken.end())	//æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
-		outAnalysisFile << "E; ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E; å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
-	//ÅĞ¶ÏÊÇ·ñÎªID
+	//åˆ¤æ–­æ˜¯å¦ä¸ºID
 	if (Identifier == (*it_AnalysisCur).type)
 	{
-		outAnalysisFile << "1> ·ÖÎö³ö variableName " << (*it_AnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º variableName " << (*it_AnalysisCur).data << endl;
 		variable.varName = (*it_AnalysisCur).data;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöVD1
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æVD1
 		if (!grammarAnalysisVD1(it_AnalysisCur, listToken, variable.initValue))
 		{
-			outAnalysisFile << "E: ·ÖÎö VD1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ VD1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -622,60 +622,60 @@ bool GrammarAnalysis::grammarAnalysisVD(list<Token>::iterator & it_AnalysisCur, 
 }
 
 /*
-	VD1 -> = PR (ºóÃæÍ¨³£ÊÇÒÔ ¶ººÅ »ò ·ÖºÅ ½áÊøµÄ)
+	VD1 -> = PR (åé¢é€šå¸¸æ˜¯ä»¥ é€—å· æˆ– åˆ†å· ç»“æŸçš„)
 	VD1 -> $
 */
 bool GrammarAnalysis::grammarAnalysisVD1(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, list<Token>& initValue)
 {
-	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
-	if (it_AnalysisCur == listToken.end())	//Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
+	if (it_AnalysisCur == listToken.end())	//æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	// VD1 -> = PR
-	//·ÖÎöÊÇ·ñÎªµÈºÅ =
-	if (Operator_Equal == (*it_AnalysisCur).type)	//ÎªµÈºÅ
+	//åˆ†ææ˜¯å¦ä¸ºç­‰å· =
+	if (Operator_Equal == (*it_AnalysisCur).type)	//ä¸ºç­‰å·
 	{
 		outAnalysisFile << "G: VD1 -> = PR" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö =" << endl;
-		//Ê¹ÓÃLL(1)Ô¤²â·ÖÎö·¨·ÖÎö±í´ïÊ½
+		outAnalysisFile << "1> åˆ†æå‡º =" << endl;
+		//ä½¿ç”¨LL(1)é¢„æµ‹åˆ†ææ³•åˆ†æè¡¨è¾¾å¼
 		if (analysis_express_using_LL1)
 		{
 			list<Token> tmpList;
-			tmpList.push_back(*(--it_AnalysisCur));  //½«IdÌí¼Óµ½ListÖĞ
+			tmpList.push_back(*(--it_AnalysisCur));  //å°†Idæ·»åŠ åˆ°Listä¸­
 			++it_AnalysisCur;
-			tmpList.push_back(*it_AnalysisCur); //½«¸³Öµ·ûºÅÌí¼Óµ½ListÖĞ
-			it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-							 //·ÖÎöPR
+			tmpList.push_back(*it_AnalysisCur); //å°†èµ‹å€¼ç¬¦å·æ·»åŠ åˆ°Listä¸­
+			it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+							 //åˆ†æPR
 			while (it_AnalysisCur != listToken.end())
 			{
-				if ((*it_AnalysisCur).type == Delimiter_Semicolon || (*it_AnalysisCur).type == Delimiter_Comma)	//¶ººÅ »ò ·ÖºÅ
+				if ((*it_AnalysisCur).type == Delimiter_Semicolon || (*it_AnalysisCur).type == Delimiter_Comma)	//é€—å· æˆ– åˆ†å·
 				{
 					break;
 				}
-				tmpList.push_back(*it_AnalysisCur); //¸´ÖÆµ½ListÖĞ
+				tmpList.push_back(*it_AnalysisCur); //å¤åˆ¶åˆ°Listä¸­
 				initValue.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
-		//Ê¹ÓÃµİ¹éÏÂ½µµÄ·½·¨·ÖÎö±í´ïÊ½
+		//ä½¿ç”¨é€’å½’ä¸‹é™çš„æ–¹æ³•åˆ†æè¡¨è¾¾å¼
 		else
 		{
-			it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+			it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			if (!grammarAnalysis_bexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö PR ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ PR å‡ºé”™" << endl;
 				return false;
 			}
 		}
@@ -697,10 +697,10 @@ bool GrammarAnalysis::grammarAnalysisPL(list<Token>::iterator & it_AnalysisCur, 
 	if (grammarAnalysisPL1(it_AnalysisCur, listToken, parameterList))
 	{
 		outAnalysisFile << "G: PL -> PL1" << endl;
-		//cout << "·ÖÎöPL1³É¹¦" << endl;
+		//cout << "åˆ†æPL1æˆåŠŸ" << endl;
 		return true;
 	}
-	//cout << "·ÖÎöPL1Ê§°Ü£¬·µ»ØÔ­À´·ÖÎöÎ»ÖÃ" << endl;
+	//cout << "åˆ†æPL1å¤±è´¥ï¼Œè¿”å›åŸæ¥åˆ†æä½ç½®" << endl;
 	it_AnalysisCur = tmp_AnalysisCur;
 	outAnalysisFile << "G: PL -> $" << endl;
 	return true;
@@ -711,18 +711,18 @@ bool GrammarAnalysis::grammarAnalysisPL(list<Token>::iterator & it_AnalysisCur, 
 bool GrammarAnalysis::grammarAnalysisPL1(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, list<ParameterList>& parameterList)
 {
 	outAnalysisFile << "G: PL1 -> PD PL2" << endl;
-	//·ÖÎöPD
+	//åˆ†æPD
 	ParameterList parameter;
-	if (!grammarAnalysisPD(it_AnalysisCur, listToken, parameter))	//·ÖÎöPD£¬±¨´í
+	if (!grammarAnalysisPD(it_AnalysisCur, listToken, parameter))	//åˆ†æPDï¼ŒæŠ¥é”™
 	{
-		outAnalysisFile << "E: ·ÖÎö PD ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ PD å‡ºé”™" << endl;
 		return false;
 	}
 	parameterList.push_back(parameter);
-	//·ÖÎöPL2
-	if (!grammarAnalysisPL2(it_AnalysisCur, listToken, parameterList))	//·ÖÎöPL2£¬±¨´í
+	//åˆ†æPL2
+	if (!grammarAnalysisPL2(it_AnalysisCur, listToken, parameterList))	//åˆ†æPL2ï¼ŒæŠ¥é”™
 	{
-		outAnalysisFile << "E: ·ÖÎö PL2 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ PL2 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -733,29 +733,29 @@ bool GrammarAnalysis::grammarAnalysisPL1(list<Token>::iterator & it_AnalysisCur,
 */
 bool GrammarAnalysis::grammarAnalysisPL2(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken, list<ParameterList>& parameterList)
 {
-	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	if (it_AnalysisCur == listToken.end())
 	{
-		outAnalysisFile << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
-	//ÅĞ¶ÏÊÇ·ñÎª ¶ººÅ ,
+	//åˆ¤æ–­æ˜¯å¦ä¸º é€—å· ,
 	if (Delimiter_Comma == (*it_AnalysisCur).type) // PL2 -> , PD PL2
 	{
 		outAnalysisFile << "G: PL2 -> , PD PL2" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ," << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ," << endl;
 		it_AnalysisCur++;
 		ParameterList parameter;
 		if (!grammarAnalysisPD(it_AnalysisCur, listToken, parameter))
 		{
-			outAnalysisFile << "E: ·ÖÎö PD ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ PD å‡ºé”™" << endl;
 			return false;
 		}
-		parameterList.push_back(parameter);	//Ìí¼Óµ½List
-											//¼ÌĞøÑ­»·PL2
+		parameterList.push_back(parameter);	//æ·»åŠ åˆ°List
+											//ç»§ç»­å¾ªç¯PL2
 		if (!grammarAnalysisPL2(it_AnalysisCur, listToken, parameterList))
 		{
-			outAnalysisFile << "E: ·ÖÎö PL2 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ PL2 å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -775,14 +775,14 @@ bool GrammarAnalysis::grammarAnalysisPD(list<Token>::iterator & it_AnalysisCur, 
 	int dataType;
 	if (!grammarAnalysisDT(it_AnalysisCur, listToken, dataType))
 	{
-		outAnalysisFile << "E: ·ÖÎö DT ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ DT å‡ºé”™" << endl;
 		return false;
 	}
 	parameter.parameterType = dataType;
-	string parameterName = "";	//³õÊ¼»¯Îª¿Õ×Ö·û´®
+	string parameterName = "";	//åˆå§‹åŒ–ä¸ºç©ºå­—ç¬¦ä¸²
 	if (!grammarAnalysisPD1(it_AnalysisCur, listToken, parameterName))
 	{
-		outAnalysisFile << "E: ·ÖÎö PD1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ PD1 å‡ºé”™" << endl;
 		return false;
 	}
 	parameter.parameterName = parameterName;
@@ -797,9 +797,9 @@ bool GrammarAnalysis::grammarAnalysisPD1(list<Token>::iterator& it_AnalysisCur, 
 	if ((*it_AnalysisCur).type == Identifier)
 	{
 		outAnalysisFile << "G: PD1 -> parameterName" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö parameterName " << (*it_AnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º parameterName " << (*it_AnalysisCur).data << endl;
 		parameterName = (*it_AnalysisCur).data;
-		it_AnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		it_AnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		return true;
 	}
 	outAnalysisFile << "G: PD1 -> $" << endl;
@@ -815,11 +815,11 @@ bool GrammarAnalysis::grammarAnalysisFB(list<Token>::iterator & it_AnalysisCur, 
 	if (grammarAnalysisRS(it_AnalysisCur, listToken))
 	{
 		outAnalysisFile << "G: FB -> RS FB" << endl;
-		//cout << "·ÖÎöRS³ö´í" << endl;
+		//cout << "åˆ†æRSå‡ºé”™" << endl;
 		grammarAnalysisFB(it_AnalysisCur, listToken);
 		return true;
 	}
-	it_AnalysisCur = tempCur;	//ÎŞ·¨·ÖÎö³öRS£¬Ôò»Ö¸´Ö®Ç°µÄÎ»ÖÃ
+	it_AnalysisCur = tempCur;	//æ— æ³•åˆ†æå‡ºRSï¼Œåˆ™æ¢å¤ä¹‹å‰çš„ä½ç½®
 	outAnalysisFile << "G: FB -> $" << endl;
 	return true;
 }
@@ -838,36 +838,36 @@ bool GrammarAnalysis::grammarAnalysisFB(list<Token>::iterator & it_AnalysisCur, 
 */
 bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken)
 {
-	// ÊÇ·ñ·ÖÎöµ½Ä©Î²
-	if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	// æ˜¯å¦åˆ†æåˆ°æœ«å°¾
+	if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
-	//·ÖÎö if
+	//åˆ†æ if
 	// RS -> if ( PR ) SB RS1
 	if ((*it_AnalysisCur).type == Keyword_if)
 	{
 		outAnalysisFile << "G: RS -> if ( PR ) SB RS1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö if" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö×óÀ¨ºÅ
+		outAnalysisFile << "1> åˆ†æå‡º if" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æå·¦æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)
 		{
-			outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöPR
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æPR
 		if (analysis_express_using_LL1)
 		{
-			//·ÖÎöPR
+			//åˆ†æPR
 			list<Token> tmpList;
 			while (it_AnalysisCur != listToken.end())
 			{
@@ -876,16 +876,16 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -893,55 +893,55 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 		}
-		//·ÖÎöÓÒÀ¨ºÅ
+		//åˆ†æå³æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöSB
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æSB
 		if (!grammarAnalysisSB(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö SB ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ SB å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöRS1
+		//åˆ†æRS1
 		if (!grammarAnalysisRS1(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö RS1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ RS1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
-	//·ÖÎö while
+	//åˆ†æ while
 	//RS -> while (PR) SB
 	else if ((*it_AnalysisCur).type == Keyword_while)
 	{
 		outAnalysisFile << "G: RS -> while (PR) SB" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö while" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö×óĞ¡À¨ºÅ
+		outAnalysisFile << "1> åˆ†æå‡º while" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æå·¦å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)
 		{
-			outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöPR
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æPR
 		if (analysis_express_using_LL1)
 		{
 			list<Token> tmpList;
@@ -952,16 +952,16 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -969,72 +969,72 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 		}
-		//·ÖÎöÓÒĞ¡À¨ºÅ
+		//åˆ†æå³å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöSB
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æSB
 		if (!grammarAnalysisSB(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö SB ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ SB å‡ºé”™" << endl;
 			return false;
 		}
 	}
-	//·ÖÎö do
+	//åˆ†æ do
 	//RS -> do SB while ( PR ) ;
 	else if ((*it_AnalysisCur).type == Keyword_do)
 	{
 		outAnalysisFile << "G: RS -> do SB while ( PR ) ;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö do" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöSB
+		outAnalysisFile << "1> åˆ†æå‡º do" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æSB
 		if (!grammarAnalysisSB(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö SB ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ SB å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöwhile
+		//åˆ†æwhile
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Keyword_while)
 		{
-			outAnalysisFile << "E: ·ÖÎö while ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ while å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö while" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö×óĞ¡À¨ºÅ
+		outAnalysisFile << "1> åˆ†æå‡º while" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æå·¦å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)
 		{
-			outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		if (analysis_express_using_LL1)
 		{
-			//·ÖÎöPR
+			//åˆ†æPR
 			list<Token> tmpList;
 			while (it_AnalysisCur != listToken.end())
 			{
@@ -1043,16 +1043,16 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -1060,80 +1060,80 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 		}
-		//·ÖÎöÓÒĞ¡À¨ºÅ
+		//åˆ†æå³å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö·ÖºÅ ;
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æåˆ†å· ;
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Delimiter_Semicolon)
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//·ÖÎö for
+	//åˆ†æ for
 	//RS -> for ( PR ; PR ; PR ) SB
 	else if ((*it_AnalysisCur).type == Keyword_for)
 	{
 		outAnalysisFile << "G: RS -> for ( PR ; PR ; PR ) SB" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö for" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö×óĞ¡À¨ºÅ
+		outAnalysisFile << "1> åˆ†æå‡º for" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æå·¦å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)
 		{
-			outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		for (int i = 0; i < 2; i++)
 		{
-			//·ÖÎöPR
+			//åˆ†æPR
 			if (analysis_express_using_LL1)
 			{
 				list<Token> tmpList;
 				while (it_AnalysisCur != listToken.end())
 				{
-					if ((*it_AnalysisCur).type == Delimiter_Comma) //µ½¶ººÅ½áÊø
+					if ((*it_AnalysisCur).type == Delimiter_Comma) //åˆ°é€—å·ç»“æŸ
 					{
 						break;
 					}
 					tmpList.push_back(*it_AnalysisCur);
-					it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+					it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 				}
 				if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 				{
-					//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+					//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 					(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 				}
 				else
 				{
-					//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+					//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 					return false;
 				}
 			}
@@ -1141,45 +1141,45 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 			{
 				if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 				{
-					outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+					outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 					return false;
 				}
 			}
-			//·ÖÎö·ÖºÅ
+			//åˆ†æåˆ†å·
 			if (it_AnalysisCur == listToken.end())
 			{
-				outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+				outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 				return false;
 			}
-			if ((*it_AnalysisCur).type != Delimiter_Semicolon)	// ; ·ÖºÅ
+			if ((*it_AnalysisCur).type != Delimiter_Semicolon)	// ; åˆ†å·
 			{
-				outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 				return false;
 			}
-			outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-			it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+			outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+			it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		}
-		//·ÖÎöPR
+		//åˆ†æPR
 		if (analysis_express_using_LL1)
 		{
 			list<Token> tmpList;
 			while (it_AnalysisCur != listToken.end())
 			{
-				if ((*it_AnalysisCur).type == Delimiter_Right_Small_Bracket) //µ½ÓÒĞ¡À¨ºÅ½áÊø
+				if ((*it_AnalysisCur).type == Delimiter_Right_Small_Bracket) //åˆ°å³å°æ‹¬å·ç»“æŸ
 				{
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -1187,100 +1187,100 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 		}
-		//·ÖÎöÓÒĞ¡À¨ºÅ
+		//åˆ†æå³å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //²»ÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket) //ä¸ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: µ±Ç°Î»ÖÃÈ±ÉÙÓÒĞ¡À¨ºÅ" << endl;
+			outAnalysisFile << "E: å½“å‰ä½ç½®ç¼ºå°‘å³å°æ‹¬å·" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöSB
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æSB
 		if (!grammarAnalysisSB(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö SB ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ SB å‡ºé”™" << endl;
 			return false;
 		}
 	}
-	//·ÖÎö break
+	//åˆ†æ break
 	//RS -> break ;
 	else if ((*it_AnalysisCur).type == Keyword_break)
 	{
 		outAnalysisFile << "G: RS -> break ;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö break" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö·ÖºÅ
+		outAnalysisFile << "1> åˆ†æå‡º break" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æåˆ†å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//·ÖÎö continue
+	//åˆ†æ continue
 	// RS -> continue;
 	else if ((*it_AnalysisCur).type == Keyword_continue)
 	{
 		outAnalysisFile << "G: RS -> continue;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö continue" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö·ÖºÅ
+		outAnalysisFile << "1> åˆ†æå‡º continue" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æåˆ†å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//·ÖÎö return
+	//åˆ†æ return
 	//RS -> return PR ;
 	else if ((*it_AnalysisCur).type == Keyword_return)
 	{
 		outAnalysisFile << "G: return PR ;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		if (analysis_express_using_LL1)
 		{
-			//·ÖÎöPR
+			//åˆ†æPR
 			list<Token> tmpList;
 			while (it_AnalysisCur != listToken.end())
 			{
-				if ((*it_AnalysisCur).type == Delimiter_Semicolon) //µ½·ÖºÅ½áÊø
+				if ((*it_AnalysisCur).type == Delimiter_Semicolon) //åˆ°åˆ†å·ç»“æŸ
 				{
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -1288,143 +1288,143 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 		}
-		//·ÖÎö·ÖºÅ
+		//åˆ†æåˆ†å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//·ÖÎö goto
+	//åˆ†æ goto
 	//RS -> goto positionName ;
 	else if ((*it_AnalysisCur).type == Keyword_goto)
 	{
 		outAnalysisFile << "G: RS -> goto positionName ;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö goto" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöId
+		outAnalysisFile << "1> åˆ†æå‡º goto" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æId
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Identifier) //²»ÎªId
+		if ((*it_AnalysisCur).type != Identifier) //ä¸ä¸ºId
 		{
-			outAnalysisFile << "E: ·ÖÎö positionName ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ positionName å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö positionName " << (*it_AnalysisCur).data << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö ·ÖºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º positionName " << (*it_AnalysisCur).data << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æ åˆ†å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//·ÖÎö print
+	//åˆ†æ print
 	//RS -> print ( Print
 	else if ((*it_AnalysisCur).type == Keyword_print)
 	{
 		outAnalysisFile << "G: RS -> print ( Print" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö print" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎö ×óĞ¡À¨ºÅ
+		outAnalysisFile << "1> åˆ†æå‡º print" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æ å·¦å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)	//ÊÇ·ñÎª×óĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)	//æ˜¯å¦ä¸ºå·¦å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 		if (!grammarAnalysisPrint(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö Print ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ Print å‡ºé”™" << endl;
 			return false;
 		}
 	}
-	//·ÖÎö scan
+	//åˆ†æ scan
 	//RS -> scan ( id ) ;
 	else if ((*it_AnalysisCur).type == Keyword_scan)
 	{
 		outAnalysisFile << "G: RS -> scan ( id ) ;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö scan" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //1.·ÖÎö ×óĞ¡À¨ºÅ
+		outAnalysisFile << "1> åˆ†æå‡º scan" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //1.åˆ†æ å·¦å°æ‹¬å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)	//ÊÇ·ñÎª×óĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Left_Small_Bracket)	//æ˜¯å¦ä¸ºå·¦å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ( ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ( å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //2.·ÖÎö id
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //2.åˆ†æ id
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Identifier)	//ÊÇ·ñÎªid
+		if ((*it_AnalysisCur).type != Identifier)	//æ˜¯å¦ä¸ºid
 		{
-			outAnalysisFile << "E: ·ÖÎö id ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ id å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö id" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //3.·ÖÎö ÓÒĞ¡À¨ºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º id" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //3.åˆ†æ å³å°æ‹¬å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÊÇ·ñÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	//æ˜¯å¦ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //4.·ÖÎö ·ÖºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //4.åˆ†æ åˆ†å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	//RS -> MT DT VL ;
 	else if ((*it_AnalysisCur).type == Keyword_auto || (*it_AnalysisCur).type == Keyword_register ||
@@ -1433,40 +1433,40 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		(*it_AnalysisCur).type == Keyword_float || (*it_AnalysisCur).type == Keyword_double)
 	{
 		outAnalysisFile << "G: RS -> MT DT VL ;" << endl;
-		//·ÖÎöMT
+		//åˆ†æMT
 		int memoryType = Keyword_extern;
 		if (!grammarAnalysisMT(it_AnalysisCur, listToken, memoryType))
 		{
-			outAnalysisFile << "E: ·ÖÎö MT ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ MT å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöDT
+		//åˆ†æDT
 		int dataType = Error;
 		if (!grammarAnalysisDT(it_AnalysisCur, listToken, dataType))
 		{
-			outAnalysisFile << "E: ·ÖÎö DT ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ DT å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöVL
+		//åˆ†æVL
 		list<VariableList> variableList;
 		if (!grammarAnalysisVL(it_AnalysisCur, listToken, variableList))
 		{
-			outAnalysisFile << "E: ·ÖÎö VL ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ VL å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎö·ÖºÅ
+		//åˆ†æåˆ†å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E:ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E:å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	//PR ;
 	else if (expressPreAnalysis((*it_AnalysisCur).type))
@@ -1474,24 +1474,24 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		outAnalysisFile << "G: RS -> PR ;" << endl;
 		if (analysis_express_using_LL1)
 		{
-			//·ÖÎöPR
+			//åˆ†æPR
 			list<Token> tmpList;
 			while (it_AnalysisCur != listToken.end())
 			{
-				if ((*it_AnalysisCur).type == Delimiter_Semicolon) //µ½·ÖºÅ½áÊø
+				if ((*it_AnalysisCur).type == Delimiter_Semicolon) //åˆ°åˆ†å·ç»“æŸ
 				{
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 			}
 			else
 			{
-				//cout << endl << "·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -1499,26 +1499,26 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 			outAnalysisFile << "G: RS -> PR ;" << endl;
 		}
-		//·ÖÎö·ÖºÅ
+		//åˆ†æåˆ†å·
 		if (it_AnalysisCur == listToken.end())
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //²»Îª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon) //ä¸ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
-	//ÅĞ¶ÏÊÇ·ñÎªÓÒ´óÀ¨ºÅ
+	//åˆ¤æ–­æ˜¯å¦ä¸ºå³å¤§æ‹¬å·
 	else if ((*it_AnalysisCur).type != Delimiter_Right_Large_Bracket)
 	{
 		return true;
@@ -1535,22 +1535,22 @@ bool GrammarAnalysis::grammarAnalysisRS(list<Token>::iterator & it_AnalysisCur, 
 */
 bool GrammarAnalysis::grammarAnalysisRS1(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken)
 {
-	//ÊÇ·ñ·ÖÎöµ½Ä©Î²
-	if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	//æ˜¯å¦åˆ†æåˆ°æœ«å°¾
+	if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	// else
 	if (Keyword_else == (*it_AnalysisCur).type)
 	{
 		outAnalysisFile << "G: RS1 -> else SB" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö else" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º else" << endl;
 		it_AnalysisCur++;
-		// ·ÖÎöSB
+		// åˆ†æSB
 		if (!grammarAnalysisSB(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö SB ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ SB å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -1562,39 +1562,39 @@ bool GrammarAnalysis::grammarAnalysisRS1(list<Token>::iterator & it_AnalysisCur,
 */
 bool GrammarAnalysis::grammarAnalysisSB(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken)
 {
-	if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
-	//·ÖÎö×ó´óÀ¨ºÅ
+	//åˆ†æå·¦å¤§æ‹¬å·
 	if ((*it_AnalysisCur).type == Delimiter_Left_Large_Bracket)
 	{
 		outAnalysisFile << "G: SB -> { SB1 }" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö {" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 //·ÖÎöSB1
-		grammarAnalysisSB1(it_AnalysisCur, listToken);	//·ÖÎöSB1·µ»ØÖµÔÚÕâ¸öÎ»ÖÃÓÀÔ¶Îªtrue
-														//·ÖÎöÓÒ´óÀ¨ºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º {" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 //åˆ†æSB1
+		grammarAnalysisSB1(it_AnalysisCur, listToken);	//åˆ†æSB1è¿”å›å€¼åœ¨è¿™ä¸ªä½ç½®æ°¸è¿œä¸ºtrue
+														//åˆ†æå³å¤§æ‹¬å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
 		if ((*it_AnalysisCur).type != Delimiter_Right_Large_Bracket)
 		{
-			outAnalysisFile << "E: ·ÖÎö } ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ } å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö }" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º }" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	else
 	{
-		//·ÖÎöRS
+		//åˆ†æRS
 		if (!grammarAnalysisRS(it_AnalysisCur, listToken))
 		{
-			outAnalysisFile << "E: ·ÖÎö RS ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ RS å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -1626,69 +1626,69 @@ bool GrammarAnalysis::grammarAnalysisSB1(list<Token>::iterator & it_AnalysisCur,
 */
 bool GrammarAnalysis::grammarAnalysisPrint(list<Token>::iterator & it_AnalysisCur, list<Token>& listToken)
 {
-	if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+	if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
-	//·ÖÎö string ) ;
-	if ((*it_AnalysisCur).type == String)	//ÊÇ·ñÎª×Ö·û´®
+	//åˆ†æ string ) ;
+	if ((*it_AnalysisCur).type == String)	//æ˜¯å¦ä¸ºå­—ç¬¦ä¸²
 	{
 		outAnalysisFile << "G: Print -> string ) ;" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö string " << (*it_AnalysisCur).data << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 // ·ÖÎö ÓÒĞ¡À¨ºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º string " << (*it_AnalysisCur).data << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 // åˆ†æ å³å°æ‹¬å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÊÇ·ñÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	//æ˜¯å¦ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 // ·ÖÎö ·ÖºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 // åˆ†æ åˆ†å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	else
 	{
-		//·ÖÎö PR ) ;
-		//·ÖÎöPR
+		//åˆ†æ PR ) ;
+		//åˆ†æPR
 		if (analysis_express_using_LL1)
 		{
 			list<Token> tmpList;
 			while (it_AnalysisCur != listToken.end())
 			{
-				if ((*it_AnalysisCur).type == Delimiter_Right_Small_Bracket) //µ½ÓÒĞ¡À¨ºÅ½áÊø
+				if ((*it_AnalysisCur).type == Delimiter_Right_Small_Bracket) //åˆ°å³å°æ‹¬å·ç»“æŸ
 				{
 					break;
 				}
 				tmpList.push_back(*it_AnalysisCur);
-				it_AnalysisCur++; //¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+				it_AnalysisCur++; //æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 			}
 			if ((*grammar_for_expression).runGrammarAnalysis(tmpList))
 			{
-				//cout << endl << "·ÖÎöPR³É¹¦" << endl;
+				//cout << endl << "åˆ†æPRæˆåŠŸ" << endl;
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
 			}
 			else
 			{
 				(*grammar_for_expression).saveAnalysisResultToFile(outAnalysisFile);
-				//cout << endl << "Print ·ÖÎöPR£¬´æÔÚÓï·¨´íÎó" << endl;
+				//cout << endl << "Print åˆ†æPRï¼Œå­˜åœ¨è¯­æ³•é”™è¯¯" << endl;
 				return false;
 			}
 		}
@@ -1696,41 +1696,41 @@ bool GrammarAnalysis::grammarAnalysisPrint(list<Token>::iterator & it_AnalysisCu
 		{
 			if (!grammarAnalysis_eexpr(it_AnalysisCur, listToken))
 			{
-				outAnalysisFile << "E: ·ÖÎö eexpr ³ö´í" << endl;
+				outAnalysisFile << "E: åˆ†æ eexpr å‡ºé”™" << endl;
 				return false;
 			}
 		}
-		// ·ÖÎö ÓÒĞ¡À¨ºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		// åˆ†æ å³å°æ‹¬å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÊÇ·ñÎªÓÒĞ¡À¨ºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Right_Small_Bracket)	//æ˜¯å¦ä¸ºå³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
-						 // ·ÖÎö ·ÖºÅ
-		if (it_AnalysisCur == listToken.end()) //Ã»ÓĞ·ÖÎöµ½Ä©Î²
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
+						 // åˆ†æ åˆ†å·
+		if (it_AnalysisCur == listToken.end()) //æ²¡æœ‰åˆ†æåˆ°æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//ÊÇ·ñÎª·ÖºÅ
+		if ((*it_AnalysisCur).type != Delimiter_Semicolon)	//æ˜¯å¦ä¸ºåˆ†å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ; ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ; å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö ;" << endl;
-		it_AnalysisCur++;//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º ;" << endl;
+		it_AnalysisCur++;//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	return true;
 }
 //---------------------------------------------------------------------------------------------------
-// ±í´ïÊ½·ÖÎö
+// è¡¨è¾¾å¼åˆ†æ
 //---------------------------------------------------------------------------------------------------
 /*
 	eexpr -> bexpr eexpr1
@@ -1760,13 +1760,13 @@ bool GrammarAnalysis::grammarAnalysis_eexpr1(list<Token>::iterator & itAnalysisC
 		//bexpr
 		if (!grammarAnalysis_bexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö bexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ bexpr å‡ºé”™" << endl;
 			return false;
 		}
 		//bexpr
 		if (!grammarAnalysis_eexpr1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö eexpr1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ eexpr1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -1781,42 +1781,42 @@ bool GrammarAnalysis::grammarAnalysis_eexpr1(list<Token>::iterator & itAnalysisC
 */
 bool GrammarAnalysis::grammarAnalysis_ao(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Operator_Equal)	// =
 	{
 		outAnalysisFile << "G: eexpr1 -> ao bexpr eexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ao " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ao " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
 	else if ((*itAnalysisCur).type == Operator_Plus_Equal)	// +=
 	{
 		outAnalysisFile << "G: eexpr1 -> ao bexpr eexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ao " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ao " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
 	else if ((*itAnalysisCur).type == Operator_Minus_Equal)	// -=
 	{
 		outAnalysisFile << "G: eexpr1 -> ao bexpr eexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ao " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ao " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
 	else if ((*itAnalysisCur).type == Operator_Multiply_Equal)	// *=
 	{
 		outAnalysisFile << "G: eexpr1 -> ao bexpr eexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ao " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ao " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
 	else if ((*itAnalysisCur).type == Operator_Divide_Equal)	// /=
 	{
 		outAnalysisFile << "G: eexpr1 -> ao bexpr eexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ao " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ao " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
 	else
@@ -1834,13 +1834,13 @@ bool GrammarAnalysis::grammarAnalysis_bexpr(list<Token>::iterator & itAnalysisCu
 	//bterm
 	if (!grammarAnalysis_bterm(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö bterm ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ bterm å‡ºé”™" << endl;
 		return false;
 	}
 	//bexpr1
 	if (!grammarAnalysis_bexpr1(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö bexpr1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ bexpr1 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -1851,27 +1851,27 @@ bool GrammarAnalysis::grammarAnalysis_bexpr(list<Token>::iterator & itAnalysisCu
 */
 bool GrammarAnalysis::grammarAnalysis_bexpr1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Operator_Or)	// ||
 	{
 		outAnalysisFile << "G: bexpr1 -> || bterm bexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ||" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ||" << endl;
 		itAnalysisCur++;
 		if (!grammarAnalysis_bterm(itAnalysisCur, TokenenList))	//bterm
 		{
-			outAnalysisFile << "E: ·ÖÎö bterm ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ bterm å‡ºé”™" << endl;
 			return false;
 		}
 		if (!grammarAnalysis_bexpr1(itAnalysisCur, TokenenList))	//bexpr1
 		{
-			outAnalysisFile << "E: ·ÖÎö bexpr1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ bexpr1 å‡ºé”™" << endl;
 			return false;
 		}
 		return true;
@@ -1888,13 +1888,13 @@ bool GrammarAnalysis::grammarAnalysis_bterm(list<Token>::iterator & itAnalysisCu
 	//rterm
 	if (!grammarAnalysis_rexpr(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö rterm ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ rterm å‡ºé”™" << endl;
 		return false;
 	}
 	//bterm1
 	if (!grammarAnalysis_bterm1(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö bterm1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ bterm1 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -1905,29 +1905,29 @@ bool GrammarAnalysis::grammarAnalysis_bterm(list<Token>::iterator & itAnalysisCu
 */
 bool GrammarAnalysis::grammarAnalysis_bterm1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Operator_And)	// &&
 	{
 		outAnalysisFile << "G: bterm1 -> && rterm bterm1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö &&" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º &&" << endl;
 		itAnalysisCur++;
 		//rterm
 		if (!grammarAnalysis_rexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö rterm ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ rterm å‡ºé”™" << endl;
 			return false;
 		}
 		//bterm1
 		if (!grammarAnalysis_bterm1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö bterm1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ bterm1 å‡ºé”™" << endl;
 			return false;
 		}
 		return true;
@@ -1944,13 +1944,13 @@ bool GrammarAnalysis::grammarAnalysis_rexpr(list<Token>::iterator & itAnalysisCu
 	//aexpr
 	if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 		return false;
 	}
 	//rterm1
 	if (!grammarAnalysis_rexpr1(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö rterm1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ rterm1 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -1966,83 +1966,83 @@ bool GrammarAnalysis::grammarAnalysis_rexpr(list<Token>::iterator & itAnalysisCu
 */
 bool GrammarAnalysis::grammarAnalysis_rexpr1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Operator_Less_Than)	// <
 	{
 		outAnalysisFile << "G: rterm1 -> < aexpr" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö <" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º <" << endl;
 		itAnalysisCur++;
 		//aexpr
 		if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else if ((*itAnalysisCur).type == Operator_More_Than) // >
 	{
 		outAnalysisFile << "G: rterm1 -> > aexpr" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö >" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º >" << endl;
 		itAnalysisCur++;
 		//aexpr
 		if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else if ((*itAnalysisCur).type == Operator_Less_Than_Equal)	// <=
 	{
 		outAnalysisFile << "G: rterm1 -> <= aexpr" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö <=" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º <=" << endl;
 		itAnalysisCur++;
 		//aexpr
 		if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else if ((*itAnalysisCur).type == Operator_More_Than_Equal)	// >=
 	{
 		outAnalysisFile << "G: rterm1 -> >= aexpr" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö >=" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º >=" << endl;
 		itAnalysisCur++;
 		//aexpr
 		if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else if ((*itAnalysisCur).type == Operator_Not_Equal_To)	// !=
 	{
 		outAnalysisFile << "G: rterm1 -> != aexpr" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö !=" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º !=" << endl;
 		itAnalysisCur++;
 		//aexpr
 		if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else if ((*itAnalysisCur).type == Operator_Is_Equal) // ==
 	{
 		outAnalysisFile << "G: rterm1 -> == aexpr" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ==" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º ==" << endl;
 		itAnalysisCur++;
 		//aexpr
 		if (!grammarAnalysis_aexpr(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -2057,13 +2057,13 @@ bool GrammarAnalysis::grammarAnalysis_aexpr(list<Token>::iterator & itAnalysisCu
 	//term
 	if (!grammarAnalysis_term(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö term ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ term å‡ºé”™" << endl;
 		return false;
 	}
 	//aexpr1
 	if (!grammarAnalysis_aexpr1(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö aexpr1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ aexpr1 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -2075,47 +2075,47 @@ aexpr1 -> $
 */
 bool GrammarAnalysis::grammarAnalysis_aexpr1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Operator_Plus) // +
 	{
 		outAnalysisFile << "G: aexpr1 -> + term aexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö +" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º +" << endl;
 		itAnalysisCur++;
 		//term
 		if (!grammarAnalysis_term(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö term ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ term å‡ºé”™" << endl;
 			return false;
 		}
 		//aexpr1
 		if (!grammarAnalysis_aexpr1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	else if ((*itAnalysisCur).type == Operator_Minus) // -
 	{
 		outAnalysisFile << "G: aexpr1 -> - term aexpr1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö -" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º -" << endl;
 		itAnalysisCur++;
 		//term
 		if (!grammarAnalysis_term(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö term ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ term å‡ºé”™" << endl;
 			return false;
 		}
 		//aexpr1
 		if (!grammarAnalysis_aexpr1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö aexpr1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ aexpr1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -2127,16 +2127,16 @@ term -> factor term1
 bool GrammarAnalysis::grammarAnalysis_term(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
 	outAnalysisFile << "G: term -> factor term1" << endl;
-	//·ÖÎöfactor
+	//åˆ†æfactor
 	if (!grammarAnalysis_factor(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö factor ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ factor å‡ºé”™" << endl;
 		return false;
 	}
-	//·ÖÎöterm1
+	//åˆ†æterm1
 	if (!grammarAnalysis_term1(itAnalysisCur, TokenenList))
 	{
-		outAnalysisFile << "E: ·ÖÎö term1 ³ö´í" << endl;
+		outAnalysisFile << "E: åˆ†æ term1 å‡ºé”™" << endl;
 		return false;
 	}
 	return true;
@@ -2149,66 +2149,66 @@ term1 -> $
 */
 bool GrammarAnalysis::grammarAnalysis_term1(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
-	//·ÖÎö * / %
+	//åˆ†æ * / %
 	if ((*itAnalysisCur).type == Operator_Multiply)
 	{
 		outAnalysisFile << "G: term1 -> * factor term1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö *" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º *" << endl;
 		itAnalysisCur++;
-		//·ÖÎöfactor
+		//åˆ†æfactor
 		if (!grammarAnalysis_factor(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö factor ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ factor å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöterm1
+		//åˆ†æterm1
 		if (!grammarAnalysis_term1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö term1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ term1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	if ((*itAnalysisCur).type == Operator_Divide)
 	{
 		outAnalysisFile << "G: term1 -> / factor term1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö /" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º /" << endl;
 		itAnalysisCur++;
-		//·ÖÎöfactor
+		//åˆ†æfactor
 		if (!grammarAnalysis_factor(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö factor ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ factor å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöterm1
+		//åˆ†æterm1
 		if (!grammarAnalysis_term1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö term1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ term1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	if ((*itAnalysisCur).type == Operator_Mod)
 	{
 		outAnalysisFile << "G: term1 -> % factor term1" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö %" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º %" << endl;
 		itAnalysisCur++;
-		//·ÖÎöfactor
+		//åˆ†æfactor
 		if (!grammarAnalysis_factor(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö factor ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ factor å‡ºé”™" << endl;
 			return false;
 		}
-		//·ÖÎöterm1
+		//åˆ†æterm1
 		if (!grammarAnalysis_term1(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö term1 ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ term1 å‡ºé”™" << endl;
 			return false;
 		}
 	}
@@ -2220,23 +2220,23 @@ factor -> ael
 */
 bool GrammarAnalysis::grammarAnalysis_factor(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Operator_Not)	// !
 	{
 		outAnalysisFile << "G: factor -> ! ael" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö !" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º !" << endl;
 		itAnalysisCur++;
-		//·ÖÎöael
+		//åˆ†æael
 		if (!grammarAnalysis_ael(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö ael ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ael å‡ºé”™" << endl;
 			return false;
 		}
 		return true;
@@ -2244,10 +2244,10 @@ bool GrammarAnalysis::grammarAnalysis_factor(list<Token>::iterator & itAnalysisC
 	else
 	{
 		outAnalysisFile << "G: factor -> ael" << endl;
-		//·ÖÎöael
+		//åˆ†æael
 		if (!grammarAnalysis_ael(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö ael ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ael å‡ºé”™" << endl;
 			return false;
 		}
 		return true;
@@ -2259,31 +2259,31 @@ bool GrammarAnalysis::grammarAnalysis_factor(list<Token>::iterator & itAnalysisC
 */
 bool GrammarAnalysis::grammarAnalysis_ael(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E:ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E:å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
-	if ((*itAnalysisCur).type == Delimiter_Left_Small_Bracket)	//×óĞ¡À¨ºÅ
+	if ((*itAnalysisCur).type == Delimiter_Left_Small_Bracket)	//å·¦å°æ‹¬å·
 	{
 		outAnalysisFile << "G: ael -> ( bexpr )" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö (" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º (" << endl;
 		itAnalysisCur++;
-		// ·ÖÎöbexpr
-		if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+		// åˆ†æbexpr
+		if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 		{
-			outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+			outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 			return false;
 		}
-		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//ÓÒĞ¡À¨ºÅ
+		if ((*itAnalysisCur).type != Delimiter_Right_Small_Bracket)	//å³å°æ‹¬å·
 		{
-			outAnalysisFile << "E: ·ÖÎö ) ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ ) å‡ºé”™" << endl;
 			return false;
 		}
-		outAnalysisFile << "1> ·ÖÎö³ö )" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º )" << endl;
 		itAnalysisCur++;
 	}
 	else
@@ -2291,75 +2291,75 @@ bool GrammarAnalysis::grammarAnalysis_ael(list<Token>::iterator & itAnalysisCur,
 		outAnalysisFile << "G: ael -> root" << endl;
 		if (!grammarAnalysis_root(itAnalysisCur, TokenenList))
 		{
-			outAnalysisFile << "E: ·ÖÎö root ³ö´í" << endl;
+			outAnalysisFile << "E: åˆ†æ root å‡ºé”™" << endl;
 			return false;
 		}
 	}
 	return true;
 }
 /*
-	root -> id(±äÁ¿)
-	root -> ÕûĞÍ(°Ë½øÖÆ¡¢Ê®½øÖÆ¡¢Ê®Áù½øÖÆ)
-	root -> ¸¡µãĞÍ( Ğ¡Êı¡¢Ö¸Êı )
-	root -> ²¼¶ûĞÍ BOOL
-	root -> ×Ö·ûĞÍ
+	root -> id(å˜é‡)
+	root -> æ•´å‹(å…«è¿›åˆ¶ã€åè¿›åˆ¶ã€åå…­è¿›åˆ¶)
+	root -> æµ®ç‚¹å‹( å°æ•°ã€æŒ‡æ•° )
+	root -> å¸ƒå°”å‹ BOOL
+	root -> å­—ç¬¦å‹
 */
 bool GrammarAnalysis::grammarAnalysis_root(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
-		//ÌáÊ¾´íÎó
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
+		//æç¤ºé”™è¯¯
 		itAnalysisCur--;
-		cout << "Óï·¨´íÎó£ºÔÚµÚ" << (*itAnalysisCur).lineNo << "ĞĞ£¬³ÌĞò²»ÍêÕû£¬È±ÉÙ±ØÒªÄÚÈİ" << endl;
+		cout << "è¯­æ³•é”™è¯¯ï¼šåœ¨ç¬¬" << (*itAnalysisCur).lineNo << "è¡Œï¼Œç¨‹åºä¸å®Œæ•´ï¼Œç¼ºå°‘å¿…è¦å†…å®¹" << endl;
 		itAnalysisCur++;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Identifier)	//id
 	{
-		outAnalysisFile << "G: root -> id(±äÁ¿)" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö id " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> id(å˜é‡)" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º id " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Character)	//×Ö·û
+	else if ((*itAnalysisCur).type == Character)	//å­—ç¬¦
 	{
-		outAnalysisFile << "G: root -> ×Ö·ûĞÍ" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö char " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> å­—ç¬¦å‹" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º char " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Octonary)	//ÕûĞÍ °Ë½øÖÆ
+	else if ((*itAnalysisCur).type == Number_Octonary)	//æ•´å‹ å…«è¿›åˆ¶
 	{
-		outAnalysisFile << "G: root -> ÕûĞÍ(°Ë½øÖÆ)" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ÕûĞÍ(°Ë½øÖÆ) " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> æ•´å‹(å…«è¿›åˆ¶)" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º æ•´å‹(å…«è¿›åˆ¶) " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Decimalism)	//ÕûĞÍ Ê®½øÖÆ
+	else if ((*itAnalysisCur).type == Number_Decimalism)	//æ•´å‹ åè¿›åˆ¶
 	{
-		outAnalysisFile << "G: root -> ÕûĞÍ(Ê®½øÖÆ)" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ÕûĞÍ(Ê®½øÖÆ) " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> æ•´å‹(åè¿›åˆ¶)" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º æ•´å‹(åè¿›åˆ¶) " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Hexadecimal)	//ÕûĞÍ Ê®Áù½øÖÆ
+	else if ((*itAnalysisCur).type == Number_Hexadecimal)	//æ•´å‹ åå…­è¿›åˆ¶
 	{
-		outAnalysisFile << "G: root -> ÕûĞÍ(Ê®Áù½øÖÆ)" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ÕûĞÍ(Ê®Áù½øÖÆ) " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> æ•´å‹(åå…­è¿›åˆ¶)" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º æ•´å‹(åå…­è¿›åˆ¶) " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Decimals)	//¸¡µãĞÍ Ğ¡Êı
+	else if ((*itAnalysisCur).type == Number_Decimals)	//æµ®ç‚¹å‹ å°æ•°
 	{
-		outAnalysisFile << "G: root -> ¸¡µãĞÍ( Ğ¡Êı )" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ¸¡µãĞÍ( Ğ¡Êı ) " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> æµ®ç‚¹å‹( å°æ•° )" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º æµ®ç‚¹å‹( å°æ•° ) " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
-	else if ((*itAnalysisCur).type == Number_Exponent)	//¸¡µãĞÍ Ö¸Êı
+	else if ((*itAnalysisCur).type == Number_Exponent)	//æµ®ç‚¹å‹ æŒ‡æ•°
 	{
-		outAnalysisFile << "G: root -> ¸¡µãĞÍ( Ö¸Êı )" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö ¸¡µãĞÍ( Ö¸Êı ) " << (*itAnalysisCur).data << endl;
+		outAnalysisFile << "G: root -> æµ®ç‚¹å‹( æŒ‡æ•° )" << endl;
+		outAnalysisFile << "1> åˆ†æå‡º æµ®ç‚¹å‹( æŒ‡æ•° ) " << (*itAnalysisCur).data << endl;
 		itAnalysisCur++;
 	}
 	else if (grammarAnalysisBOOL(itAnalysisCur, TokenenList))
 	{
-		//·ÖÎöBOOL
+		//åˆ†æBOOL
 	}
 	else
 	{
@@ -2373,33 +2373,33 @@ BOOL -> false
 */
 bool GrammarAnalysis::grammarAnalysisBOOL(list<Token>::iterator & itAnalysisCur, list<Token>& TokenenList)
 {
-	if (itAnalysisCur == TokenenList.end())	//ÅĞ¶ÏÊÇ·ñ·ÖÎöµ½Tokenen´®µÄÄ©Î²
+	if (itAnalysisCur == TokenenList.end())	//åˆ¤æ–­æ˜¯å¦åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾
 	{
-		outAnalysisFile << "E: ÒÑ¾­·ÖÎöµ½Tokenen´®µÄÄ©Î²" << endl;
+		outAnalysisFile << "E: å·²ç»åˆ†æåˆ°Tokenenä¸²çš„æœ«å°¾" << endl;
 		return false;
 	}
 	if ((*itAnalysisCur).type == Keyword_true)
 	{
 		outAnalysisFile << "G: BOOL -> true" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö true" << endl;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º true" << endl;
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	else if ((*itAnalysisCur).type == Keyword_false)
 	{
 		outAnalysisFile << "G: BOOL -> false" << endl;
-		outAnalysisFile << "1> ·ÖÎö³ö false " << endl;
-		itAnalysisCur++;	//¸üĞÂµ±Ç°·ÖÎöTokenen´®µÄÎ»ÖÃ
+		outAnalysisFile << "1> åˆ†æå‡º false " << endl;
+		itAnalysisCur++;	//æ›´æ–°å½“å‰åˆ†æTokenenä¸²çš„ä½ç½®
 	}
 	else
 	{
-		return false;//±íÃ÷µ±Ç°·ÖÎöµÄTokenen´®²»ÊÇÒ»¸ö²¼¶ûÁ¿£¬·µ»Ø
+		return false;//è¡¨æ˜å½“å‰åˆ†æçš„Tokenenä¸²ä¸æ˜¯ä¸€ä¸ªå¸ƒå°”é‡ï¼Œè¿”å›
 	}
 	return true;
 }
 
 bool GrammarAnalysis::expressPreAnalysis(int type)
 {
-	// ! ( id ÕûĞÍ(°Ë£¬Ê®£¬Ê®Áù) ¸¡µã(Ğ¡£¬Ö¸) true false char
+	// ! ( id æ•´å‹(å…«ï¼Œåï¼Œåå…­) æµ®ç‚¹(å°ï¼ŒæŒ‡) true false char
 	if (type == Operator_Not || type == Identifier || type == Number_Octonary
 		|| type == Number_Decimalism || type == Number_Hexadecimal || type == Number_Decimals
 		|| type == Number_Exponent || type == Keyword_true || type == Keyword_false || type == Character)
@@ -2408,22 +2408,22 @@ bool GrammarAnalysis::expressPreAnalysis(int type)
 	}
 	return false;
 }
-//Ê¶±ğÓï·¨´íÎó
+//è¯†åˆ«è¯­æ³•é”™è¯¯
 int GrammarAnalysis::recogniseGrammarError(list<Token>::iterator& itAnalysisCur, int curType, int nextType)
 {
-	//Token¶ªÊ§
+	//Tokenä¸¢å¤±
 	if ((*itAnalysisCur).type == nextType)
 	{
 		return TokenLose;
 	}
-	//Token¶àÓà
+	//Tokenå¤šä½™
 	if ((*(++itAnalysisCur)).type == curType)
 	{
 		--itAnalysisCur;
 		return TokenExcess;
 	}
 	--itAnalysisCur;
-	//Token²»Æ¥Åä
+	//Tokenä¸åŒ¹é…
 	if ((*(++itAnalysisCur)).type == curType)
 	{
 		--itAnalysisCur;

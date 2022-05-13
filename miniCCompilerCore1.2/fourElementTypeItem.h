@@ -7,19 +7,19 @@ using namespace std;
 class FourElementTypeItem
 {
 public:
-	int mType;	// 0-³õÊ¼»¯ 1-³£Á¿ 2-ÓÃ»§¶¨ÒåµÄ±äÁ¿ 3-ÁÙÊ±±äÁ¿ 4-²¼¶û±í´ïÊ½ 5-ËÄÔªÊ½Ö¸Õë
-	int mConstantType;	//³£Á¿ÀàĞÍ 1-ÕûĞÍ 2-¸¡µãĞÍ 3-×Ö·ûĞÍ 4-×Ö·û´®ĞÍ(Ö»»áÔÚprintº¯ÊıÖĞÓÃµ½)
+	int mType;	// 0-åˆå§‹åŒ– 1-å¸¸é‡ 2-ç”¨æˆ·å®šä¹‰çš„å˜é‡ 3-ä¸´æ—¶å˜é‡ 4-å¸ƒå°”è¡¨è¾¾å¼ 5-å››å…ƒå¼æŒ‡é’ˆ
+	int mConstantType;	//å¸¸é‡ç±»å‹ 1-æ•´å‹ 2-æµ®ç‚¹å‹ 3-å­—ç¬¦å‹ 4-å­—ç¬¦ä¸²å‹(åªä¼šåœ¨printå‡½æ•°ä¸­ç”¨åˆ°)
 
-	int mConstantInteger;	//ÕûĞÍ³£Á¿
-	float mConstantFloat;	//¸¡µãĞÍ³£Á¿
-	char mConstantChar;		//×Ö·ûĞÍ³£Á¿
+	int mConstantInteger;	//æ•´å‹å¸¸é‡
+	float mConstantFloat;	//æµ®ç‚¹å‹å¸¸é‡
+	char mConstantChar;		//å­—ç¬¦å‹å¸¸é‡
 
-	string mUserIdentifierName;	//³ÌĞò±äÁ¿Ãû
-	string mTempIdentifierName;	//ÁÙÊ±±äÁ¿Ãû
+	string mUserIdentifierName;	//ç¨‹åºå˜é‡å
+	string mTempIdentifierName;	//ä¸´æ—¶å˜é‡å
 
-	int mTC;	//±í´ïÊ½µÄÕæ³ö¿Ú
-	int mFC;	//±í´ïÊ½µÄ¼Ù³ö¿Ú
-	int mNumber;	//ÏÂÒ»¸öËÄÔªÊ½
+	int mTC;	//è¡¨è¾¾å¼çš„çœŸå‡ºå£
+	int mFC;	//è¡¨è¾¾å¼çš„å‡å‡ºå£
+	int mNumber;	//ä¸‹ä¸€ä¸ªå››å…ƒå¼
 	string mPrintString;
 	string mCacheBuffer;
 public:

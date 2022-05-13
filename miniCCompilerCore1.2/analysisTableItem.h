@@ -6,8 +6,8 @@ using namespace std;
 class AnalysisTableItem
 {
 public:
-	Token mTerminator;		//ÖÕ½á·û
-	Production mProduction;	//²úÉúÊ½
+	Token mTerminator;		//ç»ˆç»“ç¬¦
+	Production mProduction;	//äº§ç”Ÿå¼
 public:
 	AnalysisTableItem();
 	AnalysisTableItem(Token& token, Production& production);
