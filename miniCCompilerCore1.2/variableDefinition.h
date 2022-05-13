@@ -19,7 +19,7 @@
 #include <iostream>
 #include <list>
 using namespace std;
-#include "Node.h"
+#include "node.h"
 #include "variableList.h"
 #include "grammarTreeTmp.h"
 

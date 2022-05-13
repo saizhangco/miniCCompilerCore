@@ -27,7 +27,7 @@ void Tree::deleteNodes(Node* node) //·ÃÎÊË³Ðò ×óÓÒ¸ù
 		deleteNodes(node->left);
 		deleteNodes(node->right);
 		//cout << "delete " << node->data << endl;
-		delete node;
+		// delete node;
 		node = nullptr;
 	}
 }

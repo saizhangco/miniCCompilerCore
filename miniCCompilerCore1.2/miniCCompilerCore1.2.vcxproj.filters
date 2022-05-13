@@ -222,5 +222,13 @@
     <ClInclude Include="codeOptimization.h">
       <Filter>optimization</Filter>
     </ClInclude>
+    <ClInclude Include="linuxStrings.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile">
+      <Filter>源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

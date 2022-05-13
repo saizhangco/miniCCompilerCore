@@ -1,4 +1,6 @@
 #include "lexicalAnalysis.h"
+#include <cstring>
+
 LexicalAnalysis::LexicalAnalysis()
 {
 	analysisGrammar = false;
@@ -21,8 +23,13 @@ int LexicalAnalysis::runLexicalAnalysis(CodeList& codeList)
 		lexical_core(*it_code , isBlockAnnotation ,true);
 	}
 	//保存词法分析动画信息
-	saveLexicalAnalysisAnimationListToFile("analysis\\lexicalAnalysisAnimation.txt");	
+#ifdef __linux__
+	saveLexicalAnalysisAnimationListToFile("analysis_linux/lexicalAnalysisAnimation.txt");
+	saveTokenListToFile("analysis_linux/token.txt");	//保存Token串
+#else
+	saveLexicalAnalysisAnimationListToFile("analysis\\lexicalAnalysisAnimation.txt");
 	saveTokenListToFile("analysis\\token.txt");	//保存Token串
+#endif // __linux__
 	//判断TokenList内容是否存在错误
 	list<Token>::iterator it_TokenList = mTokenList.begin();
 	for (; it_TokenList != mTokenList.end(); it_TokenList++)
@@ -68,7 +75,7 @@ void LexicalAnalysis::lexical_core(Code code ,bool & isBlockAnnotation , bool is
 	strcpy(line, code.line.c_str());
 	//line[strlen(pCode->line)] = '\0';//复制字符串到缓冲区
 	int lineNo = code.no;
-	int lastI = 0;
+	// int lastI = 0;
 	for (unsigned int i = 0; i < (strlen(line) + 1); i++)
 	{
 		//0.是否为块注释处理状态 寻找"*/"结束

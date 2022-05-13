@@ -130,10 +130,10 @@
     <ClCompile Include="lexicalAnalysisAnimation.cpp" />
     <ClCompile Include="LL_1_Analysis.cpp" />
     <ClCompile Include="LL_1_AnalysisItem.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main_0420.cpp" />
     <ClCompile Include="main_0511.cpp" />
     <ClCompile Include="main_arg.cpp" />
-    <ClCompile Include="main_arg_test_1.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="node.cpp" />
     <ClCompile Include="objectCodeGeneration.cpp" />
     <ClCompile Include="objectCodeGeneration_Linux.cpp" />

@@ -3,6 +3,7 @@
 #include "fourElementType.h"
 #include "functionDefinition.h"
 #include <fstream>
+#include "linuxStrings.h"
 
 
 SemanticAnalysis::SemanticAnalysis()
@@ -448,7 +449,7 @@ bool SemanticAnalysis::semanticAnalysisF1(list<Token>::iterator & itAnalysisCur,
 		--itAnalysisCur;	//返回之前分析Tokenen串的位置
 		//分析VL
 		tmp.tmpType = 1;	//外部数据定义
-		tmp.variableList;
+		// tmp.variableList;
 		if (!semanticAnalysisVL(itAnalysisCur, TokenenList, tmp.variableList, true))
 		{
 			return false;
@@ -1014,7 +1015,7 @@ bool SemanticAnalysis::semanticAnalysis_RS(list<Token>::iterator & itAnalysisCur
 		RS_CHAIN = NXQ;
 
 		//5.分析RS1
-		int RS1_CHAIN = 0;
+		// int RS1_CHAIN = 0;
 		if (!semanticAnalysis_RS1(itAnalysisCur, TokenenList, RS_CHAIN, mFC))
 		{
 			//cout << "分析RS1出错" << endl;

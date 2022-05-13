@@ -3,7 +3,7 @@
 #include <list>
 #include <fstream>
 using namespace std;
-#include "Token.h"
+#include "token.h"
 #include "LL_1_Analysis.h"
 #include "node.h"
 #include "tree.h"

@@ -40,6 +40,7 @@ public:
 	bool existTokInTokList(list<Token>& tok, string& s);
 	bool existTokInTokVector(vector<Token>& tok, string& s);
 	bool existATItemInATItemList(list<AnalysisTableItem>& item, string& s);
+	bool existATItemInATItemList(list<AnalysisTableItem>& item, const char* s);
 	bool existATItemInATItemList(list<AnalysisTableItem>& item, int& t);
 
 	void printFirstSet();	//¥Ú”°FirstºØ

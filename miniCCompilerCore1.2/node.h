@@ -30,7 +30,7 @@ public:
 		left = nullptr;
 		right = nullptr;
 	}
-	~Node() {}
+	~Node() {};
 	virtual void printContent();
 	bool addLeftChild(string data);		//添加左结点
 	bool addRightChild(string data);	//添加右结点
